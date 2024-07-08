@@ -1,13 +1,12 @@
+font-face{
+    font-family: 'aracne';
+    src: url(assets\fonts\ARACNE-CONDENSED_regular.ttf) format('truetype')
+  }
+
 p{
-    color: white;
+    color: white
 }
 
 h1{
     color: white;
-}
-
-body{
-    padding: 0;
-    margin: 0;
-    background-color:#0f0f71;
 }

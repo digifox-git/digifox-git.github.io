@@ -5,13 +5,37 @@
 
         <style>
             body{
-                background-image: url(assets\404bg.png);
+                background-image: url(assets/404bg.png);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: black;
             }
         </style>
     </head>
 <body>
-<h1 class="textdefault">hey paisanos!</h1>
-<p class="textdefault">rouhfrdifrf.</p>
+
+<script>
+window.onload = function(){
+    const randommsg = [
+    "Page not found!", "It's somewhere around here...", "Where could it be...", "Error 404, Page Not Found!", "Something's not right...", "Not the webpage you are looking for...?", "It should be here somewhere..."
+    ]
+
+    const random404 = randommsg[Math.floor(Math.random() * randommsg.length)];
+
+    document.getElementById("random404").innerHTML = random404
+    
+}
+</script>
+
+<div style="margin-top: 15%;">
+<center><h1 class="textdefault" style="font-family: aracne; font-size: 4em;" id="random404"></h1></center>
 </div>
+<center><p style="font-family: Arial; font-size: 2em; margin-top: -2%;">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</p></center>
+<center><p style="font-family: Arial; font-size: 1.5em; margin-top: -1%;">The page that you are trying to reach does not exist, how odd!<br>Perhaps you typed something in wrong? Or perhaps you are right<br>where you want to be...</p></center>
+</div>
+<!--IMPORTANT:-->
+<!--NOTE FOR THIS PAGE: ADD DELTARUNE TREE GRAFITI LOW OPACITY IN BOTTOM: LEADS TO EGG ROOM FROM CHAPTER 1 WITH MUSIC-->
+<!--NOTE FOR THIS PAGE: ADD DELTARUNE TREE GRAFITI LOW OPACITY IN BOTTOM: LEADS TO EGG ROOM FROM CHAPTER 1 WITH MUSIC-->
+<!--NOTE FOR THIS PAGE: ADD DELTARUNE TREE GRAFITI LOW OPACITY IN BOTTOM: LEADS TO EGG ROOM FROM CHAPTER 1 WITH MUSIC-->
 </body>
 </html>
