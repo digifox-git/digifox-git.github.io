@@ -1,10 +1,16 @@
-font-face{
+@font-face{
     font-family: 'aracne';
-    src: url(assets\fonts\ARACNE-CONDENSED_regular.ttf) format('truetype')
+    src: url(assets\fonts\ARACNE-CONDENSED_regular.ttf) format('truetype');
+  }
+
+  @font-face {
+    font-family: "Pixel";
+    src: url('assets/fonts/PIXEARG_.TTF');
   }
 
 p{
-    color: white
+    color: white;
+    font-family: 'Pixel';
 }
 
 h1{
