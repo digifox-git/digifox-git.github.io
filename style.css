@@ -8,11 +8,20 @@
     src: url('assets/fonts/PIXEARG_.TTF');
   }
 
+  @font-face {
+    font-family: "PixelHeader";
+    src: url('assets/fonts/Whacky_Joe.ttf');
+  }
+
 p{
     color: white;
     font-family: 'Pixel';
+    font-size: 1em;
 }
 
 h1{
     color: white;
+    font-family: 'PixelHeader';
+    font-size: 4em;
+    font-weight: bold;
 }
