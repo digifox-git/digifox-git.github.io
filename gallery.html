@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+
+        <style>
+            body{
+                background-color: black;
+                background-image: url(assets/clouds.gif);
+                background-size: 256px;
+
+                overflow-x: hidden;
+            }
+
+            #imgcontainer {
+                display: flex;
+                border: 64px solid transparent;
+                padding: 0%;
+                border-image: url(assets/frame2.png) 48 round;
+                background-image: url(assets/cardstock.png);
+                margin:0%;
+                flex-wrap: wrap;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: space-evenly;
+            }
+
+            .zoom {
+                padding: 16px;
+                transition: transform 0.025s;
+                margin: 0 auto;
+            }
+
+            .zoom:hover {
+                transform: scale(1.15)
+            }
+        </style>
+    </head>
+<body>
+
+<a href="https://www.digifox.space"><img src="assets/travelhome.gif" style="position: absolute; width: 4%;"></a>
+<img src="assets/subtext.png" style="position: absolute; width: 4%; margin-top: 3.5%;">
+
+<center>
+    <img class="title" style="margin-top: 2%; padding-bottom: 3%;" src="assets/photoGardenTitle.png"
+</center>
+
+<div>
+<div id="imgcontainer" style="width:80%;top:20%">
+    <img class="zoom" src="assets\photos\pic (1).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (2).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (3).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (4).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (5).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (6).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (7).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (8).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (9).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (10).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (11).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (12).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (13).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (14).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (15).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (16).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (17).jpg" style="width:30%;height:30%;">
+    <img class="zoom" src="assets\photos\pic (18).jpg" style="width:30%;height:30%;">
+</div>
+<p style="justify-content: left;">To make an image bigger, right click and select "Open Image in New Tab." A proper fix is in the works!</p>
+</div>
+
+
+</body>
+</html>
