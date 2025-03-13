@@ -1,0 +1,51 @@
+@font-face {
+    font-family: mc;
+    src: url(assets/fonts/minecraft.otf);
+}
+
+body {
+    background-image: url(assets/sprite_dirt.png);
+}
+
+p {
+    color: white;
+    font-family: mc;
+    font-size: 1.2em;
+}
+
+h1 {
+    color: white;
+    font-family: mc;
+    font-size: 1.5em;
+}
+
+a {
+    color: aqua;
+    font-family: mc;
+    font-size: 1em;
+}
+
+img {
+    z-index: 1;
+}
+
+.contentbox {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20%;
+}
+
+.sidecontent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 10%;
+}
