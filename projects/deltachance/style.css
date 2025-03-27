@@ -10,6 +10,10 @@ body {
     text-align: center;
     overflow-x:hidden;
     overflow-y:hidden;
+    background-image: url(bg.avif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 h1 {
