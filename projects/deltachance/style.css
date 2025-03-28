@@ -1,0 +1,53 @@
+@font-face {
+    font-family: darkworld;
+    src: url(/././assets/fonts/DTM-Sans.otf);
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: darkworld;
+    text-align: center;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    background-image: url(bg.avif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+h1 {
+    font-size: 6em;
+}
+
+a {
+    color:white
+}
+
+a:hover {
+    color:yellow
+}
+
+p {
+    font-size: 2em;
+}
+
+#chance {
+    display: inline-block;
+    animation: shake 0.5s steps(1) infinite;
+    color: white;
+}
+
+.container {
+    width: 100%;
+    height: 95vh;
+    align-content: center;
+    position:absolute;
+}
+
+.containercontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 95vh;
+}
