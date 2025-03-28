@@ -13,8 +13,8 @@
         var difference = (d - startDay) + ((startDay.getTimezoneOffset() - d.getTimezoneOffset()) * 60 * 1000)
         var oneDay = 1000 * 60 * 60 * 24;
         var dayofyear = Math.floor(difference / oneDay)
-        let deltachance = ((1 / (365 - dayofyear) * 100).toFixed(3)).toString()
-        document.getElementById("chance").innerText = deltachance + "%"
+        let deltachance = ((1 / (365 - (dayofyear - 1)) * 100).toFixed(3)).toString()
+        document.getElementById("chan ce").innerText = deltachance + "%"
         })
 
         function shaking(element) {
@@ -37,7 +37,7 @@
                 <p style="margin-top: 10px;">There is a</p>
                     <h1 id="chance">RELEASED</h1>
             <div>
-                <p style="margin-bottom: 10px;">chance of <a href="https://deltarune.com/" target="_blank">DELTARUNE</a>  tomorrow.</p>
+                <p style="margin-bottom: 10px;">chance of <a href="https://deltarune.com/" target="_blank">DELTARUNE</a> tomorrow.</p>
             </div>
         </div>
     </div>
