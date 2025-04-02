@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>Deltarune Chance Calculator</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const d = new Date();
+        let startDay = new Date(d.getFullYear(), 0, 0);
+        var difference = (d - startDay) + ((startDay.getTimezoneOffset() - d.getTimezoneOffset()) * 60 * 1000)
+        var oneDay = 1000 * 60 * 60 * 24;
+        var dayofyear = Math.floor(difference / oneDay)
+        let deltachance = ((1 / (365 - (dayofyear - 1)) * 100).toFixed(3)).toString()
+        document.getElementById("chance").innerText = deltachance + "%"
+        })
+
+        function shaking(element) {
+            setInterval(() => {
+                const x = (Math.random() - 0.5) * 2; 
+                const y = (Math.random() - 0.5) * 2; 
+                element.style.transform = `translate(${x}px, ${y}px)`;
+            }, 50)
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const text = document.querySelector("#chance");
+            shaking(text);
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="containercontainer">
+                <p style="margin-top: 10px;">There is a</p>
+                    <h1 id="chance">RELEASED</h1>
+            <div>
+                <p style="margin-bottom: 10px;">chance of <a href="https://deltarune.com/" target="_blank">DELTARUNE</a> tomorrow.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
