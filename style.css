@@ -1,3 +1,7 @@
 body {
     overflow-x: hidden;
 }
+
+#roominbetween {
+    position:absolute; bottom: 10px; cursor: help; width: 10%; image-rendering: pixelated;
+}

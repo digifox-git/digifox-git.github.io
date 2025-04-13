@@ -1,0 +1,29 @@
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0
+}
+
+#content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#man {
+    min-width: 320px;
+    max-width: 100%;
+    min-height: 320px;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    color: black;
+}
+
+#man img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
