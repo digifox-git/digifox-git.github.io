@@ -7,7 +7,13 @@ body {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+a {
+    color: rgba(255, 255, 255, 0);
+}
+
 .contentbox {
+    display: flex;
+    flex-direction: row;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -29,12 +35,22 @@ body {
 
 #optiontray {
     display: flex;
-    max-width: 20%;
+    width: 20%;
     height: 100%;
     justify-content: left;
     align-items: left;
     flex-direction: column;
     border-right: 2px solid rgba(255, 255, 255, 0.21);
+}
+
+#interactionfield {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: left;
+    align-items: left;
+    flex-direction: column;
+    padding: 1%;
 }
 
 button {
@@ -62,4 +78,30 @@ button:hover {
     padding-left: 2%;
     color: white;
     font-size: 16px;
+}
+
+.selected {
+    display: flex;
+    background: rgba(255, 255, 255, 0);
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-left: 2px solid rgba(255, 255, 255, 0.5);
+    width: 94%;
+    height: 48px;
+    justify-content: left;
+    align-items: center;
+    padding-left: 2%;
+    color: white;
+    font-size: 16px;
+}
+
+#headerlogo {
+    display: flex;
+    width: 100%;
+    height: 12%;
+    justify-content: center;
+    align-items: left;
+    flex-direction: row;
+    padding: 1%;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: #5FB2CC
 }
