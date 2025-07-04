@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/./Resources/favicon.ico">
 	<link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
     <title>Mr. Inquiry Dashboard</title>
 </head>
 <body>
@@ -18,12 +19,34 @@
             <a href="tab/aww.html"><button >Animal Database</button></a>
             <a href="tab/marktest.html"><button >Marktest</button></a>
             <div class="category">Other</div>
+            <a href="index.html"><button class="selected">About</button></a>
             <a href="tab/log.html"><button >Console Log</button></a>
             <a href="tab/host.html"><button >Host Info</button></a>
+            <div id="extratray">
+                <div id="download">
+                    <button><img src="mrinquiry_download.png">Download Standalone</button>
+                    
+                </div>
+            </div>
         </div>
 
         <div id="interactionfield">
             <div id="headerlogo"><img src="/./assets/MrInquiryLogoFull.png"></div>
+            <button onclick="show_message('publish', 'Custom Publish Message' ,'Your changes have been published!')">Publish</button>
+            <button onclick="show_message('error', 'Custom Error Message' ,'Something went wrong!')">Error</button>
+            <button class="successbutton" onclick="show_message('success', 'Custom Success Message' ,'Something went right!')">Success</button>
+        </div>
+    </div>
+
+    <div id="notificationcontainer">
+        <div id="notificationbg"></div>
+        <div id="notification">
+            <h1 id="notifheader">Unnamed Header</h1>
+            <div class="hspacer"></div>
+            <p id="notifmessage">Some kind of paragraph.</p>
+            <div id="optionbar">
+                <button class="notifbutton" onclick="hide_message()">I Understand</button>
+            </div>
         </div>
     </div>
     
