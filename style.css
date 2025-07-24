@@ -2,6 +2,10 @@ body {
     overflow-x: hidden;
 }
 
+.notfound {
+    width: 200px;
+}
+
 #roominbetween {
     position:absolute; bottom: 10px; cursor: help; width: 10%; image-rendering: pixelated;
 }
