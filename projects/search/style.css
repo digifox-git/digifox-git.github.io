@@ -1,12 +1,11 @@
 html, body{
     height: 100%;
-    background-image: linear-gradient(#5f88e0, rgb(109, 136, 177));
-    background-size: cover;
+    background-image: url(/./Resources/bubbles.jpg);
     margin: 0;
     padding: 0;
     overflow-y: hidden;
     color: white;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: Tahoma, Verdana, sans-serif;
 }
 
 #content {
@@ -29,11 +28,16 @@ html, body{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 8px;
+    z-index: 0;
 }
 
 #searchbox {
     width: 712px;
-    height: 16px;
+    height: 32px;
+    background: white url(/./Resources/search_icon.png) left no-repeat;
+    background-position-x: 3px;
+    padding-left: 40px;
 }
 
 #logo {
@@ -43,18 +47,34 @@ html, body{
 input {
     border-radius: 0px;
     font-size: 1.2em;
-    border: white 1px solid;
+    border: white 2px embossed;
     padding: 1%;
     font-family:Georgia, 'Times New Roman', Times, serif;
-    box-shadow: 0px 4px #0D00BB;
     filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
     outline: none;
 }
 
+.realistic {
+    position:fixed;
+    margin-top: 1px;
+    border-radius: 0px 0px;
+    -webkit-border-radius: 0px 0px;
+    border: solid 1px rgb(153, 153, 153);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(184, 184, 184)));
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-shadow: 0px 1px 1px rgba(255,255,255,1);
+    line-height: 1;
+    z-index: 1;
+}
+
 a:visited {
-    color: #0D00BB;
+    color: #7167ff;
 }
 
 a {
-    color: #0D00BB;
+    color: #4a3dff;
 }
