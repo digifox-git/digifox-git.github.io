@@ -1,0 +1,27 @@
+body {
+    background-image: url(newsbg.jpg);
+    background-size: cover;
+}
+
+#container {
+    height: 90vh;
+}
+
+#thermometer {
+    position: fixed;
+    height: 100%;
+    z-index: 1;
+    right:5%;
+}
+
+#juice {
+    position: fixed;
+    height: 70%;
+    z-index: 0;
+    right:15%;
+    top:20%
+}
+
+#value {
+    padding: 0px;
+}

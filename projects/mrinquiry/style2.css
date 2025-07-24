@@ -5,7 +5,7 @@
 
 html, body{
     height: 100%;
-    background: linear-gradient(#154254, #307C99);
+    background: linear-gradient(#303030, #303030);
     margin: 0;
     padding: 0;
     overflow-y: hidden;
@@ -83,6 +83,18 @@ a {
     padding: 1%;
 }
 
+#successbutton {
+    border: 0px;
+}
+
+#errorbutton {
+    border: 0px;
+}
+
+#publishbutton {
+    border: 0px;
+}
+
 #notificationcontainer {
     display: none;
     width: 100%;
@@ -119,7 +131,7 @@ a {
     top:50%;
     left:50%;
     transform-origin:0% 0%;
-    animation: notification 0.2s ease 0s 1 normal forwards;
+    animation: notification 0.3s ease 0s 1 normal forwards;
 }
 
 .notifbutton {
@@ -129,11 +141,10 @@ a {
     border-radius: 8px;
     justify-content: center;
     width: 30%;
-    height: 50px;
+    height: 12%;
     padding-right: 2%;
     color: white;
     font-size: 16px;
-    animation: enlargein 0.02s linear 0s 1 normal forwards;
 }
 
 .notifbutton:hover {
@@ -143,11 +154,11 @@ a {
     border-radius: 8px;
     justify-content: center;
     width: 30%;
-    height: 50px;
+    height: 12%;
     padding-right: 2%;
     color: white;
     font-size: 16px;
-    animation: enlargeout 0.02s linear 0s 1 normal forwards;
+    animation: enlargebutton 0.05s linear 0s 1 normal forwards;
 }
 
 
@@ -164,6 +175,7 @@ button {
     height: 48px;
     justify-content: left;
     align-items: center;
+    padding-left: 2%;
     color: white;
     font-size: 16px;
 }
@@ -177,9 +189,9 @@ button:hover {
     height: 48px;
     justify-content: left;
     align-items: center;
+    padding-left: 2%;
     color: white;
     font-size: 16px;
-
 }
 
 .selected {
@@ -191,6 +203,7 @@ button:hover {
     height: 48px;
     justify-content: left;
     align-items: center;
+    padding-left: 2%;
     color: white;
     font-size: 16px;
 }
@@ -207,15 +220,11 @@ button:hover {
     color: #5FB2CC
 }
 
-#orca {
-    padding: 0px;
-}
-
 @keyframes notification {
 	0% {
 		opacity: 0;
-		transform: scale(1.05) translate(-50%, -50%);
-        filter: brightness(2.5) hue-rotate(var(--hue));
+		transform: scale(1.2) translate(-50%, -50%);
+        filter: brightness(2) hue-rotate(var(--hue));
 	}
 
 	100% {
@@ -235,42 +244,12 @@ button:hover {
 	}
 }
 
-@keyframes enlargeout {
+@keyframes enlargebutton {
 	0% {
 		transform: scale(1.05);
 	}
 
 	100% {
 		transform: scale(1.1);
-	}
-}
-
-@keyframes enlargein {
-	0% {
-		transform: scale(1.05);
-	}
-
-	100% {
-		transform: scale(1.0);
-	}
-}
-
-@keyframes enlargeoutsmall {
-	0% {
-		transform: scale(1.025);
-	}
-
-	100% {
-		transform: scale(1.05);
-	}
-}
-
-@keyframes enlargeinsmall {
-	0% {
-		transform: scale(1.025);
-	}
-
-	100% {
-		transform: scale(1.0);
 	}
 }

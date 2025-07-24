@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/./Resources/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 	<link rel="stylesheet" href="style.css">
     <script src="main.js"></script>
     <title>Mr. Inquiry Dashboard</title>
@@ -24,17 +24,13 @@
             <a href="tab/host.html"><button >Host Info</button></a>
             <div id="extratray">
                 <div id="download">
-                    <button><img src="mrinquiry_download.png">Download Standalone</button>
-                    
+                    <button onclick="show_message('success', 'Here you go!', 'Downloading the standalone build of the Mr. Inquiry Control Panel. This program can run natively on Windows, macOS, and Linux.', '')"><img src="mrinquiry_download.png">Download Standalone</button>
                 </div>
             </div>
         </div>
 
         <div id="interactionfield">
-            <div id="headerlogo"><img src="/./assets/MrInquiryLogoFull.png"></div>
-            <button onclick="show_message('publish', 'Custom Publish Message' ,'Your changes have been published!')">Publish</button>
-            <button onclick="show_message('error', 'Custom Error Message' ,'Something went wrong!')">Error</button>
-            <button class="successbutton" onclick="show_message('success', 'Custom Success Message' ,'Something went right!')">Success</button>
+            <button onclick="show_message('basic', '', '', 'orca.jpg')">Orca</button>
         </div>
     </div>
 
@@ -44,8 +40,9 @@
             <h1 id="notifheader">Unnamed Header</h1>
             <div class="hspacer"></div>
             <p id="notifmessage">Some kind of paragraph.</p>
+            <div id="optionalimg"></div>
             <div id="optionbar">
-                <button class="notifbutton" onclick="hide_message()">I Understand</button>
+                <button class="notifbutton" onclick="hide_message()">I Understand.</button>
             </div>
         </div>
     </div>
