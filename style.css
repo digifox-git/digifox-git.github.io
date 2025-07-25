@@ -7,5 +7,19 @@ body {
 }
 
 #roominbetween {
-    position:absolute; bottom: 10px; cursor: help; width: 10%; image-rendering: pixelated;
+    position:fixed;
+    bottom: 0px;
+    right: 10px;
+    cursor: help;
+    width: 10%;
+    image-rendering: pixelated;
+}
+
+#hitcount {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    align-items: center;
+    left: 8px;
+    bottom: 0px;
 }
