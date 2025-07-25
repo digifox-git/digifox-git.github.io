@@ -37,7 +37,7 @@ html, body{
     height: 32px;
     background: white url(/./Resources/search_icon.png) left no-repeat;
     background-position-x: 3px;
-    padding-left: 34px;
+    padding-left: 44px;
 }
 
 #logo {
