@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "Determination";
+    src: url(/./Resources/Fonts/DTM-Sans.otf);
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: "Determination";
+    margin: 0;
+    padding: 0
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+#context {
+    color: black;
+}
+
+#value {
+   font-size: 2em; 
+}

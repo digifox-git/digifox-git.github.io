@@ -1,3 +1,7 @@
+:root {
+    --settings-opacity: 0
+}
+
 body {
     overflow-x: hidden;
 }
@@ -22,4 +26,29 @@ body {
     align-items: center;
     left: 8px;
     bottom: 0px;
+}
+
+#settingscontainer {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    top: 240px;
+    right: 70px;
+    opacity: 1;
+}
+
+#settingscontainer img {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    background-color: #545e6e;
+    opacity: 1;
+}
+
+#settingsstatic:hover {
+    opacity: 0;
+}
+
+#pixelated {
+    text-rendering: optimizeSpeed;
 }

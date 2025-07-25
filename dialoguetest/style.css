@@ -1,0 +1,42 @@
+@font-face {
+    font-family: "Determination";
+    src: url(/./Resources/Fonts/DTM-Mono.ttf);
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: "Determination";
+    margin: 0;
+    padding: 0
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+#dialoguebox {
+    display: flex;
+    position: fixed;
+    bottom: 32px;
+    width: 840px;
+    height: 216px;
+    border: 6px white solid;
+    color: white;
+    background-color: black;
+    font-family: "Determination";
+} 
+
+#dialoguetext {
+    margin: 2%;
+    line-height: 150%;
+    width: 100%;
+    height: 80%;
+    font-size: 40px;
+    border: 0px blue solid;
+    white-space: pre-line;
+}
