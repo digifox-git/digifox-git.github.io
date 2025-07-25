@@ -1,4 +1,4 @@
-var txtsnd = new Audio('https://digifox.space/Resources/sounds/snd_txt.wav')
+var txtsnd = new Audio('https://digifox.space/Resources/sounds/snd_text.ogg')
 txtsnd.load()
 
 function save_data(storage, value) {
@@ -14,6 +14,7 @@ function dialogue_builder(dialogue) {
 
     if (i < txt.length) {
         document.getElementById("dialoguetext").innerHTML += txt.charAt(i);
+        txtsnd.currentTime = 0;
         txtsnd.play()
         i++;
         setTimeout(() => dialogue_builder(dialogue), textInterval);
