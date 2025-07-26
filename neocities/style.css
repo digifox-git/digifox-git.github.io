@@ -1,0 +1,46 @@
+body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+button:hover {
+    background-color: transparent;
+    cursor:pointer;
+    border: 0px;
+}
+
+#link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#spinning_logo{
+    width: 400px;
+}
+
+#images {
+    position: absolute;
+    top:0;
+    width: 100vw;
+    height: 100vh;
+    border: 1px solid blue;
+    z-index: -1;
+}
+
+#images img {
+    position: absolute;
+    z-index: 0;
+}
