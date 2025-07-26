@@ -54,12 +54,13 @@ function save_data(storage, value) {
 
 let dialogue = {
     "dialoguetestpage_0": {
-        "0": "* Hello! You have entered the\n\u00A0\u00A0dialogue test page.\n* Extra line.",
-        "1": "* How does this make you feel?",
-        "2": "* ...",
-        "3": "* Hah! If only you could\n\u00A0\u00A0answer...",
-        "4": "* This will be a feature one day.\n* I hope you will come back\n\u00A0\u00A0later!",
-        "total": 4
+        "0": "* Hello!\u200E You have entered the\n\u00A0\u00A0dialogue test page.\n* Extra line.",
+        "1": "* I,\u200E can.\u200E Do!\u200E Any:\u200E\n\u00A0\u00A0Punctuation????????????????????\n\u00A0\u00A0?????????????????",
+        "2": "* How does this make you feel?",
+        "3": "* ...",
+        "4": "* Hah!\u200E If only you could\n\u00A0\u00A0answer...",
+        "5": "* This will be a feature one day.\n* I hope you will come back\n\u00A0\u00A0later!",
+        "total": 5
     },
     "dialoguetestpage_0_choicer": {
         "0": "I feel good",
@@ -75,7 +76,7 @@ let dialogueFlags = {
 }
 
 var i = 0
-var textInterval = 35
+var textInterval = 30
 var currentDialogue = 0
 
 function disable_controls() {
@@ -143,8 +144,15 @@ function dialogue_builder(conversation) {
     if (i < txt.length) {
         document.getElementById("dialogueText").innerHTML += txt.charAt(i);
         console.log(`currentDialogue is ${currentDialogue}, but dialogue[conversation].length is ${dialogue[conversation].total}!`)
+
         if (txt.charAt(i) != " ") {
-            playSFX("snd_text");
+                playSFX("snd_text");
+        }
+
+        if (txt.charAt(i) == "\u200E") {
+                textInterval = 240
+        } else {
+                textInterval = 30
         }
 
         i++;
