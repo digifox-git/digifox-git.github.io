@@ -45,7 +45,8 @@ function playSFX(key) {
 //-----------------------------------------------------------------------------------------//
 
 addSFX("snd_text", "https://digifox.space/Resources/sounds/snd_text.ogg", 16)
-playSFX("snd_text")
+addSFX("snd_init", "https://digifox.space/Resources/sounds/initializer.ogg", 16)
+playSFX("snd_init")
 
 function save_data(storage, value) {
     localStorage.setItem(storage, value)
@@ -58,7 +59,6 @@ let dialogue = {
         "2": "* ...",
         "3": "* Hah! If only you could\n\u00A0\u00A0answer...",
         "4": "* This will be a feature one day.\n* I hope you will come back\n\u00A0\u00A0later!",
-        "cmd": "redirect()",
         "total": 4
     },
     "dialoguetestpage_0_choicer": {

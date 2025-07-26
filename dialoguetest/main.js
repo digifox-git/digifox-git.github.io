@@ -14,7 +14,7 @@ function dialogue_builder(dialogue) {
 
     if (i < txt.length) {
         document.getElementById("dialoguetext").innerHTML += txt.charAt(i);
-        txtsnd.currentTime = 0;
+        txte.currentTime = 0;
         txtsnd.play()
         i++;
         setTimeout(() => dialogue_builder(dialogue), textInterval);
