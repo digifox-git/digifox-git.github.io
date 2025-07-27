@@ -52,3 +52,14 @@ body {
 #resetprofile {
     color: rgb(255, 80, 80);
 }
+
+#loadingbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#loadingbar img {
+    width: 32px;
+    height: 32px;
+}
