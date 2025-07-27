@@ -184,8 +184,7 @@ function create_choicer() {
     choicerSoul.setAttribute("id", "choicerSoul")
     choicerSoul.src = '/Resources/soul_choicer.png'
     choicerSoul.style.setProperty("position", "fixed")
-    choicerSoul.style.setProperty("bottom", "136px")
-    choicerSoul.style.setProperty("left", "580px")
+    choicerSoul.style.transform = "translateX(100%) translateY(240%)"
 
     document.body.append(choicerContainer)
     document.getElementById("choicerContainer").appendChild(choicerBox)      
@@ -324,14 +323,13 @@ function choicer_builder(conversation) {
 
         document.getElementById('choicerA').addEventListener("mouseover", function() {
             let choicerSoul = document.getElementById("choicerSoul")
-            choicerSoul.style.setProperty("bottom", "136px")
-            choicerSoul.style.setProperty("left", "580px")
+            choicerSoul.style.transform = "translateX(100%)"
         });
 
         document.getElementById('choicerB').addEventListener("mouseover", function() {
             let choicerSoul = document.getElementById("choicerSoul")
             choicerSoul.style.setProperty("bottom", "136px")
-            choicerSoul.style.setProperty("left", "960px")
+            choicerSoul.style.transform = "translateX(1240%)"
         });
 
         document.getElementById('choicerA').addEventListener("click", function() {
