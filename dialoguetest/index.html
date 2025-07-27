@@ -10,10 +10,14 @@
     </head>
 <body>
 
+    <audio id="bg" src="/Resources/sounds/music/man_2.ogg" autoplay="true" loop="true"><p>If you are reading this, it is because your browser does not support the audio element.</p></audio>
+    <script>
+        var audio = document.getElementById("bg");
+        audio.volume = 0.5;
+    </script>
+
     <div id="content">
-
         <button onclick='dialogue_builder("dialoguetestpage_check")'>Test Dialogue</button>
-
     </div>
 
 </body>
