@@ -181,7 +181,7 @@ function set_background() {
 function display_warning() {
     var element = document.getElementById('epilepsywarning');
 
-    if (localStorage.getItem("hide-epilepsy-warnings") != "true") {
+    if (localStorage.getItem("user-hide-epilepsy-warnings") != "true") {
         if(element.style.display == 'none' ||element.style.display == '') {
             element.style.display = 'flex';
         }

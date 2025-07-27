@@ -5,6 +5,7 @@
 		<TITLE>Dialogue Test Page</TITLE>
 		<link rel="icon" type="image/x-icon" href="assets/heart.ico">
         <link rel="stylesheet" href="style.css">
+        <script src="main.js"></script>
         <script src="/dialoguebuilder.js"></script>
         <meta name="room" content="000">
     </head>
@@ -17,7 +18,14 @@
     </script>
 
     <div id="content">
-        <button onclick='dialogue_builder("dialoguetestpage_check")'>Test Dialogue</button>
+        <div id="header">
+            <p>Welcome to the Dialogue Test Page!</p>
+        </div>
+        <div id="buttoncontainer">
+            <button onclick='dialogue_builder("dialoguetestpage_check")'>Test Dialogue</button>
+            <button onclick='dialogue_builder("dialoguetestpage_audiocheck")'>Test Audio</button>
+            <button id="resetbutton" onclick='reset_dialoguetest()'>Reset</button>
+        </div>
     </div>
 
 </body>

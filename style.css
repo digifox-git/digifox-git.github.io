@@ -49,6 +49,6 @@ body {
     opacity: 0;
 }
 
-#pixelated {
-    text-rendering: optimizeSpeed;
+#resetprofile {
+    color: rgb(255, 80, 80);
 }

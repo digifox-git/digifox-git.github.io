@@ -14,9 +14,16 @@ body {
 #content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     height: 90vh;
+}
+
+#header {
+    height: 40vh;
+}
+
+#header p{
+    font-size: 40px;
 }
 
 button {
@@ -36,4 +43,9 @@ button:hover {
     border: 6px white solid;
     background-color: black;
     cursor:pointer;
+}
+
+#resetbutton {
+    color: red;
+    border: 6px red solid;
 }

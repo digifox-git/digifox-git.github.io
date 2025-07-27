@@ -56,6 +56,11 @@ function save_data(storage, value) {
 // \u200E = Pause
 // \n = Start new line
 // \n\u00A0 = Wrap to next line
+// * = Text line
+// < = Forward to new dialogue
+// > = Forward to new choicer
+// $ = Save data
+// = = Check data
 
 // Array that contains all dialogue
 let dialogue = {
@@ -63,7 +68,7 @@ let dialogue = {
         "= flag-testdialogue-wasmean,true",
         "< dialoguetestpage_3",
         "= flag-testdialogue-wasmean,false",
-        "< dialoguetestpage_0",
+        "< dialoguetestpage_0"
     ],  
     dialoguetestpage_0: [
         "* Oh!\u200E Hello there.\u200E\n* Welcome to the dialogue test\n\u00A0 room.",
@@ -80,7 +85,7 @@ let dialogue = {
     dialoguetestpage_1: [
         "$ flag-testdialogue-wasmean,false",
         "* Hah!\u200E I'm glad.",
-        "* Well,\u200E that is all.\u200E\n* Goodbye, friend!"
+        "* Well,\u200E that is all.\u200E\n* Goodbye,\u200E friend!"
     ],
     dialoguetestpage_2: [
         "$ flag-testdialogue-wasmean,true",
@@ -90,6 +95,20 @@ let dialogue = {
     dialoguetestpage_3: [
         "* No,\u200E no,\u200E I've had my fill of\n\u00A0 you.",
     ],
+    dialoguetestpage_audiocheck: [
+        "= inventory-hasaudio,true",
+        "< dialoguetestpage_5",
+        "= inventory-hasaudio,false",
+        "< dialoguetestpage_4"
+    ],
+    dialoguetestpage_4: [
+        "$ inventory-hasaudio,true",
+        "# /Resources/sounds/egg.ogg",
+        "* (You recieved an Audio.)"
+    ],
+        dialoguetestpage_5: [
+        "* (But you already had one.)",
+    ]
 }
 
 var i = 0 // Iterator
@@ -97,100 +116,113 @@ var textInterval = 30 // Speed of text tying in milliseconds
 var currentDialogue = 0 
 
 function create_dialogue() {
-    let dialogueContainer = document.createElement('div')
-    dialogueContainer.setAttribute("id", "dialogueContainer") 
-    dialogueContainer.style.setProperty("display", "flex")
-    dialogueContainer.style.setProperty("justify-content", "center")
-    dialogueContainer.style.setProperty("position", "fixed")
-    dialogueContainer.style.setProperty("bottom", "0px")
-    dialogueContainer.style.setProperty("width", "100%")
-    dialogueContainer.style.setProperty("z-index", "99")
+    if (!document.getElementById("dialogueBox")) {
+        let dialogueContainer = document.createElement('div')
+        dialogueContainer.setAttribute("id", "dialogueContainer") 
+        dialogueContainer.style.setProperty("display", "flex")
+        dialogueContainer.style.setProperty("justify-content", "center")
+        dialogueContainer.style.setProperty("position", "fixed")
+        dialogueContainer.style.setProperty("bottom", "0px")
+        dialogueContainer.style.setProperty("width", "100%")
+        dialogueContainer.style.setProperty("z-index", "99")
 
-    let dialogueBox = document.createElement('div')
-    dialogueBox.setAttribute("id", "dialogueBox") 
-    dialogueBox.style.setProperty("display", "flex")
-    dialogueBox.style.setProperty("position", "fixed")
-    dialogueBox.style.setProperty("bottom", "32px")
-    dialogueBox.style.setProperty("width", "840px")
-    dialogueBox.style.setProperty("height", "216px")
-    dialogueBox.style.setProperty("border", "8px white solid")
-    dialogueBox.style.setProperty("color", "white")
-    dialogueBox.style.setProperty("background-color", "black")
-    dialogueBox.style.setProperty("font-family", "determination")
+        let dialogueBox = document.createElement('div')
+        dialogueBox.setAttribute("id", "dialogueBox") 
+        dialogueBox.style.setProperty("display", "flex")
+        dialogueBox.style.setProperty("position", "fixed")
+        dialogueBox.style.setProperty("bottom", "32px")
+        dialogueBox.style.setProperty("width", "840px")
+        dialogueBox.style.setProperty("height", "216px")
+        dialogueBox.style.setProperty("border", "8px white solid")
+        dialogueBox.style.setProperty("color", "white")
+        dialogueBox.style.setProperty("background-color", "black")
+        dialogueBox.style.setProperty("font-family", "determination")
 
-    let dialogueText = document.createElement('p')
-    dialogueText.setAttribute("id", "dialogueText")
-    dialogueText.style.setProperty("margin", "2%")
-    dialogueText.style.setProperty("margin-left", "3%")
-    dialogueText.style.setProperty("line-height", "150%")
-    dialogueText.style.setProperty("width", "100%")
-    dialogueText.style.setProperty("height", "80%")
-    dialogueText.style.setProperty("font-size", "40px")
-    dialogueText.style.setProperty("white-space", "pre-line")
-    dialogueText.style.setProperty("user-select", "none")
+        let dialogueText = document.createElement('p')
+        dialogueText.setAttribute("id", "dialogueText")
+        dialogueText.style.setProperty("margin", "2%")
+        dialogueText.style.setProperty("margin-left", "3%")
+        dialogueText.style.setProperty("line-height", "150%")
+        dialogueText.style.setProperty("width", "100%")
+        dialogueText.style.setProperty("height", "80%")
+        dialogueText.style.setProperty("font-size", "40px")
+        dialogueText.style.setProperty("white-space", "pre-line")
+        dialogueText.style.setProperty("user-select", "none")
 
-    document.body.append(dialogueContainer)
-    document.getElementById("dialogueContainer").appendChild(dialogueBox)        
-    document.getElementById("dialogueBox").appendChild(dialogueText)
+        document.body.append(dialogueContainer)
+        document.getElementById("dialogueContainer").appendChild(dialogueBox)        
+        document.getElementById("dialogueBox").appendChild(dialogueText)
+    }
+
+    document.getElementById("dialogueBox").style.setProperty("display", "flex")
+    console.log("[DIALOGUE] Created!")
 }
 
 function create_choicer() {
-    let choicerContainer = document.createElement('div')
-    choicerContainer.setAttribute("id", "choicerContainer") 
-    choicerContainer.style.setProperty("display", "flex")
-    choicerContainer.style.setProperty("justify-content", "center")
-    choicerContainer.style.setProperty("position", "fixed")
-    choicerContainer.style.setProperty("bottom", "0px")
-    choicerContainer.style.setProperty("width", "100%")
-    choicerContainer.style.setProperty("z-index", "101")
 
-    let choicerBox = document.createElement('div')
-    choicerBox.setAttribute("id", "choicerBox") 
-    choicerBox.style.setProperty("display", "flex")
-    choicerBox.style.setProperty("position", "fixed")
-    choicerBox.style.setProperty("bottom", "32px")
-    choicerBox.style.setProperty("width", "840px")
-    choicerBox.style.setProperty("height", "216px")
-    choicerBox.style.setProperty("border", "8px white solid")
-    choicerBox.style.setProperty("color", "white")
-    choicerBox.style.setProperty("background-color", "black")
-    choicerBox.style.setProperty("font-family", "determination")
+    if (!document.getElementById("choicerBox")) {
+        let choicerContainer = document.createElement('div')
+        choicerContainer.setAttribute("id", "choicerContainer") 
+        choicerContainer.style.setProperty("display", "flex")
+        choicerContainer.style.setProperty("justify-content", "center")
+        choicerContainer.style.setProperty("position", "fixed")
+        choicerContainer.style.setProperty("bottom", "0px")
+        choicerContainer.style.setProperty("width", "100%")
+        choicerContainer.style.setProperty("z-index", "101")
 
-    let choicerA = document.createElement('p')
-    choicerA.setAttribute("id", "choicerA")
-    choicerA.style.setProperty("margin", "2%")
-    choicerA.style.setProperty("margin-left", "3%")
-    choicerA.style.setProperty("line-height", "150%")
-    choicerA.style.setProperty("width", "50%")
-    choicerA.style.setProperty("height", "80%")
-    choicerA.style.setProperty("font-size", "40px")
-    choicerA.style.setProperty("white-space", "pre-line")
-    choicerA.style.setProperty("user-select", "none")
-    choicerA.style.setProperty("text-align", "center")
+        let choicerBox = document.createElement('div')
+        choicerBox.setAttribute("id", "choicerBox") 
+        choicerBox.style.setProperty("display", "flex")
+        choicerBox.style.setProperty("position", "fixed")
+        choicerBox.style.setProperty("bottom", "32px")
+        choicerBox.style.setProperty("width", "840px")
+        choicerBox.style.setProperty("height", "216px")
+        choicerBox.style.setProperty("border", "8px white solid")
+        choicerBox.style.setProperty("color", "white")
+        choicerBox.style.setProperty("background-color", "black")
+        choicerBox.style.setProperty("font-family", "determination")
 
-    let choicerB = document.createElement('p')
-    choicerB.setAttribute("id", "choicerB")
-    choicerB.style.setProperty("margin", "2%")
-    choicerB.style.setProperty("margin-left", "3%")
-    choicerB.style.setProperty("line-height", "150%")
-    choicerB.style.setProperty("width", "50%")
-    choicerB.style.setProperty("height", "80%")
-    choicerB.style.setProperty("font-size", "40px")
-    choicerB.style.setProperty("white-space", "pre-line")
-    choicerB.style.setProperty("user-select", "none")
-    choicerB.style.setProperty("text-align", "center")
+        let choicerA = document.createElement('p')
+        choicerA.setAttribute("id", "choicerA")
+        choicerA.style.setProperty("margin", "2%")
+        choicerA.style.setProperty("margin-left", "3%")
+        choicerA.style.setProperty("line-height", "150%")
+        choicerA.style.setProperty("width", "50%")
+        choicerA.style.setProperty("height", "80%")
+        choicerA.style.setProperty("font-size", "40px")
+        choicerA.style.setProperty("white-space", "pre-line")
+        choicerA.style.setProperty("user-select", "none")
+        choicerA.style.setProperty("text-align", "center")
 
-    let choicerSoul = document.createElement('img')
-    choicerSoul.setAttribute("id", "choicerSoul")
-    choicerSoul.src = '/Resources/soul_choicer.png'
-    choicerSoul.style.setProperty("position", "fixed")
-    choicerSoul.style.transform = "translateX(100%) translateY(240%)"
+        let choicerB = document.createElement('p')
+        choicerB.setAttribute("id", "choicerB")
+        choicerB.style.setProperty("margin", "2%")
+        choicerB.style.setProperty("margin-left", "3%")
+        choicerB.style.setProperty("line-height", "150%")
+        choicerB.style.setProperty("width", "50%")
+        choicerB.style.setProperty("height", "80%")
+        choicerB.style.setProperty("font-size", "40px")
+        choicerB.style.setProperty("white-space", "pre-line")
+        choicerB.style.setProperty("user-select", "none")
+        choicerB.style.setProperty("text-align", "center")
 
-    document.body.append(choicerContainer)
-    document.getElementById("choicerContainer").appendChild(choicerBox)      
-    document.getElementById("choicerBox").appendChild(choicerSoul)  
-    document.getElementById("choicerBox").appendChild(choicerA)
-    document.getElementById("choicerBox").appendChild(choicerB)
+        let choicerSoul = document.createElement('img')
+        choicerSoul.setAttribute("id", "choicerSoul")
+        choicerSoul.src = '/Resources/soul_choicer.png'
+        choicerSoul.style.setProperty("position", "fixed")
+        choicerB.style.setProperty("user-select", "none")
+        choicerSoul.style.transform = "translateX(100%) translateY(240%)"
+
+        document.body.append(choicerContainer)
+        document.getElementById("choicerContainer").appendChild(choicerBox)      
+        document.getElementById("choicerBox").appendChild(choicerSoul)  
+        document.getElementById("choicerBox").appendChild(choicerA)
+        document.getElementById("choicerBox").appendChild(choicerB)
+    } else {
+        document.getElementById("choicerBox").style.setProperty("display", "flex")
+        document.getElementById("choicerSoul").style.transform = "translateX(100%) translateY(240%)"
+    }
+
 }
 
 function disable_controls() {
@@ -221,17 +253,14 @@ function enable_controls() {
     disableControls.remove();
 }
 
-function dialogue_builder(conversation) {
+async function  dialogue_builder(conversation) {
 
     // Increase conversation variable scope to global
     globalThis.conversation = conversation
-    
 
-    // Create all dialogue box elements
-    if (!document.getElementById('dialogueBox')) {
-
+    // Create/Enables all dialogue box elements
+    if (!document.getElementById("dialogueBox") || document.getElementById("dialogueBox").style.getPropertyValue("display") == "none") {
         create_dialogue()
-
     }
 
     // Get current dialogue progress and disable web page interaction
@@ -247,7 +276,7 @@ function dialogue_builder(conversation) {
 
             // Play sound unless the iterator is on a blank character
             if (txt.charAt(i) != " ") {
-                    playSFX("snd_text");
+                    await playSFX("snd_text");
             }
 
             // Change speed if iterator is on a special unicode character
@@ -261,30 +290,40 @@ function dialogue_builder(conversation) {
             i++;
             setTimeout(() => dialogue_builder(conversation), textInterval);
 
-        
-        } 
-
         // > Forwards you to a choicer
-        if (txt.charAt(0) == ">") {
+        } else if (txt.charAt(0) == ">") {
             let jumpToChoicer = txt.substring(2)
-            console.log(`Activating Choicer ${jumpToChoicer}`)
-            choicer_builder(jumpToChoicer)
+            console.log(`[CHOICER] ${jumpToChoicer}`)
             destroy_dialogue_box()
-
+            destroy_choicer_box()
+            choicer_builder(jumpToChoicer)
         // < Forwards you to a dialogue
         } else if (txt.charAt(0) == "<") {
-            let jumpToChoicer = txt.substring(2)
-            console.log(`Activating Dialogue ${jumpToChoicer}`)
+            let jumpToDialogue = txt.substring(2)
+            console.log(`[DIALOGUE] ${jumpToDialogue}`)
+            destroy_choicer_box()
             destroy_dialogue_box()
-            dialogue_builder(jumpToChoicer)
+            dialogue_builder(jumpToDialogue)
 
         // $ Saves Data
         } else if (txt.charAt(0) == "$") {
             let saveData = txt.substring(2)
             let saveStorage = saveData.split(",")[0]
             let saveValue = saveData.split(",")[1]
-            console.log(`Saving Data ${saveData}`)
+            console.log(`[SAVE] ${saveData}`)
             save_data(saveStorage, saveValue)
+            // Putting this twice skips to the end of the current dialogue and then advanced to the next line.
+            progress_dialogue()
+            progress_dialogue()
+
+        // # Plays a sound effect         
+        } else if (txt.charAt(0) == "#") {
+            let path = txt.substring(2)
+            let sound = new Audio(path);
+            sound.volume = 0.5;
+            sound.load();
+            sound.play();
+            console.log(`[AUDIO] ${sound}`)
             progress_dialogue()
             progress_dialogue()
 
@@ -293,14 +332,14 @@ function dialogue_builder(conversation) {
             let loadData = txt.substring(2)
             let loadStorage = loadData.split(",")[0]
             let loadValue = loadData.split(",")[1]
-            console.log(`Checking if ${loadData}`)
+            console.log(`[CHECK] ${loadData}`)
             if (localStorage.getItem(loadStorage) == loadValue) {
-                console.log(`Check returned true!`)
+                console.log(`[CHECK] True!`)
                 progress_dialogue()
                 progress_dialogue()
 
             } else {
-                console.log(`Check returned false!`)
+                console.log(`[CHECK] False!`)
                 currentDialogue += 2
                 progress_dialogue()
                 progress_dialogue()
@@ -313,45 +352,40 @@ function dialogue_builder(conversation) {
 
 function choicer_builder(conversation) {
 
-    if (!document.getElementById('choicerBox')) {
+    create_choicer()
+    disable_controls()
 
-        create_choicer()
-        disable_controls()
+    document.getElementById("choicerA").innerHTML = dialogue[conversation][0];
+    document.getElementById("choicerB").innerHTML = dialogue[conversation][2];
 
-        document.getElementById("choicerA").innerHTML = dialogue[conversation][0];
-        document.getElementById("choicerB").innerHTML = dialogue[conversation][2];
+    document.getElementById('choicerA').addEventListener("mouseover", function() {
+        let choicerSoul = document.getElementById("choicerSoul")
+        choicerSoul.style.transform = "translateX(100%) translateY(240%)"
+    });
 
-        document.getElementById('choicerA').addEventListener("mouseover", function() {
-            let choicerSoul = document.getElementById("choicerSoul")
-            choicerSoul.style.transform = "translateX(100%)"
-        });
+    document.getElementById('choicerB').addEventListener("mouseover", function() {
+        let choicerSoul = document.getElementById("choicerSoul")
+        choicerSoul.style.transform = "translateX(1240%) translateY(240%)"
+    });
 
-        document.getElementById('choicerB').addEventListener("mouseover", function() {
-            let choicerSoul = document.getElementById("choicerSoul")
-            choicerSoul.style.setProperty("bottom", "136px")
-            choicerSoul.style.transform = "translateX(1240%)"
-        });
+    document.getElementById('choicerA').addEventListener("click", function() {
+        let jumpTo = dialogue[conversation][1].substring(2)
+        destroy_choicer_box()
+        dialogue_builder(jumpTo)
+    });
 
-        document.getElementById('choicerA').addEventListener("click", function() {
-            let jumpTo = dialogue[conversation][1].substring(2)
-            console.log(jumpTo)
-            destroy_choicer_box()
-            dialogue_builder(jumpTo)
-        });
-
-        document.getElementById('choicerB').addEventListener("click", function() {
-            let jumpTo = dialogue[conversation][3].substring(2)
-            console.log(`${jumpTo}`)
-            destroy_choicer_box()
-            dialogue_builder(jumpTo)
-        });
-    }
+    document.getElementById('choicerB').addEventListener("click", function() {
+        let jumpTo = dialogue[conversation][3].substring(2)
+        destroy_choicer_box()
+        dialogue_builder(jumpTo)
+    });
 }
 
 function progress_dialogue() {
 
     // Get current dialogue progress
     var txt = dialogue[conversation][currentDialogue]
+    let dialogueBox = document.getElementById("dialogueBox")
 
     // Skip to the end of dialogue
     if (i < txt.length) {
@@ -364,7 +398,7 @@ function progress_dialogue() {
     currentDialogue++
     
     // If current dialogue progress is less than the total length of conversation, continue. Otherwise, destroy the dialogue box
-    if (currentDialogue < dialogue[conversation].length) {
+    if (currentDialogue < dialogue[conversation].length && dialogueBox.style.getPropertyValue("display") == "flex") {
         document.getElementById("dialogueText").innerHTML = "";
         i = 0
         dialogue_builder(conversation)
@@ -376,26 +410,20 @@ function progress_dialogue() {
 
 // Destroy all elements related to the dialogue box
 function destroy_dialogue_box() {
-    let dialogueContainer = document.getElementById("dialogueContainer");
-    let dialogueBox = document.getElementById("dialogueBox");
-    let dialogueText = document.getElementById("dialogueText");
-    dialogueContainer.remove();
-    dialogueBox.remove();
-    dialogueText.remove();
+    if (document.getElementById("dialogueBox")){
+        document.getElementById("dialogueBox").style.setProperty("display", "none")
+    }
     i = 0
     currentDialogue = 0
+    console.log("[DIALOGUE] Destroyed!")
 }
 
 // Destroy all elements related to the choicer box
 function destroy_choicer_box() {
-    let choicerContainer = document.getElementById("choicerContainer");
-    let choicerBox = document.getElementById("choicerBox");
-    let choicerA = document.getElementById("choicerA");
-    let choicerB = document.getElementById("choicerB");
-    choicerContainer.remove();
-    choicerBox.remove();
-    choicerA.remove();
-    choicerB.remove();
+    if (document.getElementById("choicerBox")){
+        document.getElementById("choicerBox").style.setProperty("display", "none")
+    }
     i = 0
     currentDialogue = 0
+    console.log("[CHOICER] Destroyed!")
 }
