@@ -53,24 +53,43 @@ function save_data(storage, value) {
     localStorage.setItem(storage, value)
 }
 
+// \u200E = Pause
+// \n = Start new line
+// \n\u00A0 = Wrap to next line
+
 // Array that contains all dialogue
 let dialogue = {
+    dialoguetestpage_check: [
+        "= flag-testdialogue-wasmean,true",
+        "< dialoguetestpage_3",
+        "= flag-testdialogue-wasmean,false",
+        "< dialoguetestpage_0",
+    ],  
     dialoguetestpage_0: [
-        "* Hello!\u200E You have entered the\n\u00A0\u00A0dialogue test page.\n* Extra line.",
-        "* I,\u200E can.\u200E Do!\u200E Any:\u200E\n\u00A0\u00A0Punctuation????????????????????\n\u00A0\u00A0?????????????????",
+        "* Oh!\u200E Hello there.\u200E\n* Welcome to the dialogue test\n\u00A0 room.",
+        "* Sorry about the mess,\u200E I wasn't\n\u00A0 expecting visitors so soon!",
         "* How does this make you feel?",
-        "* ...",
-        "* Hah!\u200E If only you could\n\u00A0\u00A0answer...",
-        "* This will be a feature one day.\u200E\n* I hope you will come back\n\u00A0\u00A0later!",
-        "! 'good'(dialoguetestpage_1)|'bad'(dialoguetestpage_2)"
+        "> dialoguetestpage_0_choicer"
     ],
-}
-
-// Unused for now
-let dialogueFlags = {
-    "dialoguetestpage_0": {
-        "completed": false
-    }
+    dialoguetestpage_0_choicer: [
+        "This\nmakes me\nfeel good",
+        "> dialoguetestpage_1",
+        "This\nmakes me\nfeel bad",
+        "> dialoguetestpage_2",
+    ],
+    dialoguetestpage_1: [
+        "$ flag-testdialogue-wasmean,false",
+        "* Hah!\u200E I'm glad.",
+        "* Well,\u200E that is all.\u200E\n* Goodbye, friend!"
+    ],
+    dialoguetestpage_2: [
+        "$ flag-testdialogue-wasmean,true",
+        "* Oh,\u200E oh,\u200E what a shame...",
+        "* Well,\u200E don't bother coming back\n\u00A0\u00A0then.\u200E\n* Goodbye!"
+    ],
+    dialoguetestpage_3: [
+        "* No,\u200E no,\u200E I've had my fill of\n\u00A0 you.",
+    ],
 }
 
 var i = 0 // Iterator
@@ -85,6 +104,7 @@ function create_dialogue() {
     dialogueContainer.style.setProperty("position", "fixed")
     dialogueContainer.style.setProperty("bottom", "0px")
     dialogueContainer.style.setProperty("width", "100%")
+    dialogueContainer.style.setProperty("z-index", "99")
 
     let dialogueBox = document.createElement('div')
     dialogueBox.setAttribute("id", "dialogueBox") 
@@ -93,7 +113,7 @@ function create_dialogue() {
     dialogueBox.style.setProperty("bottom", "32px")
     dialogueBox.style.setProperty("width", "840px")
     dialogueBox.style.setProperty("height", "216px")
-    dialogueBox.style.setProperty("border", "6px white solid")
+    dialogueBox.style.setProperty("border", "8px white solid")
     dialogueBox.style.setProperty("color", "white")
     dialogueBox.style.setProperty("background-color", "black")
     dialogueBox.style.setProperty("font-family", "determination")
@@ -115,25 +135,26 @@ function create_dialogue() {
 }
 
 function create_choicer() {
-    let dialogueContainer = document.createElement('div')
-    dialogueContainer.setAttribute("id", "dialogueContainer") 
-    dialogueContainer.style.setProperty("display", "flex")
-    dialogueContainer.style.setProperty("justify-content", "center")
-    dialogueContainer.style.setProperty("position", "fixed")
-    dialogueContainer.style.setProperty("bottom", "0px")
-    dialogueContainer.style.setProperty("width", "100%")
+    let choicerContainer = document.createElement('div')
+    choicerContainer.setAttribute("id", "choicerContainer") 
+    choicerContainer.style.setProperty("display", "flex")
+    choicerContainer.style.setProperty("justify-content", "center")
+    choicerContainer.style.setProperty("position", "fixed")
+    choicerContainer.style.setProperty("bottom", "0px")
+    choicerContainer.style.setProperty("width", "100%")
+    choicerContainer.style.setProperty("z-index", "101")
 
-    let dialogueBox = document.createElement('div')
-    dialogueBox.setAttribute("id", "dialogueBox") 
-    dialogueBox.style.setProperty("display", "flex")
-    dialogueBox.style.setProperty("position", "fixed")
-    dialogueBox.style.setProperty("bottom", "32px")
-    dialogueBox.style.setProperty("width", "840px")
-    dialogueBox.style.setProperty("height", "216px")
-    dialogueBox.style.setProperty("border", "6px white solid")
-    dialogueBox.style.setProperty("color", "white")
-    dialogueBox.style.setProperty("background-color", "black")
-    dialogueBox.style.setProperty("font-family", "determination")
+    let choicerBox = document.createElement('div')
+    choicerBox.setAttribute("id", "choicerBox") 
+    choicerBox.style.setProperty("display", "flex")
+    choicerBox.style.setProperty("position", "fixed")
+    choicerBox.style.setProperty("bottom", "32px")
+    choicerBox.style.setProperty("width", "840px")
+    choicerBox.style.setProperty("height", "216px")
+    choicerBox.style.setProperty("border", "8px white solid")
+    choicerBox.style.setProperty("color", "white")
+    choicerBox.style.setProperty("background-color", "black")
+    choicerBox.style.setProperty("font-family", "determination")
 
     let choicerA = document.createElement('p')
     choicerA.setAttribute("id", "choicerA")
@@ -145,6 +166,8 @@ function create_choicer() {
     choicerA.style.setProperty("font-size", "40px")
     choicerA.style.setProperty("white-space", "pre-line")
     choicerA.style.setProperty("user-select", "none")
+    choicerA.style.setProperty("text-align", "center")
+
     let choicerB = document.createElement('p')
     choicerB.setAttribute("id", "choicerB")
     choicerB.style.setProperty("margin", "2%")
@@ -155,11 +178,20 @@ function create_choicer() {
     choicerB.style.setProperty("font-size", "40px")
     choicerB.style.setProperty("white-space", "pre-line")
     choicerB.style.setProperty("user-select", "none")
+    choicerB.style.setProperty("text-align", "center")
 
-    document.body.append(dialogueContainer)
-    document.getElementById("dialogueContainer").appendChild(dialogueBox)        
-    document.getElementById("dialogueBox").appendChild(choicerA)
-    document.getElementById("dialogueBox").appendChild(choicerB)
+    let choicerSoul = document.createElement('img')
+    choicerSoul.setAttribute("id", "choicerSoul")
+    choicerSoul.src = '/Resources/soul_choicer.png'
+    choicerSoul.style.setProperty("position", "fixed")
+    choicerSoul.style.setProperty("bottom", "136px")
+    choicerSoul.style.setProperty("left", "580px")
+
+    document.body.append(choicerContainer)
+    document.getElementById("choicerContainer").appendChild(choicerBox)      
+    document.getElementById("choicerBox").appendChild(choicerSoul)  
+    document.getElementById("choicerBox").appendChild(choicerA)
+    document.getElementById("choicerBox").appendChild(choicerB)
 }
 
 function disable_controls() {
@@ -172,19 +204,29 @@ function disable_controls() {
             disableControls.style.setProperty("width", "100%")
             disableControls.style.setProperty("height", "100%") 
             disableControls.style.setProperty("top", "0")
+            disableControls.style.setProperty("z-index", "100")
 
             document.body.append(disableControls)
 
             document.getElementById('disableControls').addEventListener("click", function() {
-                progress_dialogue()
+                if (document.getElementById('dialogueBox')) {
+                    progress_dialogue()
+                }
             });
+
     }
+}
+
+function enable_controls() {
+    let disableControls = document.getElementById("disableControls");
+    disableControls.remove();
 }
 
 function dialogue_builder(conversation) {
 
     // Increase conversation variable scope to global
     globalThis.conversation = conversation
+    
 
     // Create all dialogue box elements
     if (!document.getElementById('dialogueBox')) {
@@ -220,21 +262,91 @@ function dialogue_builder(conversation) {
             i++;
             setTimeout(() => dialogue_builder(conversation), textInterval);
 
-        // ! Denotes an action
-        } else if (txt.charAt(0) == "!") {
+        
+        } 
+
+        // > Forwards you to a choicer
+        if (txt.charAt(0) == ">") {
+            let jumpToChoicer = txt.substring(2)
+            console.log(`Activating Choicer ${jumpToChoicer}`)
+            choicer_builder(jumpToChoicer)
             destroy_dialogue_box()
-            choicer_builder()
+
+        // < Forwards you to a dialogue
+        } else if (txt.charAt(0) == "<") {
+            let jumpToChoicer = txt.substring(2)
+            console.log(`Activating Dialogue ${jumpToChoicer}`)
+            destroy_dialogue_box()
+            dialogue_builder(jumpToChoicer)
+
+        // $ Saves Data
+        } else if (txt.charAt(0) == "$") {
+            let saveData = txt.substring(2)
+            let saveStorage = saveData.split(",")[0]
+            let saveValue = saveData.split(",")[1]
+            console.log(`Saving Data ${saveData}`)
+            save_data(saveStorage, saveValue)
+            progress_dialogue()
+            progress_dialogue()
+
+        // = Checks a Storage Value         
+        } else if (txt.charAt(0) == "=") {
+            let loadData = txt.substring(2)
+            let loadStorage = loadData.split(",")[0]
+            let loadValue = loadData.split(",")[1]
+            console.log(`Checking if ${loadData}`)
+            if (localStorage.getItem(loadStorage) == loadValue) {
+                console.log(`Check returned true!`)
+                progress_dialogue()
+                progress_dialogue()
+
+            } else {
+                console.log(`Check returned false!`)
+                currentDialogue += 2
+                progress_dialogue()
+                progress_dialogue()
+            }
+            
         }
-    
 
     }
 }
 
-function choicer_builder() {
-    if (!document.getElementById('dialogueBox')) {
+function choicer_builder(conversation) {
 
-        create_dialogue()
+    if (!document.getElementById('choicerBox')) {
 
+        create_choicer()
+        disable_controls()
+
+        document.getElementById("choicerA").innerHTML = dialogue[conversation][0];
+        document.getElementById("choicerB").innerHTML = dialogue[conversation][2];
+
+        document.getElementById('choicerA').addEventListener("mouseover", function() {
+            let choicerSoul = document.getElementById("choicerSoul")
+            choicerSoul.style.setProperty("bottom", "136px")
+            choicerSoul.style.setProperty("left", "580px")
+        });
+
+        document.getElementById('choicerB').addEventListener("mouseover", function() {
+            let choicerSoul = document.getElementById("choicerSoul")
+            choicerSoul.style.setProperty("bottom", "136px")
+            choicerSoul.style.setProperty("left", "960px")
+        });
+
+        document.getElementById('choicerA').addEventListener("click", function() {
+            let jumpTo = dialogue[conversation][1].substring(2)
+            console.log(jumpTo)
+            destroy_choicer_box()
+            dialogue_builder(jumpTo)
+        });
+
+        document.getElementById('choicerB').addEventListener("click", function() {
+            let jumpTo = dialogue[conversation][3].substring(2)
+            console.log(`${jumpTo}`)
+            destroy_choicer_box()
+            dialogue_builder(jumpTo)
+        });
     }
 }
 
@@ -260,19 +372,32 @@ function progress_dialogue() {
         dialogue_builder(conversation)
     } else {
         destroy_dialogue_box()
+        enable_controls()
     }
 }
 
 // Destroy all elements related to the dialogue box
 function destroy_dialogue_box() {
-    let disableControls = document.getElementById("disableControls");
     let dialogueContainer = document.getElementById("dialogueContainer");
     let dialogueBox = document.getElementById("dialogueBox");
     let dialogueText = document.getElementById("dialogueText");
-    disableControls.remove();
     dialogueContainer.remove();
     dialogueBox.remove();
     dialogueText.remove();
+    i = 0
+    currentDialogue = 0
+}
+
+// Destroy all elements related to the choicer box
+function destroy_choicer_box() {
+    let choicerContainer = document.getElementById("choicerContainer");
+    let choicerBox = document.getElementById("choicerBox");
+    let choicerA = document.getElementById("choicerA");
+    let choicerB = document.getElementById("choicerB");
+    choicerContainer.remove();
+    choicerBox.remove();
+    choicerA.remove();
+    choicerB.remove();
     i = 0
     currentDialogue = 0
 }
