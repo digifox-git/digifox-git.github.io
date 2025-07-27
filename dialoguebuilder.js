@@ -41,12 +41,20 @@ function playSFX(key) {
     }
 }
 
-// Dialogue Builder
+// Dialogue Builder 1.0 - The code is garbage but oh wow it works
 //-----------------------------------------------------------------------------------------//
 
-addSFX("snd_text", "https://digifox.space/Resources/sounds/snd_text.ogg", 4)
-addSFX("snd_init", "https://digifox.space/Resources/sounds/initializer.ogg", 1)
-playSFX("snd_init")
+window.onload = async function() {
+
+    addSFX("snd_text", "https://digifox.space/Resources/sounds/snd_text.ogg", 4)
+    console.log('[dialoguebuilder.js] Sound "snd_text" registered!')
+
+    const dtm = new FontFace("Determination", "url(https://digifox.space/Resources/Fonts/DTM-Mono.ttf)")
+    await dtm.load()
+    document.fonts.add(dtm)
+    console.log('[dialoguebuilder.js] font "Determination" loaded!')
+
+}
 
 // Save data to local
 function save_data(storage, value) {
@@ -71,7 +79,7 @@ let dialogue = {
         "< dialoguetestpage_0"
     ],  
     dialoguetestpage_0: [
-        "* Oh!\u200E Hello there.\u200E\n* Welcome to the dialogue test\n\u00A0 room.",
+        "* Oh!\u200E Hello there.\u200E\n* Welcome to the dialogue test\n\u00A0 page.",
         "* Sorry about the mess,\u200E I wasn't\n\u00A0 expecting visitors so soon!",
         "* How does this make you feel?",
         "> dialoguetestpage_0_choicer"
@@ -90,7 +98,7 @@ let dialogue = {
     dialoguetestpage_2: [
         "$ flag-testdialogue-wasmean,true",
         "* Oh,\u200E oh,\u200E what a shame...",
-        "* Well,\u200E don't bother coming back\n\u00A0\u00A0then.\u200E\n* Goodbye!"
+        "* Well,\u200E don't bother coming back\n\u00A0 then.\u200E\n* Goodbye!"
     ],
     dialoguetestpage_3: [
         "* No,\u200E no,\u200E I've had my fill of\n\u00A0 you.",
@@ -103,11 +111,41 @@ let dialogue = {
     ],
     dialoguetestpage_4: [
         "$ inventory-hasaudio,true",
-        "# /Resources/sounds/egg.ogg",
+        "# /Resources/sounds/snd_item.ogg",
         "* (You recieved an Audio.)"
     ],
         dialoguetestpage_5: [
         "* (But you already had one.)",
+    ],
+    man_check: [
+        "= flag-man-interacted,true",
+        "< man_3",
+        "= flag-man-interacted,false",
+        "< man_0"
+    ],
+    man_0: [
+        "* (Well,\u200E there is a man here.)",
+        "* (He offered you something.)",
+        "> man_0_choicer"
+    ],
+    man_0_choicer: [
+        "\nYes",
+        "> man_1",
+        "\nNo",
+        "> man_2"
+    ],
+    man_1: [
+        "$ inventory-hasegg,true",
+        "$ flag-man-interacted,true",
+        "# /Resources/sounds/egg.ogg",
+        "* (You recieved an Egg.)"
+    ],
+    man_2: [
+        "$ flag-man-interacted,true",
+        "* (Then he needn't be here.)"
+    ],
+    man_3: [
+        "* (Well,\u200E there is not a man\n\u00A0 here.)"
     ]
 }
 
@@ -140,6 +178,7 @@ function create_dialogue() {
 
         let dialogueText = document.createElement('p')
         dialogueText.setAttribute("id", "dialogueText")
+        dialogueText.style.fontFamily = "Determination"
         dialogueText.style.setProperty("margin", "2%")
         dialogueText.style.setProperty("margin-left", "3%")
         dialogueText.style.setProperty("line-height", "150%")
@@ -184,6 +223,7 @@ function create_choicer() {
 
         let choicerA = document.createElement('p')
         choicerA.setAttribute("id", "choicerA")
+        choicerA.style.fontFamily = "Determination"
         choicerA.style.setProperty("margin", "2%")
         choicerA.style.setProperty("margin-left", "3%")
         choicerA.style.setProperty("line-height", "150%")
@@ -196,6 +236,7 @@ function create_choicer() {
 
         let choicerB = document.createElement('p')
         choicerB.setAttribute("id", "choicerB")
+        choicerB.style.fontFamily = "Determination"
         choicerB.style.setProperty("margin", "2%")
         choicerB.style.setProperty("margin-left", "3%")
         choicerB.style.setProperty("line-height", "150%")
@@ -218,6 +259,7 @@ function create_choicer() {
         document.getElementById("choicerBox").appendChild(choicerSoul)  
         document.getElementById("choicerBox").appendChild(choicerA)
         document.getElementById("choicerBox").appendChild(choicerB)
+
     } else {
         document.getElementById("choicerBox").style.setProperty("display", "flex")
         document.getElementById("choicerSoul").style.transform = "translateX(100%) translateY(240%)"
@@ -415,6 +457,7 @@ function destroy_dialogue_box() {
     }
     i = 0
     currentDialogue = 0
+    document.getElementById("dialogueText").innerHTML = ""
     console.log("[DIALOGUE] Destroyed!")
 }
 

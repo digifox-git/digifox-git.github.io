@@ -31,7 +31,7 @@ button {
     font-size: 40px;
     padding: 16px;
     color: white;
-    border: 6px white solid;
+    border: 8px white solid;
     background-color: black;
 }
 
@@ -40,12 +40,12 @@ button:hover {
     font-size: 40px;
     padding: 16px;
     color: white;
-    border: 6px white solid;
+    border: 8px white solid;
     background-color: black;
     cursor:pointer;
 }
 
 #resetbutton {
     color: red;
-    border: 6px red solid;
+    border: 8px red solid;
 }
