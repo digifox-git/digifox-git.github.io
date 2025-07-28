@@ -33,37 +33,42 @@
 								<tr height="26">
 									<td width="153" valign="top" align="center" rowspan="4"><font size="+1"><b>Destinations</b></font>
 										<hr>
-										<p><a href="/index.html">- Home -</a></p>
-										<p><a href="/aboutme.html">-&nbsp;All About Me -</a></p>
-                                        <p><a href="/projects/">- My Projects -</a></p>
-										<p><a href="/blog/">-&nbsp;My Blog -</a></p>
-										<p><a href="/gamingstopten.html">- Top 10 Gamez -</a></p>
-										<p><a href="/weblink.html">-&nbsp;Web Links -</a></p>
-										<p><a href="/construction.html">-&nbsp;Guestbook -</a></p>
-										<p><a href="/settings.html">-&nbsp;Settings -</a></p>
+										<div id="destinations">
+											<p><img src="/Resources/destination/destination_home.gif"><a href="/index.html">• Home</a></p>
+											<p><img src="/Resources/destination/destination_aboutme.gif"><a href="/aboutme.html">• About Me</a></p>
+											<p><img src="/Resources/destination/destination_projects.gif"><a href="/projects/">• My Projects</a></p>
+											<p><img src="/Resources/destination/destination_blog.gif"><a href="/blog/">• My Blog</a></p>
+											<p><img src="/Resources/destination/destination_top10.gif"><a href="/gamingstopten.html">• Top 10 Games</a></p>
+											<p><img src="/Resources/destination/destination_weblinks.gif"><a href="/weblink.html">• Web Links</a></p>
+											<p><img src="/Resources/destination/destination_guestbook.gif"><a href="/construction.html">• Guestbook</a></p>
+											<p><img src="/Resources/destination/destination_experiments.gif"><a href="/construction.html">• Experiments</a></p>
+											<p><img src="/Resources/destination/destination_settings.gif"><a href="/settings.html">• Settings</a></p>
+										</div>
 									</td>
 									<td valign="top" colspan="2" rowspan="4"><font size="+1">&gt;&gt;&gt;&nbsp;Settings </font>
 										<hr>
 										<div id="loadingbar">
-											<img src="/Resources/loadingglobe.gif">
-											<p>loading...</p>
+											<img src="/Resources/loadinggloberainbow.gif">
+											<font size="+1"><b><p class="rainbowtext">&nbsp;loading...</p></b></font>
 										</div>
-                                        <p>Any information presented in this list is stored in your browser's Local Storage.</p>
-										<p><font size="+1"><b>Name</b></font></p>
-										<form id="setname">
-                                            <input type="text" id="settingentername" maxlength="22" placeholder="Enter your preferred name">
-                                            <button onclick="set_name()">Set</button>
-                                        </form>
-										<p><font size="+1"><b>Preferences</b></font></p>
-										<form id="setname">
-                                            <label>Hide Epilepsy Warnings:</label>
-                                            <input type="checkbox" id="settingepilepsy" value="Hide">
-                                        </form>
-                                        <p id="settingsearchbackground">Search Background: ...</p>
-										<p><font size="+1"><b>Other</b></font></p>
-                                        <p id="settingfunvalue">Fun Value: ...</p>
-                                        <p><br><br><br><br><br></p>
-                                        <p><a id="resetprofile" href="/reset.html">RESET</a></p>
+										<div id="settingscontent">
+											<p>Any information presented in this list is stored in your browser's Local Storage.</p>
+											<p><font size="+1"><b>Name</b></font></p>
+											<form id="setname">
+												<input type="text" id="settingentername" maxlength="22" placeholder="Enter your preferred name">
+												<button onclick="set_name()">Set</button>
+											</form>
+											<p><font size="+1"><b>Preferences</b></font></p>
+											<form id="setname">
+												<label>Hide Epilepsy Warnings:</label>
+												<input type="checkbox" id="settingepilepsy" value="Hide">
+											</form>
+											<p id="settingsearchbackground">Search Background: ...</p>
+											<p><font size="+1"><b>Other</b></font></p>
+											<p id="settingfunvalue">Fun Value: ...</p>
+											<p><br><br><br><br><br></p>
+											<p><a id="resetprofile" href="/reset.html">RESET</a></p>
+										</div>
 									</td>
 								</tr>
 								<tr height="251">

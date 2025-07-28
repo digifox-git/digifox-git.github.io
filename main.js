@@ -50,6 +50,7 @@ window.onload = function() {
 
     if (document.getElementById("loadingbar")) {
         document.getElementById("loadingbar").remove()
+        document.getElementById("settingscontent").style.setProperty("display", "inline")
     }
 }
 
