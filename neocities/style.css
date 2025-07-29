@@ -2,6 +2,7 @@ body {
     padding: 0;
     margin: 0;
     overflow: hidden;
+    background-size: 10%;
 }
 
 #content {
@@ -25,17 +26,20 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    image-rendering: pixelated;
+    width: 100%;
+    height: 100%;
 }
 
-#spinning_logo{
-    width: 400px;
+#spinninglogo:hover{
+    animation: logoPop 1s ease 0s 1 forwards;
 }
 
 #images {
     position: absolute;
     top:0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     border: 1px solid blue;
     z-index: -1;
 }
@@ -43,4 +47,19 @@ button:hover {
 #images img {
     position: absolute;
     z-index: 0;
+    image-rendering: pixelated;
+}
+
+@keyframes logoPop {
+  0% {
+	transform: scale(1);
+  }
+
+  10% {
+	transform: scale(1.2);
+  }
+
+  100% {
+	transform: scale(1.2);
+  }
 }
