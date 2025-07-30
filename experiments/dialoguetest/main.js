@@ -5,9 +5,9 @@ function save_data(storage, value) {
     localStorage.setItem(storage, value)
 }
 
-window.onload = function() {
+window.addEventListener("DOMContentLoaded", function() {
    update_resetcolor() 
-}
+})
 
 function reset_dialoguetest() {
 
@@ -30,10 +30,12 @@ function update_resetcolor() {
 
     if (localStorage.getItem("flag-testdialogue-wasmean") || localStorage.getItem("inventory-hasaudio")) {
         document.getElementById("resetbutton").style.setProperty("color", "red")
-        document.getElementById("resetbutton").style.setProperty("border", "8px red solid")
     } else {
         document.getElementById("resetbutton").style.setProperty("color", "#b20000")
-        document.getElementById("resetbutton").style.setProperty("border", "8px #b20000 solid")
     }
     setTimeout(update_resetcolor, 200)
 }
+
+const shakingLetters = document.querySelectorAll('.shake');
+const maxShake = 3
+

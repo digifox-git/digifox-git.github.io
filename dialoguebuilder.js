@@ -56,6 +56,7 @@ window.onload = async function() {
 
 }
 
+
 // Save data to local
 function save_data(storage, value) {
     localStorage.setItem(storage, value)
@@ -72,6 +73,9 @@ function save_data(storage, value) {
 
 // Array that contains all dialogue
 let dialogue = {
+    error: [
+        "* Something went wrong!"
+    ],
     dialoguetestpage_check: [
         "= flag-testdialogue-wasmean,true",
         "< dialoguetestpage_3",
@@ -146,6 +150,9 @@ let dialogue = {
     ],
     man_3: [
         "* (Well,\u200E there is not a man\n\u00A0 here.)"
+    ],
+    room_000_0: [
+        "* (This sign is a sign!)"
     ]
 }
 
@@ -153,7 +160,7 @@ var i = 0 // Iterator
 var textInterval = 30 // Speed of text tying in milliseconds
 var currentDialogue = 0 
 
-function create_dialogue() {
+function create_dialogue(theme) {
     if (!document.getElementById("dialogueBox")) {
         let dialogueContainer = document.createElement('div')
         dialogueContainer.setAttribute("id", "dialogueContainer") 
@@ -169,9 +176,8 @@ function create_dialogue() {
         dialogueBox.style.setProperty("display", "flex")
         dialogueBox.style.setProperty("position", "fixed")
         dialogueBox.style.setProperty("bottom", "32px")
-        dialogueBox.style.setProperty("width", "840px")
-        dialogueBox.style.setProperty("height", "216px")
-        dialogueBox.style.setProperty("border", "8px white solid")
+        dialogueBox.style.setProperty("width", "900px")
+        dialogueBox.style.setProperty("height", "250px")
         dialogueBox.style.setProperty("color", "white")
         dialogueBox.style.setProperty("background-color", "black")
         dialogueBox.style.setProperty("font-family", "determination")
@@ -184,13 +190,24 @@ function create_dialogue() {
         dialogueText.style.setProperty("line-height", "150%")
         dialogueText.style.setProperty("width", "100%")
         dialogueText.style.setProperty("height", "80%")
-        dialogueText.style.setProperty("font-size", "40px")
+        dialogueText.style.setProperty("font-size", "44px")
         dialogueText.style.setProperty("white-space", "pre-line")
         dialogueText.style.setProperty("user-select", "none")
 
         document.body.append(dialogueContainer)
         document.getElementById("dialogueContainer").appendChild(dialogueBox)        
         document.getElementById("dialogueBox").appendChild(dialogueText)
+    }
+
+    if (theme == "dark") {
+        let dialogueBox = document.getElementById("dialogueBox")
+        dialogueBox.style.setProperty("border", "64px solid")
+        dialogueBox.style.setProperty("border-image", "url(/Resources/border_darkworld2.png) 64 round")
+    }
+
+    if (theme == "light" || theme == null) {
+        let dialogueBox = document.getElementById("dialogueBox")
+        dialogueBox.style.setProperty("border", "10px white solid")
     }
 
     document.getElementById("dialogueBox").style.setProperty("display", "flex")
@@ -214,9 +231,9 @@ function create_choicer() {
         choicerBox.style.setProperty("display", "flex")
         choicerBox.style.setProperty("position", "fixed")
         choicerBox.style.setProperty("bottom", "32px")
-        choicerBox.style.setProperty("width", "840px")
-        choicerBox.style.setProperty("height", "216px")
-        choicerBox.style.setProperty("border", "8px white solid")
+        choicerBox.style.setProperty("width", "900px")
+        choicerBox.style.setProperty("height", "250px")
+        choicerBox.style.setProperty("border", "10px white solid")
         choicerBox.style.setProperty("color", "white")
         choicerBox.style.setProperty("background-color", "black")
         choicerBox.style.setProperty("font-family", "determination")
@@ -229,7 +246,7 @@ function create_choicer() {
         choicerA.style.setProperty("line-height", "150%")
         choicerA.style.setProperty("width", "50%")
         choicerA.style.setProperty("height", "80%")
-        choicerA.style.setProperty("font-size", "40px")
+        choicerA.style.setProperty("font-size", "44px")
         choicerA.style.setProperty("white-space", "pre-line")
         choicerA.style.setProperty("user-select", "none")
         choicerA.style.setProperty("text-align", "center")
@@ -242,7 +259,7 @@ function create_choicer() {
         choicerB.style.setProperty("line-height", "150%")
         choicerB.style.setProperty("width", "50%")
         choicerB.style.setProperty("height", "80%")
-        choicerB.style.setProperty("font-size", "40px")
+        choicerB.style.setProperty("font-size", "44px")
         choicerB.style.setProperty("white-space", "pre-line")
         choicerB.style.setProperty("user-select", "none")
         choicerB.style.setProperty("text-align", "center")
@@ -252,7 +269,7 @@ function create_choicer() {
         choicerSoul.src = '/Resources/soul_choicer.png'
         choicerSoul.style.setProperty("position", "fixed")
         choicerB.style.setProperty("user-select", "none")
-        choicerSoul.style.transform = "translateX(100%) translateY(240%)"
+        choicerSoul.style.transform = "translateX(100%) translateY(260%)"
 
         document.body.append(choicerContainer)
         document.getElementById("choicerContainer").appendChild(choicerBox)      
@@ -267,46 +284,52 @@ function create_choicer() {
 
 }
 
+let canControl = true
+
 function disable_controls() {
 
     //Create an invisible element that covers the screen. Prevents interacting with web page and allows the user to progress dialogue
     if (!document.getElementById('disableControls')) {
-            var disableControls = document.createElement('div')
-            disableControls.setAttribute("id", "disableControls")
-            disableControls.style.setProperty("position", "absolute")
-            disableControls.style.setProperty("width", "100%")
-            disableControls.style.setProperty("height", "100%") 
-            disableControls.style.setProperty("top", "0")
-            disableControls.style.setProperty("z-index", "100")
+        var disableControls = document.createElement('div')
+        disableControls.setAttribute("id", "disableControls")
+        disableControls.setAttribute("oncontextmenu", "return false")
+        disableControls.style.setProperty("position", "absolute")
+        disableControls.style.setProperty("width", "100%")
+        disableControls.style.setProperty("height", "100%") 
+        disableControls.style.setProperty("top", "0")
+        disableControls.style.setProperty("z-index", "100")
 
-            document.body.append(disableControls)
+        document.body.append(disableControls)
+}
 
-            document.getElementById('disableControls').addEventListener("click", function() {
-                if (document.getElementById('dialogueBox')) {
-                    progress_dialogue()
-                }
-            });
+    document.getElementById("disableControls").addEventListener("click", function() {
+            skip_dialogue()
+    })
+    document.getElementById("disableControls").addEventListener("contextmenu", function() {
+            advance_dialogue()
+    })
 
-    }
 }
 
 function enable_controls() {
     let disableControls = document.getElementById("disableControls");
     disableControls.remove();
+
+    canControl = true
 }
 
-async function  dialogue_builder(conversation) {
+async function  dialogue_builder(conversation, theme) {
 
     // Increase conversation variable scope to global
-    globalThis.conversation = conversation
+    globalThis.currentConversation = conversation
 
     // Create/Enables all dialogue box elements
     if (!document.getElementById("dialogueBox") || document.getElementById("dialogueBox").style.getPropertyValue("display") == "none") {
-        create_dialogue()
+        create_dialogue(theme)
     }
 
     // Get current dialogue progress and disable web page interaction
-    txt = dialogue[conversation][currentDialogue]
+    var txt = dialogue[conversation][currentDialogue]
     disable_controls()
 
     // Type text one character at a time until the string is finished
@@ -388,26 +411,27 @@ async function  dialogue_builder(conversation) {
             }
             
         }
-
     }
 }
 
-function choicer_builder(conversation) {
+let choicerOption = 1
 
+function choicer_builder(conversation) {
+    currentConversation = conversation
+    choicerOption = 1
     create_choicer()
     disable_controls()
-
     document.getElementById("choicerA").innerHTML = dialogue[conversation][0];
     document.getElementById("choicerB").innerHTML = dialogue[conversation][2];
 
     document.getElementById('choicerA').addEventListener("mouseover", function() {
         let choicerSoul = document.getElementById("choicerSoul")
-        choicerSoul.style.transform = "translateX(100%) translateY(240%)"
+        choicerSoul.style.transform = "translateX(100%) translateY(260%)"
     });
 
     document.getElementById('choicerB').addEventListener("mouseover", function() {
         let choicerSoul = document.getElementById("choicerSoul")
-        choicerSoul.style.transform = "translateX(1240%) translateY(240%)"
+        choicerSoul.style.transform = "translateX(1320%) translateY(260%)"
     });
 
     document.getElementById('choicerA').addEventListener("click", function() {
@@ -423,10 +447,57 @@ function choicer_builder(conversation) {
     });
 }
 
+
+window.addEventListener("keydown", function() {
+
+    let choicerBox = document.getElementById("choicerBox")
+    let dialogueBox = document.getElementById("dialogueBox")
+        
+    if (event.defaultPrevented) {
+        return; // Do nothing if the event was already processed
+    }
+
+    switch (event.key) {
+        case "ArrowLeft":
+            choicerSoul.style.transform = "translateX(100%) translateY(260%)"
+            choicerOption = 1;
+            console.log(choicerOption)
+        break;  
+        case "ArrowRight":
+            choicerSoul.style.transform = "translateX(1320%) translateY(260%)"
+            choicerOption = 3;
+            console.log(choicerOption)
+        break;  
+        case "z":
+            if (choicerBox && choicerBox.style.getPropertyValue("display") == "flex") {
+
+                console.log(choicerOption + " is choicer option")
+                jumpTo = dialogue[currentConversation][choicerOption].substring(2)
+
+                    console.log(jumpTo)
+                    destroy_choicer_box()
+                    dialogue_builder(jumpTo)
+            }
+            if (dialogueBox && dialogueBox.style.getPropertyValue("display") == "flex") {
+                skip_dialogue()
+            }
+            break;
+            case "x":
+                if (dialogueBox && dialogueBox.style.getPropertyValue("display") == "flex") {
+                    advance_dialogue()
+                }
+            break;
+            case "c":
+                console.log(currentConversation)
+                console.log(currentDialogue)
+            break;
+    }
+});
+
 function progress_dialogue() {
 
     // Get current dialogue progress
-    var txt = dialogue[conversation][currentDialogue]
+    var txt = dialogue[currentConversation][currentDialogue]
     let dialogueBox = document.getElementById("dialogueBox")
 
     // Skip to the end of dialogue
@@ -440,15 +511,41 @@ function progress_dialogue() {
     currentDialogue++
     
     // If current dialogue progress is less than the total length of conversation, continue. Otherwise, destroy the dialogue box
-    if (currentDialogue < dialogue[conversation].length && dialogueBox.style.getPropertyValue("display") == "flex") {
+    if (currentDialogue < dialogue[currentConversation].length && dialogueBox.style.getPropertyValue("display") == "flex") {
         document.getElementById("dialogueText").innerHTML = "";
         i = 0
-        dialogue_builder(conversation)
+        dialogue_builder(currentConversation)
     } else {
         destroy_dialogue_box()
         enable_controls()
     }
+} 
+
+function skip_dialogue() {
+    // Get current dialogue progress
+    var txt = dialogue[currentConversation][currentDialogue]
+    let dialogueBox = document.getElementById("dialogueBox")
+    if (i == txt.length) {
+        currentDialogue++
+        if (currentDialogue < dialogue[currentConversation].length && dialogueBox.style.getPropertyValue("display") == "flex") {
+            document.getElementById("dialogueText").innerHTML = "";
+            i = 0
+            dialogue_builder(currentConversation)
+        } else {
+            destroy_dialogue_box()
+            enable_controls()
+        }
+    }
 }
+
+function advance_dialogue() {
+    var txt = dialogue[currentConversation][currentDialogue]
+    if (i < txt.length) {
+        document.getElementById("dialogueText").innerHTML = txt;
+        i = txt.length
+    }
+}
+
 
 // Destroy all elements related to the dialogue box
 function destroy_dialogue_box() {
