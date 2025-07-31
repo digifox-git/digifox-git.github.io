@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(167, 202, 238);
+    background-color: rgb(220, 232, 245);
     overflow-x: hidden;
     margin: 0;
     padding: 0;
@@ -63,37 +63,12 @@ body {
 }
 
 #content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     position:fixed;
-    width: 98.8vw;
-    height: 92.5vh;
+    width: 98.3vw;
+    height: 91vh;
     margin: 0.5%;
+    font-size: 1.2em;
     background-color: rgb(255, 255, 255);
-    background-image: url(assets/images/bluespace.gif);
     z-index: 1;
     overflow-y: auto;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.4em;
-}
-
-.content-box {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.6em;
-}
-
-.heading {
-    text-align: center;
-}
-
-.foxemoji {
-    width: 32px;
-}
-
-.windowpanel {
-    background-color: white;
-    padding: 1%;
-    border: #8e8f8f 1px solid;
 }

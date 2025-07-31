@@ -115,7 +115,7 @@ let dialogue = {
     ],
     dialoguetestpage_4: [
         "$ inventory-hasaudio,true",
-        "# /Resources/sounds/snd_item.ogg",
+        "# /assets/sounds/buyitem.ogg",
         "* (You recieved an Audio.)"
     ],
         dialoguetestpage_5: [
@@ -141,7 +141,7 @@ let dialogue = {
     man_1: [
         "$ inventory-hasegg,true",
         "$ flag-man-interacted,true",
-        "# /Resources/sounds/egg.ogg",
+        "# /assets/sounds/egg.ogg",
         "* (You recieved an Egg.)"
     ],
     man_2: [
@@ -266,7 +266,7 @@ function create_choicer() {
 
         let choicerSoul = document.createElement('img')
         choicerSoul.setAttribute("id", "choicerSoul")
-        choicerSoul.src = '/Resources/soul_choicer.png'
+        choicerSoul.src = '/assets/images/soul_choicer.png'
         choicerSoul.style.setProperty("position", "fixed")
         choicerB.style.setProperty("user-select", "none")
         choicerSoul.style.transform = "translateX(100%) translateY(260%)"
