@@ -17,10 +17,13 @@
             <button onclick='travel_to("/projects")' class="travelbutton">Projects</button>
             <button onclick='travel_to("/links")' class="travelbutton">Links</button>
             <button onclick='travel_to("/guestbook")' class="travelbutton">Guestbook</button>
+            <button onclick='travel_to("/archive")' class="travelbutton">Archive</button>
             <button onclick='travel_to("/settings")' class="travelbutton">Settings</button>
         </div>
         <img src="assets/images/logo_glass.png" style="margin-right: 0.5%;">
     </div>
+
+    <marquee>Welcome to my website! Feel free to explore...</marquee>
 
     <div class="window-body" id="content">
 
@@ -29,7 +32,7 @@
             <div class="title-bar">
                 <div class="title-bar-text">game.docx</div>
             </div>
-            <div class="window-body has-space content-box" style="height: 85vh;">
+            <div class="window-body has-space content-box" style="height: 83vh;">
 
             </div>
         </div>        
@@ -39,17 +42,22 @@
             <div class="title-bar">
                 <div class="title-bar-text">welcome.docx</div>
             </div>
-            <div class="window-body has-space content-box" style="height: 85vh;">
+            <div class="window-body has-space content-box" style="height: 83vh; display: flex; flex-direction: column;">
                 <menu role="tablist" aria-label="Tabs Template">
                     <button id="tab-A" onclick="tab('A')" role="tab" aria-controls="tab-A" aria-selected="true">Welcome</button>
                     <button id="tab-B" onclick="tab('B')" role="tab" aria-controls="tab-B">About Me</button>
                 </menu>
-                <article role="tabpanel" id="panel-A" style="height: 93.5%;">
+                <article role="tabpanel" id="panel-A" style="height: 95%;">
                     <div class="heading">
                         <h1>Welcome <img class="foxemoji" src="assets/images/foxemojis/fox_waving.gif"></h1>
                         <hr>
                     </div>
                     <p>&emsp;Welcome to digifox.space! This website is a personal project of mine, and I use it to host all sorts of cool projects and ideas I may have. I'll try to update it semi-frequently with anything I am working on, but no promises. You can navigate the site using the little tabs on the top, and I encourage you to look around!</p>
+                    <div class="heading">
+                        <h1>About The Site <img class="foxemoji" src="assets/images/foxemojis/fox_beaming.gif"></h1>
+                        <hr>
+                    </div>
+                    <p>&emsp;This site was created with the assistance of <a href="https://khang-nd.github.io/7.css/#groupbox">7.css</a>, a CSS framwork that makes it easy to build components that emulate the look of Windows 7. This is actually version 2 of my website, and version 1 can be found in the archive.</p>
                 </article>
                 <article role="tabpanel" id="panel-B" style="height: 93.5%;" hidden>
                     <div class="heading">
@@ -72,17 +80,19 @@
             <div class="title-bar">
                 <div class="title-bar-text">information.docx</div>
             </div>
-            <div class="window-body has-space content-box" style="height: 85vh;">
-                <div>
-                    <div class="heading">
-                        <h1>News <img class="foxemoji" src="assets/images/foxemojis/fox_thinking.gif"></h1>
-                        <hr>
+            <div class="window-body has-space content-box" style="height: 83vh;">
+                <div style="display: flex; justify-content: center; flex-direction: column; width: 97%;">
+                    <div class="windowpanel" style="height: 39.5vh; width: 100%;">
+                        <div class="heading">
+                            <h1>News <img class="foxemoji" src="assets/images/foxemojis/fox_thinking.gif"></h1>
+                            <hr>
+                        </div>
+                        <p>News!</p>
                     </div>
-                    <p>News!</p>
-                </div>
-                <div class="windowpanel" style="position: absolute; width: 92%; bottom: 1.5%;">
-                    <p>Check This Out</p>
-                    <iframe width="100%" height="300" src="https://www.youtube.com/embed/sf5y62Nj-W8?si=8up6vIjnJE0Ixqnf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="windowpanel" style="height: 40vh;width: 100%;margin-top:1.5%">
+                        <p>Check This Out</p>
+                        <iframe width="100%" height="80%" src="https://www.youtube.com/embed/sf5y62Nj-W8?si=8up6vIjnJE0Ixqnf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </div>
