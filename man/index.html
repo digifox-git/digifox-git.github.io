@@ -11,8 +11,19 @@
 
 <audio id="bg" src="/assets/sounds/man.ogg" autoplay="true" loop="true"><p>If you are reading this, it is because your browser does not support the audio element.</p></audio>
 <script>
+    if (localStorage.getItem("flag-man-interacted") === "true") {
+        window.location.replace("/index.html")
+    }
+
     var audio = document.getElementById("bg");
     audio.volume = 0.5;
+
+    history.replaceState(null, document.title, location.href)
+    history.pushState(null, document.title, location.href)
+
+    window.addEventListener("popstate", (event) => {
+        history.pushState(null, document.title, location.href)
+    })
 </script>
 
 <div id="content">

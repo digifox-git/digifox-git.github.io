@@ -6,22 +6,34 @@
     <title>digifox.space</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="/node_modules/7.css/dist/7.css">
+    <link rel="stylesheet" href="/titlebar.css">
+    <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon_glass.ico">
     <script src="/main.js"></script>
+    <script src="links.js"></script>
 </head>
 <body>
 
     <div id="titlebar">
         <div id="navigatron">
-            <button onclick='travel_to("/index.html")' class="travelbutton">Home</button>
-            <button onclick='travel_to("/projects")' class="travelbutton">Projects</button>
-            <button onclick='travel_to("/blog")' class="travelbutton">Blog</button>
-            <button class="selectedtravelbutton">Links</button>
-            <button onclick='travel_to("/guestbook")' class="travelbutton">Guestbook</button>
-            <button onclick='travel_to("/settings")' class="travelbutton">Settings</button>
+            <button id="navbtn1" onclick='travel_to("/index.html")' class="travelbutton">Home</button>
+            <button id="navbtn2" onclick='travel_to("/projects")' class="travelbutton">Projects</button>
+            <button id="navbtn3" class="selectedtravelbutton">Links</button>
+            <button id="navbtn4" onclick='travel_to("/guestbook")' class="travelbutton">Guestbook</button>
+            <button id="navbtn5" onclick='travel_to("/archive")' class="travelbutton">Archive</button>
+            <button id="navbtn6" onclick='travel_to("/settings")' class="travelbutton">Settings</button>
         </div>
+        <img src="/assets/images/logo_glass.png" style="margin-right: 0.5%;">
     </div>
-    <div class="window-body has-space" id="content">
-		<h1>Links</h1>
+
+    <div style="margin-top: 0.15%;">
+        <marquee>Gaze upon my creations and tremble...</marquee>
+    </div>
+
+    <div class="window-body" id="content">
+        <div id="linkbtn"> 
+        <img id="linkimg" src="/assets/images/linkstewbutton.gif">
+        <img id="linkness" src="/assets/images/nesspose.png">
+        </div>
     </div>
     
 </body>

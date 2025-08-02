@@ -6,6 +6,7 @@
     <title>digifox.space</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/node_modules/7.css/dist/7.css">
+    <link rel="stylesheet" href="/titlebar.css">
     <link rel="icon" type="image/x-icon" href="assets/favicons/favicon_glass.ico">
     <script src="/main.js"></script>
 </head>
@@ -13,41 +14,68 @@
 
     <div id="titlebar">
         <div id="navigatron">
-            <button class="selectedtravelbutton">Home</button>
-            <button onclick='travel_to("/projects")' class="travelbutton">Projects</button>
-            <button onclick='travel_to("/links")' class="travelbutton">Links</button>
-            <button onclick='travel_to("/guestbook")' class="travelbutton">Guestbook</button>
-            <button onclick='travel_to("/archive")' class="travelbutton">Archive</button>
-            <button onclick='travel_to("/settings")' class="travelbutton">Settings</button>
+            <button id="navbtn1" class="selectedtravelbutton">Home</button>
+            <button id="navbtn2" onclick='travel_to("/projects")' class="travelbutton">Projects</button>
+            <button id="navbtn3" onclick='travel_to("/links")' class="travelbutton">Links</button>
+            <button id="navbtn4" onclick='travel_to("/guestbook")' class="travelbutton">Guestbook</button>
+            <button id="navbtn5" onclick='travel_to("/archive")' class="travelbutton">Archive</button>
+            <button id="navbtn6" onclick='travel_to("/settings")' class="travelbutton">Settings</button>
         </div>
         <img src="assets/images/logo_glass.png" style="margin-right: 0.5%;">
     </div>
 
-    <marquee>Welcome to my website! Feel free to explore...</marquee>
+    <div style="margin-top: 0.15%;">
+        <marquee>Gaze upon my creations and tremble...</marquee>
+    </div>
 
     <div class="window-body" id="content">
 
         <!-- Gaming Window -->
-        <div class="window active" style="width: 25%; margin-left: 0.5%;">
+        <div class="window active" style="width: 25%; margin-left: 0.5%; display: flex; flex-direction: column">
             <div class="title-bar">
-                <div class="title-bar-text">game.docx</div>
+                <div class="title-bar-text">game.doc</div>
             </div>
             <div class="window-body has-space content-box" style="height: 83vh;">
+                <div style="display: flex; flex-direction: column; width: 99%; min-height: 98.5%;">
+                    <div class="windowpanel" style="min-height: 50%; min-height: 80.7vh;">
+                        <div class="heading">
+                            <h1>Gaming <img class="foxemoji" src="assets/images/foxemojis/fox_starry.gif"></h1>
+                            <hr>
+                        </div>
 
+                        <div class="gamecontainer">
+                            <div class="gamelisting">
+                                <div>
+                                    <p>Currently Playing...</p>
+                                    <a href="https://store.steampowered.com/app/427410/Abiotic_Factor/" target="_blank"><h2>Abiotic Factor</h2></a>
+                                </div>  
+                                <img src="/assets/images/gamethumb_abioticfactor.png">
+                            </div>
+                            <p>"Abiotic Factor is a survival crafting experience for 1-6 players set in the depths of an underground research facility. Caught between paranormal containment failure, a military crusade, and chaos from a dozen realms, the world’s greatest minds must survive against the universe’s biggest threats."</p>
+                        </div>
+                        
+                        <div class="gameexplain">
+                            <h2>My Review...</h2>
+                            <p>Played this with some friends and we had a great time! I was a little frustrated at first since I wasn't really sure what to do, but after I got a hang on everything it was a lot of fun. It's a bit like Half-Life in terms of looks and plot, and I think it really helped to sell this game for me!</p>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-        </div>        
+        </div>  
 
         <!-- Welcome Window -->
         <div class="window active" style="width: 48%;">
             <div class="title-bar">
-                <div class="title-bar-text">welcome.docx</div>
+                <div class="title-bar-text">welcome.doc</div>
             </div>
-            <div class="window-body has-space content-box" style="height: 83vh; display: flex; flex-direction: column;">
+            <div class="window-body has-space content-box" style="height: 83vh;">
                 <menu role="tablist" aria-label="Tabs Template">
                     <button id="tab-A" onclick="tab('A')" role="tab" aria-controls="tab-A" aria-selected="true">Welcome</button>
                     <button id="tab-B" onclick="tab('B')" role="tab" aria-controls="tab-B">About Me</button>
                 </menu>
-                <article role="tabpanel" id="panel-A" style="height: 95%;">
+                <article role="tabpanel" id="panel-A" style="min-height: 76.5vh;">
+
                     <div class="heading">
                         <h1>Welcome <img class="foxemoji" src="assets/images/foxemojis/fox_waving.gif"></h1>
                         <hr>
@@ -57,9 +85,16 @@
                         <h1>About The Site <img class="foxemoji" src="assets/images/foxemojis/fox_beaming.gif"></h1>
                         <hr>
                     </div>
-                    <p>&emsp;This site was created with the assistance of <a href="https://khang-nd.github.io/7.css/#groupbox">7.css</a>, a CSS framwork that makes it easy to build components that emulate the look of Windows 7. This is actually version 2 of my website, and version 1 can be found in the archive.</p>
+                    <p>&emsp;This site was created with the assistance of <a href="https://khang-nd.github.io/7.css/#groupbox">7.css</a>, a CSS framework that makes it easy to build components that emulate the look and feel of Windows 7. This is actually version 2 of my website, and version 1 can be found in the archive.</p>
+                
+                <center>
+                    <br><img class="image" src="/assets/images/sleeping_fox.jpg" style="width:43%">
+                    <p>I don't have anything else to put here yet...</p>
+                </center>
+
                 </article>
-                <article role="tabpanel" id="panel-B" style="height: 93.5%;" hidden>
+                <article role="tabpanel" id="panel-B" style="min-height: 76.5vhvh;" hidden>
+
                     <div class="heading">
                         <h1>About Me <img class="foxemoji" src="assets/images/foxemojis/fox_raspberry.gif"></h1>
                         <hr>
@@ -71,6 +106,7 @@
                         <hr>
                     </div>                     
                     <p>If you need to contact me, you can do so via email! My address is digifox.space@gmail.com</p>
+
                 </article>
             </div>
         </div>
@@ -78,18 +114,18 @@
         <!-- Information Window -->
         <div class="window active" style="width: 25%; margin-right: 0.5%; display: flex; flex-direction: column">
             <div class="title-bar">
-                <div class="title-bar-text">information.docx</div>
+                <div class="title-bar-text">information.doc</div>
             </div>
             <div class="window-body has-space content-box" style="height: 83vh;">
-                <div style="display: flex; justify-content: center; flex-direction: column; width: 97%;">
-                    <div class="windowpanel" style="height: 39.5vh; width: 100%;">
+                <div style="display: flex; flex-direction: column; width: 99%; min-height: 98.5%;">
+                    <div class="windowpanel" style="min-height: 50%; min-height: 45vh;">
                         <div class="heading">
                             <h1>News <img class="foxemoji" src="assets/images/foxemojis/fox_thinking.gif"></h1>
                             <hr>
                         </div>
                         <p>News!</p>
                     </div>
-                    <div class="windowpanel" style="height: 40vh;width: 100%;margin-top:1.5%">
+                    <div class="windowpanel" style="min-height: 33.9vh;margin-top:1.5%">
                         <p>Check This Out</p>
                         <iframe width="100%" height="80%" src="https://www.youtube.com/embed/sf5y62Nj-W8?si=8up6vIjnJE0Ixqnf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>

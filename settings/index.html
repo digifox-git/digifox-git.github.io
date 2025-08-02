@@ -6,23 +6,40 @@
     <title>digifox.space</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="/node_modules/7.css/dist/7.css">
+    <link rel="stylesheet" href="/titlebar.css">
+    <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon_glass.ico">
     <script src="/main.js"></script>
 </head>
 <body>
 
     <div id="titlebar">
         <div id="navigatron">
-            <button onclick='travel_to("/index.html")' class="travelbutton">Home</button>
-            <button onclick='travel_to("/projects")' class="travelbutton">Projects</button>
-            <button onclick='travel_to("/blog")' class="travelbutton">Blog</button>
-            <button onclick='travel_to("/links")' class="travelbutton">Links</button>
-            <button onclick='travel_to("/guestbook")' class="travelbutton">Guestbook</button>
-            <button class="selectedtravelbutton">Settings</button>
+            <button id="navbtn1" onclick='travel_to("/index.html")' class="travelbutton">Home</button>
+            <button id="navbtn2" onclick='travel_to("/projects")' class="travelbutton">Projects</button>
+            <button id="navbtn3" onclick='travel_to("/links")' class="travelbutton">Links</button>
+            <button id="navbtn4" onclick='travel_to("/guestbook")' class="travelbutton">Guestbook</button>
+            <button id="navbtn5" onclick='travel_to("/archive")' class="travelbutton">Archive</button>
+            <button id="navbtn6" class="selectedtravelbutton">Settings</button>
         </div>
+        <img src="/assets/images/logo_glass.png" style="margin-right: 0.5%;">
     </div>
-    <div class="window-body has-space" id="content">
-		<h1>Settings</h1>
-        <p></p>
+
+    <div style="margin-top: 0.15%;">
+        <marquee>This is the settings page. You can view all information about your profile here. All information listed is stored in your browser's local storage. Resetting your profile will delete all information related to this site in your browser's local storage.</marquee>
+    </div>
+
+    <div class="window-body" id="content">
+
+        <!-- Settings Window -->
+        <div class="window active" style="width: 48%;">
+            <div class="title-bar">
+                <div class="title-bar-text">settings.html</div>
+            </div>
+            <div class="window-body has-space content-box" style="height: 83vh;">
+                
+            </div>
+        </div>
+
     </div>
     
 </body>

@@ -1,74 +1,48 @@
 body {
-    background-color: rgb(220, 232, 245);
+    background-color: rgb(167, 202, 238);
     overflow-x: hidden;
     margin: 0;
     padding: 0;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#titlebar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #FAFCFD;
-    background: linear-gradient(180deg, rgba(250, 252, 253, 1) 0%, rgba(230, 240, 250, 1) 50%, rgba(220, 231, 245, 1) 50%);
-    border: 2px #E4EFFB solid;
-    border-bottom: 2px #A0AFC3 solid;
-    width: 100vw;
-    height: 5vh;
-    z-index: -1;
-}
-
-#titlebar img {
-    height: 90%;
-}
-
-#navigatron {
+#content {
     display: flex;
     flex-direction: row;
-    align-items: end;
-    height: 100%;
-    width: 50%;
-    z-index: 0;
-}
-
-.selectedtravelbutton {
-    color: #1E395B;
-    height: 100%;
-    width: 20%;
-    border-radius: 4px 4px 0px 0px;
-    border: 1px solid rgb(146, 146, 146);
-    background: linear-gradient(rgba(192, 230, 255, 0.253), rgba(157, 216, 255, 0.411));
-    border-bottom: 0px;
-    z-index: 0;
-    font-size: 120%;
-}
-
-.travelbutton {
-    color: #1E395B;
-    height: 80%;
-    width: 20%;
-    border-radius: 4px 4px 0px 0px;
-    border: 1px solid rgb(146, 146, 146);
-    background: linear-gradient(rgba(192, 230, 255, 0.253), rgba(157, 216, 255, 0.411));
-    border-bottom: 0px;
-    z-index: 0;
-    animation: buttonHide 0.3s ease 0s 1 normal none;
-    font-size: 120%;
-    text-shadow: 0px 0px 4px rgba(255,255,255,1);
-}
-
-.travelbutton:hover {
-        height: 100%;
-}
-
-#content {
+    align-items: center;
+    justify-content: center;
     position:fixed;
-    width: 98.3vw;
-    height: 91vh;
+    width: 98.8vw;
+    height: 90vh;
     margin: 0.5%;
-    font-size: 1.2em;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    background-image: url(/assets/images/mainframe.gif);
     z-index: 1;
     overflow-y: auto;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.4em;
+}
+
+.content-box {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.6em;
+    overflow-y: auto;
+}
+
+.heading {
+    text-align: center;
+}
+
+.foxemoji {
+    width: 32px;
+}
+
+.windowpanel {
+    background-color: white;
+    padding: 1%;
+    border: #8e8f8f 1px solid;
+}
+
+.image {
+    border: 1px solid #8e8f8f;
 }

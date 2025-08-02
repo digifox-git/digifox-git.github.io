@@ -1,3 +1,7 @@
+window.onload() = function() {
+    generate_topbar()
+}
+
 function travel_to(destination) {
     window.location.href = destination
 }
@@ -11,4 +15,13 @@ function tab(tab) {
 
     panels.forEach(panel => panel.setAttribute("hidden", "true"))
     document.getElementById(`panel-${tab}`).removeAttribute("hidden")
+}
+
+function background(path) {
+    console.log(path)
+    document.getElementById("content").style.setProperty("background-image", path)
+}
+
+function generate_topbar() {
+    
 }

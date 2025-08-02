@@ -6,31 +6,56 @@
     <title>digifox.space</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="/node_modules/7.css/dist/7.css">
+    <link rel="stylesheet" href="/titlebar.css">
+    <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon_glass.ico">
     <script src="/main.js"></script>
 </head>
 <body>
 
     <div id="titlebar">
         <div id="navigatron">
-            <button onclick='travel_to("/index.html")' class="travelbutton">Home</button>
-            <button class="selectedtravelbutton">Projects</button>
-            <button onclick='travel_to("/blog")' class="travelbutton">Blog</button>
-            <button onclick='travel_to("/links")' class="travelbutton">Links</button>
-            <button onclick='travel_to("/guestbook")' class="travelbutton">Guestbook</button>
-            <button onclick='travel_to("/settings")' class="travelbutton">Settings</button>
+            <button id="navbtn1" onclick='travel_to("/index.html")' class="travelbutton">Home</button>
+            <button id="navbtn2" class="selectedtravelbutton">Projects</button>
+            <button id="navbtn3" onclick='travel_to("/links")' class="travelbutton">Links</button>
+            <button id="navbtn4" onclick='travel_to("/guestbook")' class="travelbutton">Guestbook</button>
+            <button id="navbtn5" onclick='travel_to("/archive")' class="travelbutton">Archive</button>
+            <button id="navbtn6" onclick='travel_to("/settings")' class="travelbutton">Settings</button>
         </div>
+        <img src="/assets/images/logo_glass.png" style="margin-right: 0.5%;">
+        <div id="titlebarbackground"><p></p></div>
     </div>
-    <div class="window-body has-space" id="content">
-        <menu role="tablist" aria-label="Tabs Template">
-            <button id="tab-A" onclick="tab('A')" role="tab" aria-controls="tab-A" aria-selected="true">Projects</button>
-            <button id="tab-B" onclick="tab('B')" role="tab" aria-controls="tab-B">Experiments</button>
-        </menu>
-        <article role="tabpanel" id="panel-A" style="height: 84.5vh;">
-            <h1>Projects</h1>
-        </article>
-        <article role="tabpanel" id="panel-B" hidden>
-            <h1>Experiments</h1>
-        </article>
+
+    <div style="margin-top: 0.15%;">
+        <marquee>Gaze upon my creations and tremble...</marquee>
+    </div>
+    
+
+    <div class="window-body" id="content">
+
+        <!-- Settings Window -->
+        <div class="window active" style="width: 48%;">
+            <div class="title-bar">
+                <div class="title-bar-text">creations.html</div>
+            </div>
+            <div class="window-body has-space content-box" style="height: 83vh;">
+
+                <div id="tabs">
+                    <menu role="tablist" aria-label="Tabs Template">
+                        <button id="tab-A" onclick="tab('A'), background('url(/assets/images/mainframe.gif)')" role="tab" aria-controls="tab-A" aria-selected="true">Projects</button>
+                        <button id="tab-B" onclick="tab('B'), background('url(/assets/images/purplightin.jpg)')" role="tab" aria-controls="tab-B">Experiments</button>
+                    </menu>
+                    <article role="tabpanel" id="panel-A" style="height: 92%;">
+                        <center><p style="font-family: Cyber Angel; font-size: 3em;">Projects</p></center>
+                    </article>
+                    <article role="tabpanel" id="panel-B" style="height: 92%; background-color: rgb(255, 255, 255);" hidden>
+                        <center><p style="font-family: Gigi;  font-size: 3em;">Experiments</p></center>
+                        <img style="position: fixed; bottom: 8%; right: 6%; width: 12%; image-rendering: pixelated;" src="/assets/images/witch_brewing.gif">
+                    </article>
+                </div>
+                
+            </div>
+        </div>
+
     </div>
     
 </body>

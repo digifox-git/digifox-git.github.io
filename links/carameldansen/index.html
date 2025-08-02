@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CARAMELLDANSEN</title>
+</head>
+<body>
+
+    <audio id="bg" src="/assets/sounds/caramelldansen.ogg" autoplay="true" loop="true"><p>If you are reading this, it is because your browser does not support the audio element.</p></audio>
+    
+    <script>
+
+    var audio = document.getElementById("bg");
+    audio.volume = 0.5;
+
+        randomBg = [
+            "#FF5959",
+            "#FFB459",
+            "#FFF759",
+            "#59FF6F",
+            "#59F9FF",
+            "#5967FF",
+            "#B759FF",
+            "#FF59E6"
+        ]
+
+        window.addEventListener("load", (event) => {
+            random_bg()
+        })
+
+        async function random_bg() {
+
+            console.log(randomBg.length)
+
+            for (let i = 0; i < randomBg.length; i++) {
+                await new Promise(resolve => setTimeout(function(){
+                    document.body.style.setProperty("background-color", randomBg[i])
+                    resolve()
+                }, 375))
+            }
+
+            random_bg()
+
+        }
+    </script>
+
+    <img src="/assets/images/caramelldansenfast.gif">
+    <h1>WELCOME TO THE CARAMELLDANSEN ARCHIVE</h1>
+    <p><br><br>Link to original Caramelldensen by Supergott <a href="https://www.youtube.com/watch?v=H2kdPzjbTkw">> CLICK HERE <</a>
+    <br><br>Link to the oldest posting of the nightcore version of Caramelldansen on YouTube <a href="https://www.youtube.com/watch?v=J_DV9b0x7v4">> CLICK HERE <</a>
+    <br><br>Link the history of Caramelldansen in "who wrote Caramelldansen" by jan Misali <a href="https://www.youtube.com/watch?v=rI3yD3WAcz4">> CLICK HERE <</a>
+    </p>
+
+</body>
+</html>

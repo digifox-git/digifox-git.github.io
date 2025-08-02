@@ -6,62 +6,6 @@ body {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#titlebar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #FAFCFD;
-    background: linear-gradient(180deg, rgba(250, 252, 253, 1) 0%, rgba(230, 240, 250, 1) 50%, rgba(220, 231, 245, 1) 50%);
-    border: 2px #E4EFFB solid;
-    border-bottom: 2px #A0AFC3 solid;
-    width: 100vw;
-    height: 5vh;
-    z-index: -1;
-}
-
-#titlebar img {
-    height: 90%;
-}
-
-#navigatron {
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-    height: 100%;
-    width: 50%;
-    z-index: 0;
-}
-
-.selectedtravelbutton {
-    color: #1E395B;
-    height: 100%;
-    width: 20%;
-    border-radius: 4px 4px 0px 0px;
-    border: 1px solid rgb(146, 146, 146);
-    background: linear-gradient(rgba(192, 230, 255, 0.253), rgba(157, 216, 255, 0.411));
-    border-bottom: 0px;
-    z-index: 0;
-    font-size: 120%;
-}
-
-.travelbutton {
-    color: #1E395B;
-    height: 80%;
-    width: 20%;
-    border-radius: 4px 4px 0px 0px;
-    border: 1px solid rgb(146, 146, 146);
-    background: linear-gradient(rgba(192, 230, 255, 0.253), rgba(157, 216, 255, 0.411));
-    border-bottom: 0px;
-    z-index: 0;
-    animation: buttonHide 0.3s ease 0s 1 normal none;
-    font-size: 120%;
-    text-shadow: 0px 0px 4px rgba(255,255,255,1);
-}
-
-.travelbutton:hover {
-        height: 100%;
-}
-
 #content {
     display: flex;
     flex-direction: row;
@@ -72,7 +16,7 @@ body {
     height: 90vh;
     margin: 0.5%;
     background-color: rgb(0, 0, 0);
-    background-image: url(assets/images/bluespace.gif);
+    background-image: url(assets/images/spacebg.gif);
     z-index: 1;
     overflow-y: auto;
     font-family:Georgia, 'Times New Roman', Times, serif;
@@ -82,6 +26,7 @@ body {
 .content-box {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1.6em;
+    overflow-y: auto;
 }
 
 .heading {
@@ -96,4 +41,57 @@ body {
     background-color: white;
     padding: 1%;
     border: #8e8f8f 1px solid;
+}
+
+.image {
+    border: 1px solid #8e8f8f;
+}
+
+.gamecontainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    max-width: 99%;
+    background: linear-gradient(to bottom right, #1a293f, #0c1218);
+    border: 1px solid #8e8f8f;
+    padding: 2%;
+    color: white
+}
+
+.gamecontainer img {
+    width: 40%;
+    height: 40%;
+    border-radius: 2px;
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.568));
+}
+
+.gamecontainer h2 {
+    color:#24e1b6;
+    filter: drop-shadow(1.5px 1.5px 0px #145452);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: underline;
+    transition: all 0.2s;
+}
+
+.gamecontainer h2:hover {
+    color:hsl(0, 0%, 100%);
+    filter: drop-shadow(0px 0px 2px #ffffff);
+    transition: all 0.2s;
+}
+
+.gamelisting {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gameexplain {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    max-width: 99%;
+    background-color: #0f0f71;
+    border: 1px solid #2121ff;
+    padding: 2%;
+    color: white;
+    margin-top: 1.5%;
 }
