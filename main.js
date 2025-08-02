@@ -1,7 +1,3 @@
-window.onload() = function() {
-    generate_topbar()
-}
-
 function travel_to(destination) {
     window.location.href = destination
 }
