@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/titlebar.css">
     <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon_glass.ico">
     <script src="/main.js"></script>
+    <script src="settings.js"></script>
+    <script src="popupbuilder.js"></script>
 </head>
 <body>
 
@@ -33,13 +35,55 @@
         <!-- Settings Window -->
         <div class="window active" style="width: 48%;">
             <div class="title-bar">
-                <div class="title-bar-text">settings.html</div>
+                <div class="title-bar-text">settings.xml</div>
             </div>
             <div class="window-body has-space content-box" style="height: 83vh;">
-                
+                <div class="windowpanel" style="min-height: 96.2%;">
+                    <div class="profileheader earthborder">   
+                        <img id="profilepicture" class="profilepicture earthborder" src="/assets/images/profile_empty.png">
+                        <img id="profileedit" class="profileedit" src="/assets/images/profile_edit.png">
+                        <h1 id="displayname" style="margin-left: -8%;">You</h1>
+                    </div>
+                    <article class="earthborder" style="margin-top:1%;min-height: 53vh; padding-left: 1%;">
+                        <div role="progressbar" class="animate" style="margin: 1%;" id="progresscontainer">
+                            <div id="progressbar" style="width: 100%;"></div>
+                        </div>
+                        <div id="settingscontent" hidden>
+                            <h2>Name</h2>
+                            <form id="setname">
+                                <input type="text" id="settingentername" maxlength="22" placeholder="Enter your preferred name">
+                                <button onclick="set_name()">Set</button>
+                            </form>
+                            <h2>Preferences</h2>
+                                <form id="setname">
+                                    <label>Hide Epilepsy Warnings:</label>
+                                    <input type="checkbox" id="settingepilepsy" value="Hide">
+                                </form>
+                            <p id="settingsearchbackground">Search Background: ...</p>
+                            <h2>Inventory</h2>
+                            <h2>Other</h2>
+                            <p id="settingfunvalue">Fun Value: ...</p>
+                            <p><br></p>
+                            <p><a id="resetprofile" href="/settings/reset.html">RESET</a></p>
+						</div>
+                    </article>
+                </div>
             </div>
         </div>
+    </div>
 
+    <div id="notificationcontainer">
+        <div id="notificationbg"></div>
+        <div id="notification">
+            <h1 id="notifheader">Unnamed Header</h1>
+            <div class="hspacer"></div>
+            <p id="notifmessage">Some kind of paragraph.</p>
+            <div id="optionalimg"></div>
+            <div id="optionbar">
+                <button id="uploadpicture" class="notifbutton" onclick="hide_message()">Upload</button>
+                <button class="notifbutton" onclick="hide_message()">Nevermind</button>
+            </div>
+        </div>
     </div>
     
 </body>
