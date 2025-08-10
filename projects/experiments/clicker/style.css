@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "earth";
+    src: url(assets/earth.ttf);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-image: url(assets/background_pinkchecker.png);
+    font-family: "earth";
+    color: white
+}
+
+#content {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    image-rendering: pixelated;
+    filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.5));
+    font-size: 32px;
+}
+
+#header {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 16px
+}
+
+#button {
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1.1);
+    }
+
+    25% {
+        transform: scale(0.95);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

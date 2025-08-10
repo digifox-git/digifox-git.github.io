@@ -22,7 +22,6 @@
             <button id="navbtn6" onclick='travel_to("/settings")' class="travelbutton">Settings</button>
         </div>
         <img src="/assets/images/logo_glass.png" style="margin-right: 0.5%;">
-        <div id="titlebarbackground"><p></p></div>
     </div>
 
     <div style="margin-top: 0.15%;">
@@ -44,11 +43,20 @@
                         <button id="tab-A" onclick="tab('A'), background('url(/assets/images/mainframe.gif)')" role="tab" aria-controls="tab-A" aria-selected="true">Projects</button>
                         <button id="tab-B" onclick="tab('B'), background('url(/assets/images/purplightin.jpg)')" role="tab" aria-controls="tab-B">Experiments</button>
                     </menu>
-                    <article role="tabpanel" id="panel-A" style="height: 92%;">
-                        <center><p style="font-family: Cyber Angel; font-size: 3em;">Projects</p></center>
+                    <article role="tabpanel" id="panel-A" style="min-height: 76.5vh;">
+                        <p style="font-family: Cyber Angel; font-size: 2em;">My Projects</p>
+                        <p>Heres a complete(ish) list of all my works that I would consider to be mostly complete. There's a chance I come back and update some of these, but don't count on it! I'm very busy, you know...</p>
+                        <div class="projectcontainer">
+                            <a href="/projects/projects/search" target="_blank"><img class="projecticon" src="/assets/images/projects/project_search.gif"></a>
+                        </div>
                     </article>
-                    <article role="tabpanel" id="panel-B" style="height: 92%; background-color: rgb(255, 255, 255);" hidden>
-                        <center><p style="font-family: Gigi;  font-size: 3em;">Experiments</p></center>
+                    <article role="tabpanel" id="panel-B" style="min-height: 76.5vh;" hidden>
+                        <p style="font-family: Gigi;  font-size: 2em;">My Experiments</p>
+                        <p>YOU HAVE ENTERED MY EVIL LAIR! EVERYTHING HERE IS IN A BUGGY/INCOMPLETE STATE AND THERE'S NOTHING YOU CAN DO ABOUT IT!!! SHIVER IN FEAR!!!!!!</p>
+                        <div class="projectcontainer">
+                            <a href="/projects/experiments/dialoguetest" target="_blank"><img class="experimenticon" src="/assets/images/experiments/experiment_dialogue.png"></a>
+                            <a href="/projects/experiments/clicker/" target="_blank"><img class="experimenticon" src="/assets/images/experiments/experiment_button.png"></a>
+                        </div>
                         <img style="position: fixed; bottom: 8%; right: 6%; width: 12%; image-rendering: pixelated;" src="/assets/images/witch_brewing.gif">
                     </article>
                 </div>

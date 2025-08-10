@@ -46,3 +46,23 @@ body {
 .image {
     border: 1px solid #8e8f8f;
 }
+
+.projectcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+    image-rendering: pixelated;
+}
+
+.projecticon {
+    margin: 5%;
+    border: 3px solid rgb(0, 148, 0);
+    width: 240px;
+}
+
+.experimenticon {
+    margin: 5%;
+    border: 3px solid rgb(148, 0, 141);
+    width: 240px;
+}

@@ -47,40 +47,55 @@ body {
     border: 1px solid #8e8f8f;
 }
 
-
 .gamecontainer {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     max-width: 99%;
-    background: linear-gradient(to bottom right, #1a293f, #0c1218);
-    border: 1px solid #8e8f8f;
+    background: linear-gradient(to bottom right, #26274b, #100d29);
+    border: 2px solid #525379;
+    border-radius: 4px;
+    padding: 2%;
+    margin-bottom: 2%;
+}
+
+.gamecontainer a {
+    color: #9dff8a;
+    filter: drop-shadow(0px 0px 2px #ffffff);
+    
+}
+
+.gamelisting {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    max-width: 99%;
+    background: linear-gradient(to bottom right, #2f4a72, #233446);
+    border: 1px solid #3766ac;
     padding: 2%;
     color: white
 }
 
-.gamecontainer img {
+.gamelisting img {
     width: 40%;
     height: 40%;
     border-radius: 2px;
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.568));
 }
 
-.gamecontainer h2 {
-    color:#24e1b6;
-    filter: drop-shadow(1.5px 1.5px 0px #145452);
+.gamelisting h2 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-decoration: underline;
     transition: all 0.2s;
 }
 
-.gamecontainer h2:hover {
+.gamelisting h2:hover {
     color:hsl(0, 0%, 100%);
     filter: drop-shadow(0px 0px 2px #ffffff);
     transition: all 0.2s;
 }
 
-.gamelisting {
+.games {
     display: flex;
     justify-content: space-between;
 }
@@ -95,4 +110,22 @@ body {
     padding: 2%;
     color: white;
     margin-top: 1.5%;
+}
+
+#newspanel {
+    display: flex;
+    flex-direction: column;
+    height: 45vh
+}
+
+#newscontent {
+    display: flex;
+    height: 80%;
+}
+
+#hitcontent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
 }

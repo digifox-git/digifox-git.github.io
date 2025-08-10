@@ -1,0 +1,166 @@
+html, body{
+    height: 100%;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    color: white;
+    font-family: Tahoma, Verdana, sans-serif;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+#footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+    height: 20vh;
+}
+
+#searchbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    z-index: 0;
+}
+
+#searchbox {
+    width: 712px;
+    height: 32px;
+    background: white url(/./Resources/search_icon.png) left no-repeat;
+    background-position-x: 3px;
+    padding-left: 44px;
+}
+
+#logo {
+    filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
+}
+
+input {
+    border-radius: 0px;
+    font-size: 1.2em;
+    border: white 2px embossed;
+    padding: 1%;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    filter: drop-shadow(8px 8px 3px rgba(0, 0, 0, 0.5));
+    outline: none;
+}
+
+.realistic {
+    position:fixed;
+    height: 32px;
+    width: 40px;
+    border-radius: 0px 0px;
+    -webkit-border-radius: 0px 0px;
+    border: inset 2px rgb(153, 153, 153);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(184, 184, 184)));
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-shadow: 0px 1px 1px rgba(255,255,255,1);
+    line-height: 1;
+    z-index: 1;
+}
+
+#credits {
+    padding: 0;
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 1));
+}
+
+#customization {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    align-items: end;
+    right: 16px;
+    bottom: 16px;
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 1));
+}
+
+#hitcount {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    align-items: center;
+    left: 8px;
+    bottom: 0px;
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 1));
+}
+
+#epilepsywarning {
+    display: none;
+    flex-direction: column;
+    border: 2px outset black;
+    background-color: white;
+    color: black;
+    padding: 2px;
+    height: 128px;
+    width: 256px;
+    position: relative;
+}
+
+#epilepsywarning button {
+    position:relative;
+    height: 28px;
+    width: 128px;
+    bottom:8px;
+    border-radius: 0px 0px;
+    -webkit-border-radius: 0px 0px;
+    border: outset 2px rgb(153, 153, 153);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(184, 184, 184)));
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-shadow: 0px 1px 1px rgba(255,255,255,1);
+    line-height: 1;
+    z-index: 1;
+}
+
+#epilepsybuttoncontainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+a:visited {
+    color: #7167ff;
+}
+
+a {
+    color: #4a3dff;
+}
+
+marquee {
+    position: fixed;
+    top: 16px;
+}
+
+select {
+    position:relative;
+    height: 28px;
+    border-radius: 0px 0px;
+    -webkit-border-radius: 0px 0px;
+    border: outset 2px rgb(153, 153, 153);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(184, 184, 184)));
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-shadow: 0px 1px 1px rgba(255,255,255,1);
+    line-height: 1;
+    z-index: 1;
+}

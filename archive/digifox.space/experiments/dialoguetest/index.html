@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+		<TITLE>Dialogue Test Page</TITLE>
+		<link rel="icon" type="image/x-icon" href="">
+        <link rel="stylesheet" href="style.css">
+        <script src="main.js"></script>
+        <script src="/dialoguebuilder.js"></script>
+        <meta name="room" content="000">
+    </head>
+<body>
+
+    <audio id="bg" src="/Resources/sounds/music/man_2.ogg" autoplay="true" loop="true"><p>If you are reading this, it is because your browser does not support the audio element.</p></audio>
+    <script>
+        var audio = document.getElementById("bg");
+        audio.volume = 0.5;
+    </script>
+
+    <div id="content">
+        <div id="header">
+            <p>Welcome to the Dialogue Test Page!<br><br>Some bugs are known:<br>- Text appears super fast after selecting a choice sometimes<br><br>But other bugs are unknown!<br>Please report anything strange to <a href="mailto:digifox.space@gmail.com">digifox.space@gmail.com</a><br><br>Controls:<br>Advance with Z or Left Click<br>Skip with X or Right Click</p>
+            <div id="buttoncontainer">
+                <button onclick='dialogue_builder("dialoguetestpage_check")'>Test Dialogue</button>
+                <button onclick='dialogue_builder("dialoguetestpage_audiocheck")'>Test Audio</button>
+                <button id="resetbutton" class="resetbutton" onclick='reset_dialoguetest()'><div class="shake">R</div><div class="shake">E</div><div class="shake">S</div><div class="shake">E</div><div class="shake">T</div></button>
+            </div>
+        
+        </div>
+
+    </div>
+
+</body>
+</html>

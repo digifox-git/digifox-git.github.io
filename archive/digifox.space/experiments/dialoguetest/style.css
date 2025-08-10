@@ -1,0 +1,83 @@
+@font-face {
+    font-family: "Determination";
+    src: url(/./Resources/Fonts/DTM-Mono.ttf);
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: "Determination";
+    margin: 0;
+    padding: 0
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+#header {
+    height: 40%;
+    width: 50%;
+}
+
+#header p{
+    font-size: 40px;
+}
+
+a:link {
+    text-decoration: none;
+    transition: all 0.2s
+}
+
+a:visited {
+    text-decoration: none;
+    transition: all 0.2s
+}
+
+a:hover {
+    color: white;
+    filter: drop-shadow(4px 4px 0px #0000ee);
+    text-decoration: none;
+    transition: all 0.2s
+}
+
+header a:active {
+    text-decoration: none;
+}
+
+#buttoncontainer {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    font-family: "Determination";
+    font-size: 40px;
+    padding: 16px;
+    color: white;
+    border: 0px white solid;
+    background-color: black;
+}
+
+button:hover {
+    font-family: "Determination";
+    font-size: 40px;
+    padding: 16px;
+    color: rgb(255, 251, 0);
+    background-color: black;
+    cursor:pointer;
+}
+
+.resetbutton {
+    color: rgb(206, 0, 0);
+    background-color: transparent;
+    display: flex;
+}
+
+.resetbutton{
+    color: white;
+    color: rgb(255, 0, 0);
+}

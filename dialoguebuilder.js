@@ -108,14 +108,14 @@ let dialogue = {
         "* No,\u200E no,\u200E I've had my fill of\n\u00A0 you.",
     ],
     dialoguetestpage_audiocheck: [
-        "= inventory-hasaudio,true",
+        "= inventory-audio,1",
         "< dialoguetestpage_5",
-        "= inventory-hasaudio,false",
+        "= inventory-audio,null",
         "< dialoguetestpage_4"
     ],
     dialoguetestpage_4: [
-        "$ inventory-hasaudio,true",
-        "# /assets/sounds/buyitem.ogg",
+        "+ inventory-audio",
+        "# /assets/sounds/snd_item.ogg",
         "* (You recieved an Audio.)"
     ],
         dialoguetestpage_5: [
@@ -139,7 +139,7 @@ let dialogue = {
         "> man_2"
     ],
     man_1: [
-        "$ inventory-hasegg,true",
+        "+ inventory-egg",
         "$ flag-man-interacted,true",
         "# /assets/sounds/egg.ogg",
         "* (You recieved an Egg.)"
@@ -377,6 +377,20 @@ async function  dialogue_builder(conversation, theme) {
             let saveValue = saveData.split(",")[1]
             console.log(`[SAVE] ${saveData}`)
             save_data(saveStorage, saveValue)
+            // Putting this twice skips to the end of the current dialogue and then advanced to the next line.
+            progress_dialogue()
+            progress_dialogue()
+
+        // + increments a storage value         
+        } else if (txt.charAt(0) == "+") {
+            let saveData = txt.substring(2)
+            console.log(`[SAVE] ${saveData}`)
+            if (!localStorage.getItem(saveData)) {
+                save_data(saveData, 0)
+            }
+            let increment = parseInt(localStorage.getItem(saveData)) + 1
+            save_data(saveData, increment)
+            increment = 0
             // Putting this twice skips to the end of the current dialogue and then advanced to the next line.
             progress_dialogue()
             progress_dialogue()

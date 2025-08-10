@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let searchBackgroundPreference = localStorage.getItem("user-search-background")
     if (document.getElementById("settingsearchbackground")) {
         document.getElementById("settingsearchbackground").innerHTML = `Search Background: "${searchBackgroundPreference}"`
+        console.log(`Profile: Loaded user-search-background`)
     }
 
     // Handles the user-name input
@@ -48,41 +49,83 @@ document.addEventListener("DOMContentLoaded", function() {
     if (document.getElementById("settingentername") && localStorage.getItem("user-name")) {
         document.getElementById("settingentername").value = userName
         document.getElementById("displayname").innerHTML = userName
+        console.log(`Profile: Loaded user-name`)
     }
 
     // Handles the fun-value display
     let funValue = localStorage.getItem("fun-value")
     if (document.getElementById("settingfunvalue")) {
         document.getElementById("settingfunvalue").innerHTML = `Fun Value: ${funValue}`
+        console.log(`Profile: Loaded fun-value`)
+    }
+
+    // Handles user image display
+    let userImage = localStorage.getItem("user-image")
+    if (document.getElementById("profilepicture") && userImage != null) {
+        document.getElementById("profilepicture").setAttribute("src", userImage)
+        console.log(`Profile: Loaded user-image`)
+    } else {
+        document.getElementById("profilepicture").setAttribute("src", "/assets/images/profile_empty.png")
     }
 
     settings.removeAttribute("Hidden")
     progressContainer.remove()
 
+    load_storage()
 })
 
 // Function for setting or updating the user's preferred name
 function set_name() {
     let username = document.getElementById("settingentername").value
     save_data("user-name", username)
-    console.log(`Set new name to ${username}!`)
+    console.log(`Profile: set user-name to ${username}!`)
 }
 
 function reset_profile() {
     localStorage.clear();
-    window.location.href = "https://digifox.space"
+    window.location.href = "/index.html"
 }
 
-function to_base64(url, callback) {
+function load_storage() {
+
+    let inventory = document.getElementById("inventorylist")
+
+    for(let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+        if (key.startsWith("inventory")) {
+            let value = localStorage.getItem(key);
+            console.log(`Profile: loaded item ${key} x${value}`)
+
+            let itemContainer = document.createElement("div")
+            itemContainer.classList.add("item")
+
+            let item = document.createElement("p")
+            item.innerHTML = `${key.substring(10)} ( ${value} )`
+
+            let path = `/assets/images/inventory/${key}.png`
+            let defaultPath = `/assets/images/inventory/inventory-default.png`
+            let image = document.createElement("img")
+            image.src = path
+            
+            inventory.appendChild(itemContainer)
+            itemContainer.appendChild(image)
+            itemContainer.appendChild(item)
+
+            image.addEventListener('error', function handleError() {
+                image.src = defaultPath
+            })
+        }
+    }
+}
+
+function check_file(url, callback) {
     const xhr = new XMLHttpRequest();
+    xhr.open('HEAD', url, true);
     xhr.onload = function() {
-        const reader = new FileReader();
-        reader.onloadend = function() {
-            callback(reader.result);
-        };
-        reader.readAsDataURL(xhr.response);
-    };
-    xhr.open('GET', url);
-    xhr.responseType = 'blob';
-    xhr.send();
+        callback(xhr.status !== 404);
+    }
+    xhr.onerror = function() {
+        callback();
+    }
+    xhr.send
 }

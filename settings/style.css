@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "earth";
+    src: url(/assets/fonts/EarthMommaRegular-ZGrK.ttf);
+}
+
 body {
     background-color: rgb(167, 202, 238);
     overflow-x: hidden;
@@ -41,6 +46,8 @@ body {
 
 .windowpanel {
     background-color: white;
+    background-image: url(/assets/images/background_earthbound_menu.png);
+    background-attachment:fixed;
     padding: 1%;
     border: #8e8f8f 1px solid;
 }
@@ -55,35 +62,89 @@ body {
     max-width: 96%;
     padding: 1%;
     color: white;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.profileheader h1 {
+    filter: drop-shadow(2px 2px 0px black);
+    margin-left: 2%;
+    font-size: 3em;
 }
 
 .profilepicture {
     width: 128px;
     height: 128px;
     image-rendering: pixelated;
-    margin-right: 2%;
+    user-select: none;
 }
 
 .profileedit {
-    width: 74px;
-    height: 74px;
-    transform: translate(-123%, 58%);
-    filter: opacity(0);
-    pointer-events: none;
+    width: 72px;
+    height: 72px;
+    padding: 4px;
 }
 
-.profilepicture:hover + .profileedit {
+.profileedit:hover {
+    filter: brightness(1.2);
+}
+
+#profileinfo {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
     filter: opacity(1);
+    user-select: none;
+    image-rendering: pixelated;
+}
+
+#displayname {
+    word-break: break-all;
 }
 
 .earthborder {
-    border: 16px solid;
-    border-image: url(/assets/images/box_earthbound.png) 4;
+    border: 24px solid;
+    border-image: url(/assets/images/box_earthbound.png) 5;
+    border-image-slice: 8;
     background-image: url(/assets/images/background_earthbound.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     image-rendering: pixelated;
+    font-size: 16px;
+    font-family: "earth";
+}
+
+.earthborderuser {
+    border: 24px solid;
+    border-image: url(/assets/images/box_earthbound_player.png) 8;
+    border-image-slice: 8;
+    background-image: url(/assets/images/background_earthbound_player.png);
+    image-rendering: pixelated;
+}
+
+.roundcorners {
+    border-radius: 32px;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 32px;
+    align-items: center;
+}
+
+.item img{
+    width: 16px;
+    height: 16px;
+    padding-bottom: 8px;
+    padding-right: 8px;
+}
+
+#inventorylist {
+    display: flex;
+    flex-direction: column;
 }
 
 :root {
@@ -122,19 +183,12 @@ a {
     flex-direction: column;
 }
 
-#optionbar {
+.optionbar {
     display: flex;
     width: 100%;
     height: 100%;
     justify-content:center;
     align-items: end;
-    flex-direction: row;
-}
-
-#download {
-    display: flex;
-    justify-content:start;
-    align-items: left;
     flex-direction: row;
 }
 
@@ -175,14 +229,13 @@ a {
     position:absolute;
     flex-direction: column;
     color: white;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 1%;
     justify-content: start;
     align-items: center;
     width: 50%;
     height: 55%;
+    max-height: 80%;
     top:50%;
     left:50%;
     transform-origin:0% 0%;
@@ -193,6 +246,7 @@ a {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     image-rendering: pixelated;
+    overflow-y: auto;
 }
 
 .notifbutton {
@@ -203,7 +257,6 @@ a {
     margin: 1%;
     width: 30%;
     height: 50px;
-    padding-right: 2%;
     color: black;
     font-size: 16px;
     animation: enlargein 0.02s linear 0s 1 normal forwards;
@@ -223,18 +276,52 @@ a {
     animation: enlargein 0.02s linear 0s 1 normal forwards;
 }
 
-.notifbutton:hover {
-    box-shadow: 0 4px 30px rgba(133, 133, 133, 0.4);
-    border-radius: 8px;
-    justify-content: center;
-    width: 30%;
-    height: 50px;
-    padding-right: 2%;
-    color: black;
-    font-size: 16px;
-    animation: enlargeout 0.02s linear 0s 1 normal forwards;
+#notificationcontainer-help {
+    display: none;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    position: fixed;
+    z-index: 100;
 }
 
+#notificationbg-help {
+    display: flex; 
+    top:0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    background-color: var(--color);
+    animation: darkenbg 0.3s ease 0s 1;
+}
+
+
+#notification-help {
+    display: none;
+    position:absolute;
+    flex-direction: column;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 1%;
+    justify-content: start;
+    align-items: center;
+    width: 50%;
+    height: 55%;
+    max-height: 80%;
+    top:50%;
+    left:50%;
+    transform-origin:0% 0%;
+    animation: notification 0.3s ease 0s 1 normal forwards;
+    border: 16px solid;
+    border-image: url(/assets/images/box_earthbound.png) 4;
+    background-image: url(/assets/images/background_earthbound.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+    overflow-y: auto;
+}
 
 .hspacer {
     border-bottom: 2px solid rgba(255, 255, 255, 0.3);
@@ -270,17 +357,36 @@ a {
     padding: 0px;
 }
 
+#optionalimg {
+    padding: 5.5%;
+}
+
+#helpsection {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    width: 60%;
+    height: 20%;
+    position: absolute;
+    top: 9%;
+    right: 6%;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+#displayImageTemp {
+    width: 128px;
+    height: 128px;
+}
+
 @keyframes notification {
 	0% {
-		opacity: 0;
-		transform: scale(0.75) translate(-50%, -50%);
-        filter: brightness(2.5) hue-rotate(var(--hue));
-	}
-
-    100% {
 		opacity: 1;
 		transform: scale(1) translate(-50%, -50%);
-        filter: brightness(1) hue-rotate(var(--hue));
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1) translate(-50%, -50%);
 	}
 }
 

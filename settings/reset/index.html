@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>digifox.space</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/node_modules/7.css/dist/7.css">
+    <link rel="stylesheet" href="/titlebar.css">
+    <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon_glass.ico">
+    <script src="/main.js"></script>
+    <script src="/settings/settings.js"></script>
+</head>
+<body>
+
+    <div id="titlebar">
+        <div id="navigatron">
+            <button id="navbtn1" onclick='travel_to("/index.html")' class="travelbutton">Home</button>
+            <button id="navbtn2" onclick='travel_to("/projects")' class="travelbutton">Projects</button>
+            <button id="navbtn3" onclick='travel_to("/links")' class="travelbutton">Links</button>
+            <button id="navbtn4" onclick='travel_to("/guestbook")' class="travelbutton">Guestbook</button>
+            <button id="navbtn5" onclick='travel_to("/archive")' class="travelbutton">Archive</button>
+            <button id="navbtn6" class="selectedtravelbutton">Settings</button>
+        </div>
+        <img src="/assets/images/logo_glass.png" style="margin-right: 0.5%;">
+    </div>
+
+    <div style="margin-top: 0.15%;">
+        <marquee>WARNING! THIS ACTION IS IRREVERSIBLE!</marquee>
+    </div>
+
+    <div class="window-body" id="content">
+
+        <!-- Settings Window -->
+        <div class="window active" style="width: 48%; --w7-w-bg: rgb(209, 51, 51);">
+            <div class="title-bar">
+                <div class="title-bar-text">reset.xml</div>
+            </div>
+            <div class="window-body has-space content-box" style="height: 83vh;">
+                <div class="windowpanel" style="min-height: 96.2%;">
+                    <h1>WARNING!</h1>
+                    <h2>Resetting your profile is an absolutely 100% irriversable action!! Are you really super duper completely totally sure you want to do this!?<br></h2>
+                    <button style="filter: hue-rotate(140deg);" onclick="reset_profile()">Yes, pelase reset my profile.</button>
+                    <button onclick="travel_to('/settings/')">No!! Take me back!!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
