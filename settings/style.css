@@ -56,6 +56,10 @@ body {
     border: 1px solid #8e8f8f;
 }
 
+#resetprofile {
+    color: red;
+}
+
 .profileheader {
     display: flex;
     align-items: center;

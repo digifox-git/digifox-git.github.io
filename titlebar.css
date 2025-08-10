@@ -56,26 +56,30 @@
 }
 
 #navbtn1:hover {
-    filter: hue-rotate(140deg);
+    filter: hue-rotate(150deg);
    
 }
 
 #navbtn2:hover {
-    filter: hue-rotate(180deg);
+    filter: hue-rotate(200deg);
 }
 
 #navbtn3:hover {
-    filter: hue-rotate(210deg);
+    filter: hue-rotate(250deg);
 }
 
 #navbtn4:hover {
-    filter: hue-rotate(300deg);
+    filter: hue-rotate(340deg);
 }
 
 #navbtn5:hover {
-    filter: hue-rotate(30deg);
+    filter: hue-rotate(0deg);
 }
 
 #navbtn6:hover {
-    filter: hue-rotate(60deg);
+    filter: hue-rotate(50deg);
+}
+
+#navbtn7:hover {
+    filter: hue-rotate(100deg);
 }

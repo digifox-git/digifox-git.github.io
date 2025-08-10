@@ -23,7 +23,7 @@ body {
     background-image: url(/assets/images/globes.jpg)
 }
 
-img {
+.windowpanel img {
     filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.644));
 }
 
