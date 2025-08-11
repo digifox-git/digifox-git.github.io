@@ -69,6 +69,11 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
+#browserinfo {
+    filter: drop-shadow(2px 2px 0px black);
+    margin-left: 2%;
+}
+
 .profileheader h1 {
     filter: drop-shadow(2px 2px 0px black);
     margin-left: 2%;
@@ -80,6 +85,12 @@ body {
     height: 128px;
     image-rendering: pixelated;
     user-select: none;
+}
+
+#profilename {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .profileedit {

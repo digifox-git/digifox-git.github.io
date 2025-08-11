@@ -72,6 +72,35 @@ document.addEventListener("DOMContentLoaded", function() {
     progressContainer.remove()
 
     load_storage()
+
+    // Handles displaying the user's browser
+    let browserType = "your web browser"
+    
+    switch (true) {
+        case /firefox|fxios/i.test(navigator.userAgent):
+            browserType = "Firefox"
+        break
+        case /edg/i.test(navigator.userAgent):
+            browserType = "Edge"
+        break
+        case /opr/i.test(navigator.userAgent):
+            browserType = "Opera"
+        break
+        case /chrome|chromium|crios/i.test(navigator.userAgent):
+            browserType = "Chrome"
+        break
+        case /safari/i.test(navigator.userAgent):
+            browserType = "Safari"
+        break
+        case /MSIE/i.test(navigator.userAgent):
+            browserType = "Internet Explorer??????"
+        break
+        case /Glooper/i.test(navigator.userAgent):
+            browserType = "GlooprOS Max 2"
+        break
+    }
+
+    document.getElementById("browserinfo").innerHTML = `On ${browserType}`
 })
 
 // Function for setting or updating the user's preferred name
