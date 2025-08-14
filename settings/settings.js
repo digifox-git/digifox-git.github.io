@@ -106,8 +106,35 @@ document.addEventListener("DOMContentLoaded", function() {
 // Function for setting or updating the user's preferred name
 function set_name() {
     let username = document.getElementById("settingentername").value
-    save_data("user-name", username)
-    console.log(`Profile: set user-name to ${username}!`)
+    let displayName = document.getElementById("displayname")
+
+    if (username != localStorage.getItem("user-name")) {
+
+        save_data("user-name", username)
+        console.log(`Profile: set user-name to ${username}!`)
+
+        setTimeout(function() {
+            displayName.style.animation="setname 0.25s linear 0s 1 forwards"
+        }, 10)
+
+        let displayName = document.getElementById("displayname")
+
+        displayName.addEventListener("animationend", function() {
+            displayName.style.animation="none"
+        }) 
+
+        // Handles the user-name input
+        let userName = localStorage.getItem("user-name")
+        if (document.getElementById("settingentername") && localStorage.getItem("user-name")) {
+            document.getElementById("settingentername").value = userName
+            document.getElementById("displayname").innerHTML = userName
+            console.log(`Profile: Loaded user-name`)
+        }
+
+        let snd = new Audio('/assets/sounds/menuset.wav')
+        snd.load()
+        snd.play()
+    }
 }
 
 function reset_profile() {

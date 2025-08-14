@@ -118,6 +118,13 @@ body {
     word-break: break-all;
 }
 
+@keyframes setname {
+
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+    
+}
+
 .earthborder {
     border: 24px solid;
     border-image: url(/assets/images/box_earthbound.png) 5;

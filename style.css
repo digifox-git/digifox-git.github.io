@@ -114,7 +114,7 @@ body {
 #newspanel {
     display: flex;
     flex-direction: column;
-    height: 45vh
+    min-height: 45vh
 }
 
 #newscontent {
