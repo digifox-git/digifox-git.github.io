@@ -46,10 +46,10 @@ function playSFX(key) {
 
 window.onload = async function() {
 
-    addSFX("snd_text", "https://digifox.space/Resources/sounds/snd_text.ogg", 4)
+    addSFX("snd_text", "https://digifox.space/assets/sounds/snd_text.ogg", 4)
     console.log('[dialoguebuilder.js] Sound "snd_text" registered!')
 
-    const dtm = new FontFace("Determination", "url(https://digifox.space/Resources/Fonts/DTM-Mono.ttf)")
+    const dtm = new FontFace("Determination", "url(https://digifox.space/assets/fonts/DTM-Mono.ttf)")
     await dtm.load()
     document.fonts.add(dtm)
     console.log('[dialoguebuilder.js] font "Determination" loaded!')

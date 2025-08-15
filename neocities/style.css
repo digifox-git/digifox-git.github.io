@@ -1,0 +1,60 @@
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url(assets/win7wallpaper.jpg);
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    color: white;
+}
+
+#enter {
+    width: 32vh;
+    height: 32vh;
+}
+
+#enterwindow {
+    background-image: url(assets/spacebg.gif);
+}
+
+#entertitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+}
+
+#logo {
+    width: 700px;
+    transition: all 0.25s;
+}
+
+
+#logo:hover {
+    filter: drop-shadow(-1px -1px 4px white);
+    transform: scale(1.1);
+    transition: all 0.25s;
+}
+
+.content-box {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.6em;
+    overflow-y: auto;
+}
+
+.heading {
+    text-align: center;
+}
+
+.foxemoji {
+    width: 32px;
+}
