@@ -19,6 +19,7 @@ window.addEventListener("DOMContentLoaded", function() {
             if (!button.classList.contains("selectedtravelbutton")) {
                 button.addEventListener("mouseover", function() {
                     let snd = new Audio(`/assets/sounds/navbtn/${element}.wav`)
+                    snd.volume = 0.5 
                     snd.load()
                     snd.play()
                 })
