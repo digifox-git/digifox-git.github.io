@@ -1,0 +1,38 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.logonarea {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    width: 30%;
+    height: 90vh;
+}
+
+input[class="logon"] {
+    margin: 1%;
+    width: 50%;
+}
+
+button[class="logon"] {
+    margin: 1%;
+}
+
+.logonbuttons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#img-001 {
+    width: 128px;
+}

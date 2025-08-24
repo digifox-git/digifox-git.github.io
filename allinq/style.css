@@ -1,0 +1,143 @@
+body, html {
+    background-color: black;
+    background-image: url(assets/worldonfire.gif);
+    background-size: 15%;
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+}
+
+#carrot {
+    width: 100%;
+    height: 100%;
+}
+
+.logo {
+    position: fixed;
+    top: 35%;
+    width: 20%;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.body {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.title {
+    width: 60%;
+    padding: 1%;
+}
+
+#leftbox {
+    bottom: 5%;
+    left: 3%;
+    height: 60%;
+    width: 22%;
+    position: fixed;
+}
+
+#leftbox:hover {
+    animation: jump 0.2s ease 0s infinite;
+}
+
+#rightbox {
+    bottom: 5%;
+    right: 3%;
+    height: 60%;
+    width: 22%;
+    position: fixed;
+}
+
+#rightbox:hover {
+    animation: rotate 0.4s ease 0s infinite;
+}
+.box {
+    border: 24px solid;
+    border-image: url(assets/border_dirty.png) 24 repeat;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    text-align: center;
+}
+
+.grasstop {
+    position: absolute;
+    left: -6%;
+    top: -15%;
+    width: 112%;
+}
+
+#noty {
+    font-size: 6em;
+    filter: drop-shadow(0px 0px 8px white);
+}
+
+.bigglowly {
+    font-size: 2em;
+    filter: drop-shadow(0px 0px 8px white);
+}
+
+#notyimg {
+    width: 100%;
+}
+
+#notyimg:hover {
+    animation: flip 0.3s ease 0s infinite; 
+    cursor: pointer;
+}
+
+#directory {
+    display: flex;
+    flex-direction: column;
+}
+
+.location {
+    filter: drop-shadow(0px 0px 16px white);
+    border: 1px solid black;
+    border-radius: 6px;
+    transition: all 0.05s;
+    max-width: 100%;
+    margin-bottom: 2%;
+}
+
+.location:hover {
+    transform: scale(10);
+    transition: all 20s linear;
+}
+
+@keyframes rotate {
+    0% {transform: rotate(0deg);}
+    12.5% {transform: rotate(1.5deg);}
+    37.5% {transform: rotate(0deg);}
+    50% {transform: rotate(-1.5deg);} 
+    62.5% {transform: rotate(0deg);}
+    75% {transform: rotate(1deg);}
+    87.5% {transform: rotate(0deg);}
+    100% {transform: rotate(-1deg);}
+}
+
+@keyframes jump {
+    0% {transform: translate(0%, 0%);}
+    25% {transform: translate(0%, 2%);}
+    50% {transform: translate(0%, 0%);}
+    75% {transform: translate(0%, -2%);}
+    100% {transform: translate(0%, 0%);}
+}
+
+@keyframes flip {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.5);}
+    100% {transform: scale(1);}
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>allinquiries.world</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+</head>
+<body>
+
+<script>
+
+const carrotPool = [
+"randomcarrot/carrot_1.gif",
+"randomcarrot/carrot_2.gif",
+"randomcarrot/carrot_3.gif",
+"randomcarrot/carrot_4.gif",
+"randomcarrot/carrot_5.gif",
+"randomcarrot/carrot_6.gif",
+"randomcarrot/carrot_7.gif",
+"randomcarrot/carrot_8.gif",
+"randomcarrot/carrot_9.gif",
+"randomcarrot/carrot_10.gif",
+"randomcarrot/carrot_11.gif",
+"randomcarrot/carrot_12.gif",
+"randomcarrot/carrot_13.gif",
+"randomcarrot/carrot_14.gif",
+"randomcarrot/carrot_15.gif"
+]
+
+document.addEventListener("DOMContentLoaded", function() {
+generateLogo();
+});
+
+function generateLogo() {
+document.getElementById("carrot").setAttribute("src",  carrotPool[Math.floor(Math.random() * carrotPool.length)]);
+};
+
+</script>
+    
+    <div id="content">
+
+        <marquee style="color: white;" direction="right" scrollamount="100">WELCOME TO ALL INQUIRIES. YOUR ONE-STOP SHOP FOR ALL THINGS FUN AND ADVENTUROUS. WHY NOT TAKE A LOOK AROUND? THERE IS PLENTY OF COOL PAGES TO VIEW AND PLAY GAMES IN. IF YOU ARE EVER BORED. REMEMBER THAT YOU SHOULDNT BE. BECAUSE YOU ARE IN THE WONDERFUL WORLD OF ALL INQUIRIES. IF YOU WANT A RECOMMENDATION. WHY NOT CHECK OUT STANTONCOMET'S PAGE: SAHANTONROMENT OR HOW ABOUT SKYLAR'S PAGE: SKYLAR'S GITHUB WEBSITE. ALL OF THESE LANDS HOUSE THE HOPES AND DREAMS OF THEIR CREATORS, WHY NOT STEP INSIDE? LA LA LA LA LA. WHAT ARE YOU DOING? STOP STANDING AROUND AND CLICK SOMETHING! YOUR STILL HERE? WAITING FOR THIS TO FINISH? WELL GUESS WHAT. IT WONT FINISH EVER. THATS HOW A LOOP WORKS. BUT ALSO THERES JUST A LOT OF TEXT HERE. I WONDER HOW MANY PEOPLE WILL READ THIS. DOES ANYONE REMEMBER FIDGET SPINNERS? I SAW A POST ONLINE. AND I REALIZED THAT 2017 WAS 8 YEARS AGO. FEEL OLD? IF NOT. YOU ARE PROBABLY 8 YEARS OLD. AND YOU SHOULD NOT BE ON THE INTERNET. ITS NOT SAFE HERE. I COULD PROBABLY PUT ANYTHING HERE AND NO ONE WOULD NOTICE. ANYONE HERE PLAY LITTLEBIGPLANET? TOO OLD? HOW ABOUT RAYMAN? STILL NO? PIZZA OWOWOW. OOOGAA I LOVE PIZZA ZUMBO FUN. ROARING WILD PIZZA FRIDAY EVERY NIGHT. WOW. IF YOU LOVE READING THIS MUCH. WAIT UNTIL YOU HEAR ABOUT BOOKS. DONT READ BOOKS ANYMORE? WHY NOT. THEYRE GREAT. REALLY GETS YOUR IMAGINATION MOVING. BUT EITHER WAY. WHILE YOURE HERE YOU SHOULD CLICK ON ONE OF THE MANY CURATED CONTENT PIECES THAT HAVE BEEN SELECTED FOR YOU. CLICK ON ANYTIHNG IN ALL INQIURIES. AND SOMETHING MAGICAL WILL HAPPEN. LIKE MAYBE A GAME. OR A POORLY DRAWN SMALL BLACK CAT WILL APPEAR AND RUIN EVERYTHING. SUBRIBE TO BELLY DEVELOPMENT TEAM PLEASE. I REALLY ENJOY THEIR WORK. BELLYDEV POINTING THE FUTURE TOWARDS OUR HUMAN MINDS AND CREATING A FUTURE FOR THE ALL OF HUMANITY FOR TO ENJOY IT. UAOOGHAOGOOGOGOBAAAAUAUGPPPOOA. SORRY CATS ON MY KEYBOARD. STANTONCOMET. THATCRAZYMANINASUIT. DIGIFOX. STARLIGHTREACTOR. ALL NAME YOU HAVE NEVER HEARD OF... FOR NOW!!! JUST YOU WATCH, WE'LL ALL BE FAMOUS ONE DAY. WELL, AT LEAST A FEW OF US. MAYBE JUST ONE IF YOU REALLY WANNA BE SO PESSIMISTIC ABOUT IT. ALL INQUIRIES IS FUN. PLEASE CLICK SOMETHING. THIS MESSAGE WILL NOW LOOP.</marquee>
+
+        <div class="header">
+            <img class="title" src="assets/welcomewobble.gif">
+            <marquee style="color: red; width: 40%; font-weight: bold; font-size: 2em; filter: drop-shadow(2px 2px 2px black)" scrollamount="2">THE FUNNY CARROT NETWORK</marquee>
+        </div>
+
+        <div class="body">
+
+            <div id="leftbox" class="box">
+                <img class="grasstop" src="assets/grass.png">
+                <a href="https://allinquiries.neocities.org/number"><img id="notyimg" src="assets/numberoftheyear.png"></a>
+                <h1 id="noty">#</h1>
+            </div>
+
+            <div class="logo">
+                <img id="carrot">
+            </div>
+
+            <div id="rightbox" class="box">
+                <img class="grasstop" src="assets/grass.png">
+                <h1>TRAVEL</h1>
+                <div id="directory">
+                    <a href="https://allinquiries.neocities.org/number" target="_blank"><img class="location" src="assets/locations/location_noty.png"></a>
+                    <a href="https://funnycarrotnetwork.fandom.com/f" target="_blank"><img class="location" src="assets/locations/location_wiki.png"></a>
+                    <a href="https://allinquiries.neocities.org/van" target="_blank"><img class="location" src="assets/locations/location_van.png"></a>
+                    <a href="https://stantoncomet.github.io/" target="_blank"><img class="location" src="assets/locations/location_stantoncomet.png"></a>
+                    <a href="https://thatcrazymaninasuit.github.io/" target="_blank"><img class="location" src="assets/locations/location_thatcrazymaninasuit.png"></a>
+                    <a href="https://starlightreactor.neocities.org/" target="_blank"><img class="location" src="assets/locations/location_starlightreactor.png"></a>
+                    <a href="https://digifox.space/" target="_blank"><img class="location" src="assets/locations/location_digifoxdotspace.png"></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
