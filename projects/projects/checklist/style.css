@@ -1,0 +1,317 @@
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(assets/images/meadow_walls.jpg);
+    background-size: cover;
+}
+
+.header {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-weight: normal;
+    font-size: 2.8em;
+    text-align: center;
+    background-color: transparent;
+    border: 0;
+}
+
+.header:focus {
+    outline: 0px;
+    text-decoration: underline;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    color: rgb(0, 0, 0);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 1%;
+    width: 55%;
+    height: 92%;
+}
+
+.centered {
+    justify-content: start;
+    align-items: center;
+}
+
+.additem {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid #b6b6b6;
+    width: 50%;
+}
+
+#additem-form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.5%;
+    margin: 0
+}
+
+#additem-button {
+    background-color: rgba(255, 255, 255, 0.6);
+    color: rgb(0, 0, 0);
+    border: 1px outset rgba(150, 150, 150, 0.6);
+    width: 19%;
+}
+
+#additem-button:active {
+    background-color: #e6f4ff;
+}
+
+#additem-input {
+    border: 1px inset rgba(150, 150, 150, 0.6);
+    width: 100%;
+}
+
+#additem-pickdate {
+    width: 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+    color: rgb(0, 0, 0);
+    border: 1px outset rgba(150, 150, 150, 0.6);
+}
+
+#additem-pickdate:active {
+    background-color: #e6f4ff;
+}
+
+#additem-input:focus {
+    outline: none;
+}
+
+#list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    overflow: none;
+    overflow-y: scroll;
+    width: 100%;
+    margin-top: 1.5%;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #999999;
+    width: 46%;
+    height: 64px;
+    user-select: none;
+    margin: 0.5%;
+    padding-left: 1%;
+    padding-right: 1%;
+    transition: all 0.1s linear;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    animation: scalein 0.2s ease forwards;
+}
+
+.item-check {
+    width: 20px;
+    height: 20px;
+    accent-color: #8e8fa0;
+    transition: all 0.2s ease;
+
+}
+
+.item-content {
+    display: flex;
+    align-items: center;
+    overflow: auto;
+    width: 70%;
+}
+
+.item-text {
+    word-break: break-all;
+}
+
+.item-date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1%;
+    margin-right: 1%;
+    background-color: #faf5f3;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+}
+
+
+.item-remove {
+    height: 28px;
+    width: 28px;
+    color: rgb(121, 155, 255);
+    font-size: 16px;
+    border: 1px solid rgb(121, 155, 255);
+    background-color: transparent;
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+    transition: all 0.2s ease;
+}
+
+.item-remove:hover {
+    color: #ffffff;
+    border: 1px solid rgb(121, 155, 255);
+    background-color: rgb(121, 155, 255);
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+    transition: all 0.25s ease;
+}
+
+#tray {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+#tray-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 32px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#uploadinput {
+    display: none;
+}
+
+#fileupload {
+    background-color: rgba(255, 255, 255, 1);
+    color: rgb(0, 0, 0);
+    border: 0px solid white;
+    border-right: 1px solid rgba(190, 190, 190, 0.445); 
+    width: 50%;
+    height: 100%;
+}
+
+#fileupload:active {
+    background-color: #e6f4ff;
+}
+
+#filedownload{
+    background-color: rgba(255, 255, 255, 1);
+    color: rgb(0, 0, 0);
+    border: 0px solid white;
+    border-left: 1px solid rgba(190, 190, 190, 0.445); 
+    width: 50%;
+}
+
+#filedownload:active {
+    background-color: #e6f4ff;
+}
+
+#toast-bar {
+    position: fixed;
+    top: 0.5%;
+    right: 0.5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.toast {
+    color: rgb(0, 0, 0);
+    background: rgba(255, 255, 255, 0.85);
+    filter: drop-shadow(0px 0px 10px rgba(129, 129, 129, 0.4));
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 360px;
+    height: 74px;
+    min-height: 8%;
+    margin: 1%;
+}
+
+.toast-content {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 90%;
+    margin-left: 2%;
+    margin-top: -3%
+}
+
+.toast-header {
+    margin-bottom: 0;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.toast-text {
+    margin: 0;
+}
+
+.toast-close {
+    position: fixed;
+    top: 0%;
+    right: -0.8%;
+    margin-right: 1%;
+    background-color: transparent;
+    border: 0px;
+}
+
+.toast-button-img {
+    width: 24px;
+    height: 24px;
+}
+
+.item-scalein-animation {
+    animation: scalein 0.2s ease forwards;
+}
+
+.item-delete-animation {
+    animation: remove 0.2s ease 0s forwards;
+}
+
+.toast-bounce-animation {
+    animation: bouncein 0.2s ease 0s forwards;
+}
+
+.toast-delete-animation {
+    animation: slideout 0.3s ease 0s forwards;
+}
+
+.flatpickr-calendar {
+    border-radius: 0px !important;
+}
+
+@keyframes scalein {
+    0% {transform: scale(0.5); opacity: 0;}
+    100% {transform: scale(1); opacity: 1;}
+}
+
+@keyframes remove {
+    0% {transform: scale(1);}
+    100% {transform: scale(0.5); opacity: 0;}
+}
+
+@keyframes bouncein {
+    0% {transform: translateX(100%) scale(1); opacity: 0;} 
+    100% {transform: translateX(0%) scale(1);}
+}
+
+@keyframes slideout {
+    0% {transform: translateX(0%) scale(1);}
+    100% {transform: translateX(100%) scale(1); opacity: 0;}
+}

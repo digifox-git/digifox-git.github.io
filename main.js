@@ -12,27 +12,27 @@ window.addEventListener("DOMContentLoaded", function() {
         "navbtn7",
     ]
 
-    navbuttons.forEach(element => {
-        button = document.getElementById(element)
+    // navbuttons.forEach(element => {
+    //     button = document.getElementById(element)
 
-        if (button) {
-            if (!button.classList.contains("selectedtravelbutton")) {
-                button.addEventListener("mouseover", function() {
-                    let snd = new Audio(`/assets/sounds/navbtn/${element}.wav`)
-                    snd.volume = 0.5 
-                    snd.load()
-                    snd.play()
-                })
-            }
-        }
-    });
+    //     if (button) {
+    //         if (!button.classList.contains("selectedtravelbutton")) {
+    //             button.addEventListener("mouseover", function() {
+    //                 let snd = new Audio(`/assets/sounds/navbtn/${element}.wav`)
+    //                 snd.volume = 0.5 
+    //                 snd.load()
+    //                 snd.play()
+    //             })
+    //         }
+    //     }
+    // });
 
-    document.querySelectorAll('[role=tablist]').forEach( element => {
-        element.addEventListener("mousedown", function() {
-            clicksnd.load()
-            clicksnd.play()
-        })
-    })
+    // document.querySelectorAll('[role=tablist]').forEach( element => {
+    //     element.addEventListener("mousedown", function() {
+    //         clicksnd.load()
+    //         clicksnd.play()
+    //     })
+    // })
 })
 
 function travel_to(destination) {

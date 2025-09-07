@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="pie.css" rel="stylesheet" type="text/css">
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <title>Checklist</title>
+</head>
+<body>
+
+    <div id="content">
+        <div class="section centered">   
+
+            <div id="tray">
+                <div id="tray-content">
+                    <button id="fileupload" onclick="upload()">Upload</button>
+                    <button id="filedownload" onclick="download()">Download</button>
+                </div> 
+            </div>
+
+            <input type="text" class="header" id="title" value="My Checklist">
+            
+            <div class="additem">
+                <form id="additem-form" onsubmit="return false">
+                    <button id="additem-button" onclick="add_item(document.getElementById('additem-input').value, fp.selectedDates[0].getTime(), false)">Add</button>
+                    <input type="text" id="additem-input" autocomplete="off" placeholder="Item Name"> 
+                    <img src="assets/images/calenderclip.png" id="additem-pickdate">
+                </form>
+                
+            </div>
+            <div id="list"></div>
+            
+        </div>
+
+    </div>
+    <input type="file" id="uploadinput" accept=".json"/>
+
+    <div id="toast-bar"></div>
+
+    </div>
+    
+</body>
+</html>
