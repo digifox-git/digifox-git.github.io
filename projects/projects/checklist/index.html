@@ -26,7 +26,7 @@
             
             <div class="additem">
                 <form id="additem-form" onsubmit="return false">
-                    <button id="additem-button" onclick="add_item(document.getElementById('additem-input').value, fp.selectedDates[0].getTime(), false)">Add</button>
+                    <button id="additem-button" onclick="add_item(document.getElementById('additem-input').value, fp.selectedDates[0], false)">Add</button>
                     <input type="text" id="additem-input" autocomplete="off" placeholder="Item Name"> 
                     <img src="assets/images/calenderclip.png" id="additem-pickdate">
                 </form>

@@ -18,7 +18,6 @@ window.addEventListener("DOMContentLoaded", function() {
    let fileInput = this.document.getElementById("uploadinput")
    fileInput.addEventListener("change", function(event) {
 
-      console.log("File added!")
       create_toast("Success!", "Your file has been uploaded.")
       
       let file = event.currentTarget.files[0]
@@ -62,6 +61,14 @@ function add_item(content, deadline, status) {
    let newItem = content
    let unit = "mills"
    let timer = 0
+
+   if (content == "") {
+      create_toast("Missing Name!", "You're item is missing a name.")
+   }
+
+   if (deadline == undefined) {
+      create_toast("Missing Date!", "You're item is missing a date.")
+   }
 
    // Checks if current time remaining in milliseconds is less than a threshhold
    if (deadline - Date.now() <= 59999) {
@@ -170,8 +177,6 @@ function add_item(content, deadline, status) {
       totalItems++
       document.getElementById("additem-input").value = ""
 
-   } else {
-      create_toast("Woah there!", "You need to include both a title and a deadline for your item.")
    }
 
 }
@@ -265,7 +270,7 @@ function create_toast(header, text) {
    toastBody.appendChild(toastClose)
    toastClose.appendChild(toastButtonImg)
 
-   toastBody.classList.add("toast-bounce-animation")
+   toastBody.classList.add("toast-appear-animation")
 
    toastButtonImg.addEventListener('click', function() {
 
