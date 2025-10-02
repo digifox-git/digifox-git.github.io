@@ -4,10 +4,11 @@
     align-items: center;
     background: #FAFCFD;
     background-image: url(/assets/images/bluepicnic.png);
-    border-bottom: 2px #A0AFC3 solid;
+    border-bottom: 1px #A0AFC3 solid;
     width: 100vw;
     height: 5vh;
-    z-index: -1;
+    z-index: 0;
+    filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.8))
 }
 
 #titlebar img {
@@ -27,24 +28,24 @@
     color: #1E395B;
     height: 100%;
     width: 20%;
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 0px 0px 0px 0px;
     border: 1px solid rgb(146, 146, 146);
     background: linear-gradient(rgba(192, 230, 255, 0.253), rgba(157, 216, 255, 0.411));
     border-bottom: 0px;
-    z-index: 0;
+    z-index: 2;
     font-size: 120%;
     backdrop-filter: blur(3px);
 }
 
 .travelbutton {
     color: #1E395B;
-    height: 80%;
+    height: 100%;
     width: 20%;
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 0px 0px 0px 0px;
     border: 1px solid rgb(146, 146, 146);
     background: linear-gradient(rgba(192, 230, 255, 0.253), rgba(157, 216, 255, 0.411));
     border-bottom: 0px;
-    z-index: 0;
+    z-index: 1;
     animation: buttonHide 0.3s ease 0s 1 normal none;
     font-size: 120%;
     text-shadow: 0px 0px 4px rgba(255,255,255,1);
