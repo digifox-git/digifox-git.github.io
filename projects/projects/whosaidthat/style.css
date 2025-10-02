@@ -1,0 +1,257 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-image: url(assets/rainbowlight.png);
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+}
+
+#title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+}
+
+.title-image {
+    height: 70%;
+    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.5));
+}
+
+.title-button {
+    font-size: 2em;
+    width: 20%;
+    background-color: transparent;
+    border: 0;
+    transition: all 0.25s;
+}
+
+.title-button:hover {
+    transform: scale(1.4);
+    transition: all 0.25s;
+    filter: drop-shadow(0px 0px 4px white);
+    cursor: pointer
+}
+
+.hidden-link {
+    color: black;
+    text-decoration: none;
+}
+
+#question {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 0px;
+    width: 60%;
+    height: 60%;
+    top: 4%;
+    padding: 2%;
+}
+
+#question-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#question-text {
+    font-size: 2em;
+}
+
+#question-image {
+    width: 50%;
+    border-radius: 0px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#choicers {
+    position: fixed;
+    width: 60%;
+    height: 10%;
+    bottom: 4%;
+    padding: 2%;
+}
+
+#choicers-options {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+#life-count {
+    position: fixed;
+    top: 4%;
+    right: 18%;
+}
+
+#life-container {
+    position: fixed;
+    top: 7%;
+    right: 19.3%;
+}
+
+#answer-status {
+    position: fixed;
+    font-size: 2em;
+    left: 19%;
+    top: 0%
+}
+
+#score {
+    position: fixed;
+    font-size: 1.6em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: right;
+    right: 19%;
+    top: 5%;
+}
+
+#lifecount {
+    position: fixed;
+    font-size: 2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: right;
+    right: 19%;
+    top: 8%;
+}
+
+.option {
+    background-color: rgb(255, 255, 255);
+    border: 0px;
+    width: 22%;
+    font-size: 1.6em;
+    transition: all 0.1s ease;
+
+}
+
+.option:hover {
+    cursor: pointer;
+}
+
+.option-1:hover {
+    color: rgb(59, 0, 0);
+    background-color: rgb(255, 194, 194);
+    filter: drop-shadow(0px 0px 8px rgb(255, 194, 194));
+    transition: all 0.1s ease;
+}
+
+.option-2:hover {
+    color: rgb(0, 54, 5);
+    background-color: rgb(160, 255, 160);
+    filter: drop-shadow(0px 0px 8px rgb(160, 255, 160));
+    transition: all 0.1s ease;
+}
+
+.option-3:hover {
+    color: rgb(0, 34, 54);
+    background-color: rgb(160, 225, 255);
+    filter: drop-shadow(0px 0px 8px rgb(160, 225, 255));
+    transition: all 0.1s ease;
+}
+
+.option-4:hover {
+    color: rgb(59, 0, 65);
+    background-color: rgb(250, 199, 255);
+    filter: drop-shadow(0px 0px 8px rgb(250, 199, 255));
+    transition: all 0.1s ease;
+}
+
+.zoomin {
+    animation: zoomin 0.3s ease forwards normal;
+}
+
+.zoomout {
+    animation: zoomout 0.3s ease forwards normal;
+}
+
+.flashgreen {
+    font-size: 1.4em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: flashgreen 1s ease forwards normal;
+}
+
+.flashred {
+    font-size: 1.4em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: flashred 1s ease forwards normal;
+}
+
+@keyframes zoomin {
+    0% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 100%;
+    }
+}
+
+@keyframes zoomout {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 100%;
+    }
+}
+
+@keyframes flashgreen {
+    0% {
+        color: rgb(0, 255, 0);
+        opacity: 0;
+        transform: translateX(500%);
+    }
+    20% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    50% {
+        color: rgb(0, 211, 0);
+        opacity: 1;
+    }
+    100% {
+        color: rgb(0, 167, 0);
+        opacity: 0;
+    }
+}
+
+@keyframes flashred {
+    0% {
+        color: rgb(255, 0, 0);
+        opacity: 0;
+        transform: translateX(500%);
+    }
+    20% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    50% {
+        color: rgb(211, 0, 0);
+        opacity: 1;
+    }
+    100% {
+        color: rgb(167, 0, 0);
+        opacity: 0;
+    }
+}
+
+@keyframes greenfade {
+    0% {
+        background: linear-gradient()
+    }
+}
