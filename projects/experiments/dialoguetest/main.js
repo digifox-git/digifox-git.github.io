@@ -11,11 +11,12 @@ window.addEventListener("DOMContentLoaded", function() {
 
 function reset_dialoguetest() {
 
-    let snd_shatter = new Audio("https://digifox.space/Resources/sounds/snd_break2.ogg")
-    let snd_hit = new Audio("https://digifox.space/Resources/sounds/snd_hit.ogg")
+    let snd_shatter = new Audio("https://digifox.space/assets/sounds/snd_break2.ogg")
+    let snd_hit = new Audio("https://digifox.space/assets/sounds/snd_hit.ogg")
     snd_shatter.load()
     snd_hit.load()
-    snd_hit.volume = 0.8
+    snd_hit.volume = 0.6
+    snd_shatter.volume = 0.6
 
     if (localStorage.getItem("flag-testdialogue-wasmean") || localStorage.getItem("inventory-audio")) {
         localStorage.removeItem("flag-testdialogue-wasmean")
