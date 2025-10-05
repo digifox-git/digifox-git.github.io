@@ -10,11 +10,11 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     position:fixed;
-    width: 98.8vw;
-    height: 90vh;
-    margin: 0.5%;
+    width: 100vw;
+    height: 100vh;
+    margin: 0%;
     background-color: rgb(68, 68, 68);
     z-index: 1;
     overflow-y: auto;
