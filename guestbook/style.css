@@ -12,12 +12,12 @@ body {
     align-items: center;
     justify-content: center;
     position:fixed;
-    width: 98.8vw;
-    height: 90vh;
-    margin: 0.5%;
+    width: 100vw;
+    height: 95vh;
+    margin: 0%;
     background-color: #83c7ff;
     background-image: url(/assets/images/lovelyfloral.gif);
-    z-index: 1;
+    z-index: -1;
     overflow-y: auto;
     font-family:Georgia, 'Times New Roman', Times, serif;
     font-size: 1.4em;
