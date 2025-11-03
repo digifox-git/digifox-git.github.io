@@ -1,0 +1,102 @@
+html, body {
+    display: flex;
+    background: linear-gradient(0deg,#506ed1 0%, #2623da 100%);
+    background-attachment: fixed;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.clock {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+#time {
+    margin-top: 65%;
+    font-size: 5vw;
+    color: #155d51;
+    filter: drop-shadow(2px 2px 0px #ffffff);
+    z-index: 1;
+}
+
+#clockbg {
+    position: absolute;
+    width: 30%;
+    z-index: 0;
+    filter: drop-shadow(6px 6px 0px rgba(0, 0, 0, 0.5));
+}
+
+#month {
+    margin-top: -5%;
+    margin-left: -15%;
+    position: absolute;
+    font-size: 4vw;
+    color: #5c4205;
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+}
+
+#date-seperator {
+    margin-top: -4%;
+    margin-left: 90%;
+    position: absolute;
+    font-size: 4vw;
+    color: #5c4205;
+    width: 100%;
+    z-index: 1;
+    font-weight: bold;
+}
+
+#date {
+    margin-top: -3%;
+    margin-left: -2%;
+    position: absolute;
+    font-size: 4vw;
+    color: #5c4205;
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+}
+
+#day {
+    margin-top: -4.5%;
+    margin-left: 16%;
+    position: absolute;
+    font-size: 4vw;
+    color: #5c4205;
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+}
+
+#loading-overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 100;
+}
+
+#loading-overlay img {
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+    width: 12%;
+}
+
+.load-in {
+    clip-path: circle(100% at 50% 50%);
+}
+
+.load-out {
+    clip-path: circle(0% at 50% 50%);
+    transition: all 1s linear;
+}
