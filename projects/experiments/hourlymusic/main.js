@@ -123,10 +123,18 @@ hourlyJSON = {
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    get_location()
     loading_end()
     
     let d = new Date()
     let currentHour = d.getHours()
+    const weekday = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+
+    let timeDisplay = document.getElementById("time")
+    let monthDisplay = document.getElementById("month")
+    let dateDisplay = document.getElementById("date")
+    let dayDisplay = document.getElementById("day")
+    
 
     var music = new Howl({ // Initial track setup, plays song based on currentHour. will be destroyed on new hour
         src: [`music/${currentHour}.ogg`],
@@ -141,14 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         music.play() // Play initial track after short delay
     }, 1500);
-    
-    const weekday = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
-
-    let timeDisplay = document.getElementById("time")
-    let monthDisplay = document.getElementById("month")
-    let dateDisplay = document.getElementById("date")
-    let dayDisplay = document.getElementById("day")
-    
 
     setInterval(() => { // Check every second for clock update and current hour
         let d = new Date()
@@ -169,6 +169,19 @@ document.addEventListener('DOMContentLoaded', function() {
             next_track()
         }
     }, 1000);
+
+    function get_location() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(show_position);
+        } else {
+            console.log("I tried to geolocate, but it might not be supported in this browser!");
+        }
+    }
+
+    function show_position(position) {
+        console.log(position.coords.latitude)
+        console.log(position.coords.longitude)
+    }
 
     function next_track() {
 
@@ -192,13 +205,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
-    function loading_end() {
+    function loading_end() { // Transition for ending the loading overlay
         let loadBackground = document.getElementById("loading-overlay")
 
-    setTimeout(() => {
-        loadBackground.classList.add("load-out")
-        loadBackground.classList.remove("load-in")
-    }, 1000);
+        setTimeout(() => {
+            loadBackground.classList.add("load-out")
+            loadBackground.classList.remove("load-in")
+        }, 1000);
     }
 
 })
