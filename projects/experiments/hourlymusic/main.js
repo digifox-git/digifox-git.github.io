@@ -123,7 +123,6 @@ hourlyJSON = {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    get_location()
     loading_end()
     
     let d = new Date()
@@ -170,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 1000);
 
-    function get_location() {
+    function get_location() { // This is currently unused.
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(show_position);
         } else {
