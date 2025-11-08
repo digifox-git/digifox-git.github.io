@@ -1,60 +1,85 @@
 body {
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url(assets/win7wallpaper.jpg);
-}
-
-#content {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    margin: 0;
+    padding: 0;
     height: 100vh;
-    color: white;
-}
-
-#enter {
-    width: 32vh;
-    height: 32vh;
-}
-
-#enterwindow {
+    background-color: black;
     background-image: url(assets/spacebg.gif);
 }
 
-#entertitle {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 80%;
+#orbital-text {
+    height: 550px;
+    width: 550px;
+    position: relative;
+    animation: counterclockwise 12s linear infinite;
+    z-index: 1;
 }
 
-#logo {
-    width: 700px;
-    transition: all 0.25s;
+span {
+    position: absolute;
+    left: 50%;
+    transform-origin: 0 275px;
+    transform-style: flat;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 900;
+    font-size: 1.5em;
+    color: white;
+    filter: drop-shadow(2px 2px 2px black);
 }
 
-
-#logo:hover {
-    filter: drop-shadow(-1px -1px 4px white);
-    transform: scale(1.1);
-    transition: all 0.25s;
+#jagged-circle {
+    position: absolute;
+    width: 630px;
+    animation: clockwise 32s linear infinite;  
+    z-index: 0;
+    transition: all 0.3s;
 }
 
-.content-box {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.6em;
-    overflow-y: auto;
+#rotating-earth {
+    width: 610px;
+    rotate: 23deg;
 }
 
-.heading {
-    text-align: center;
+a:hover + #jagged-circle {
+    filter: drop-shadow(0px 0px 32px #ff851f);
+    transition: all 0.3s;
+    width: 680px;
 }
 
-.foxemoji {
-    width: 32px;
+a:hover {
+
+}
+
+a {
+    position: absolute;
+    z-index: 2;
+}
+
+@keyframes counterclockwise {
+    0% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes clockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes color {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
 }

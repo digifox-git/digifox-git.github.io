@@ -1,31 +1,12 @@
-window.addEventListener('DOMContentLoaded', function() {
+const ORBITALTEXT = "Click to enter digifox.space"
 
-    let browserType = "Browser"
-    
-    switch (true) {
-        case /firefox|fxios/i.test(navigator.userAgent):
-            browserType = "Firefox"
-        break
-        case /edg/i.test(navigator.userAgent):
-            browserType = "Edge"
-        break
-        case /opr/i.test(navigator.userAgent):
-            browserType = "Opera"
-        break
-        case /chrome|chromium|crios/i.test(navigator.userAgent):
-            browserType = "Chrome"
-        break
-        case /safari/i.test(navigator.userAgent):
-            browserType = "Safari"
-        break
-        case /MSIE/i.test(navigator.userAgent):
-            browserType = "Internet Explorer??????"
-        break
-        case /Glooper/i.test(navigator.userAgent):
-            browserType = "GlooprOS Max 2"
-        break
+window.onload = () => {
+    let orbitalText = document.getElementById("orbital-text")
+
+    for (let i = 0; i < ORBITALTEXT.length; i++) {
+        let span = document.createElement("span")
+        span.innerHTML = ORBITALTEXT[i];
+        orbitalText.appendChild(span);
+        span.style.transform = `rotate(${5 * i}deg)`
     }
-
-    document.getElementById("entertitletext").textContent = browserType
-
-})
+}
