@@ -1,0 +1,16 @@
+body {
+    background-color: gray;
+}
+
+#spin {
+    position: absolute;
+    width: 50%;
+    bottom: 10%;
+    left: 25%;
+    animation: spinme 5s linear 0s infinite normal none;
+}
+
+@keyframes spinme {
+    0% { transform: rotateX(70deg) rotateZ(0deg);}
+    100% { transform: rotateX(70deg) rotateZ(360deg);}
+}

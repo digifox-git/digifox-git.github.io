@@ -1,0 +1,58 @@
+body {
+    background-color: rgb(255, 255, 255);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+}
+
+@font-face {
+    font-family: "earth";
+    src: url(/assets/fonts/EarthMommaRegular-ZGrK.ttf);
+}
+
+body {
+    background-image: url(/assets/images/background_earthbound_menu.png);
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.settings-panel {
+    color: white;
+    border: 1.5vw solid;
+    border-image: url(/assets/images/box_earthbound.png) 5;
+    border-image-slice: 8;
+    background-image: url(/assets/images/background_earthbound.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+    font-size: 16px;
+    font-family: "earth";
+    width: 45vw;
+    margin: 0.1%;
+}
+
+.user-title {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    height: 5vw;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    height: 30vw;
+}
+
+.user-image {
+
+}

@@ -176,8 +176,8 @@ function create_dialogue(theme) {
         dialogueBox.style.setProperty("display", "flex")
         dialogueBox.style.setProperty("position", "fixed")
         dialogueBox.style.setProperty("bottom", "32px")
-        dialogueBox.style.setProperty("width", "900px")
-        dialogueBox.style.setProperty("height", "250px")
+        dialogueBox.style.setProperty("width", "1000px")
+        dialogueBox.style.setProperty("height", "260px")
         dialogueBox.style.setProperty("color", "white")
         dialogueBox.style.setProperty("background-color", "black")
         dialogueBox.style.setProperty("font-family", "determination")
@@ -231,8 +231,8 @@ function create_choicer() {
         choicerBox.style.setProperty("display", "flex")
         choicerBox.style.setProperty("position", "fixed")
         choicerBox.style.setProperty("bottom", "32px")
-        choicerBox.style.setProperty("width", "900px")
-        choicerBox.style.setProperty("height", "250px")
+        choicerBox.style.setProperty("width", "1000px")
+        choicerBox.style.setProperty("height", "260px")
         choicerBox.style.setProperty("border", "10px white solid")
         choicerBox.style.setProperty("color", "white")
         choicerBox.style.setProperty("background-color", "black")
@@ -445,7 +445,7 @@ function choicer_builder(conversation) {
 
     document.getElementById('choicerB').addEventListener("mouseover", function() {
         let choicerSoul = document.getElementById("choicerSoul")
-        choicerSoul.style.transform = "translateX(1320%) translateY(260%)"
+        choicerSoul.style.transform = "translateX(1500%) translateY(260%)"
     });
 
     document.getElementById('choicerA').addEventListener("click", function() {
@@ -478,7 +478,7 @@ window.addEventListener("keydown", function() {
             console.log(choicerOption)
         break;  
         case "ArrowRight":
-            choicerSoul.style.transform = "translateX(1320%) translateY(260%)"
+            choicerSoul.style.transform = "translateX(1500%) translateY(260%)"
             choicerOption = 3;
             console.log(choicerOption)
         break;  

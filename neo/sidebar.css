@@ -1,0 +1,126 @@
+:root {
+    --primary-hue: #4e0dff;
+    --secondary-hue: #ff9e71;
+    --sidebar-bg: url(/assets/images/blue074.jpg);
+    --bg-size: 10vw
+}
+
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: gray;
+    background-image: var(--sidebar-bg);
+    background-size: var(--bg-size);
+    border-right: 1px solid var(--secondary-hue);
+    width: 16vw;
+    height: 100vh;
+    filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.8));
+}
+
+.side-branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--primary-hue);
+    padding-top: 3%;
+    padding-bottom: 8%;
+    clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0);
+    user-select: none;
+}
+
+.drop-shadow-wrap {
+    filter: drop-shadow(-2px 2px 2px rgba(0, 0, 0, 0.8));
+}
+
+.side-logo {
+    width: 90%;
+}
+
+.side-version {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 0.8vw;
+    font-weight: bold;
+    color: white;
+    filter: drop-shadow(1.5px 1.5px 0px #0F0F61);
+}
+
+.side-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    height: 80%;
+    width: 12vw;
+}
+
+.side-button {
+    border-radius: 0px;
+    border-width: 0px;
+    background-color: var(--primary-hue);
+    border-radius: 0px;
+    border: 0.15vw outset var(--primary-hue);
+    height: 4%;
+    width: 100%;
+    color: white;
+    font-size: 1vw;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 2%;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.8));
+    cursor: pointer;
+}
+
+.side-button-nosel {
+    border-radius: 0px;
+    border-width: 0px;
+    background-color: var(--primary-hue);
+    border-radius: 0px;
+    height: 4%;
+    width: 100%;
+    color: white;
+    font-size: 1vw;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 2%;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.8));
+    filter: saturate(0.8);
+}
+
+.side-button:hover {
+    transform: scale(1.06);
+}
+
+.side-button:active {
+    filter: brightness(1.5);
+    transform: scale(0.95);
+}
+
+#show-hide {
+    display: none;
+    position: fixed;
+    width: 1.5vw;
+    height: 3vh;
+    bottom: 0;
+    right: -1.55vw;
+    background-color: var(--primary-hue);
+    clip-path: polygon(100% 100%, 0 0, 0 100%);
+    cursor: pointer;
+}
+
+.show-sidebar {
+    animation: show-sidebar 0.25s linear 0s 1 normal forwards;
+}
+
+.hide-sidebar {
+    animation: hide-sidebar 0.25s linear 0s 1 normal forwards;
+}
+
+@keyframes hide-sidebar {
+    0% {transform: translate(0%);}
+    100% {transform: translate(-100%);}
+}
+
+@keyframes show-sidebar {
+    0% {transform: translate(-100%);}
+    100% {transform: translate(0%);}
+}

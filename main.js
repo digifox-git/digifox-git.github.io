@@ -1,4 +1,5 @@
 let clicksnd = new Audio('/assets/sounds/mouseclick.wav')
+url = window.location.href
 
 window.addEventListener("DOMContentLoaded", function() {
 
