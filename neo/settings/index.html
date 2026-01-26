@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/neo/sidebar.css">
     <link rel="icon" type="image/x-icon" href="assets/favicons/favicon_glass.ico">
     <script src="/neo/main.js"></script>
+    <script src="settings.js"></script>
     <script src="/neo/sidebar.js"></script>
     <meta name="pagename" content="You">
 </head>
@@ -20,9 +21,26 @@
 
         <div class="settings-panel user-title">
             <img id="profilepicture" class="profilepicture earthborderuser" src="/assets/images/profile_empty.png">
-            <p>A</p>
+            <h1 id="displayname">You</h1>
         </div>
         <div class="settings-panel user-info">
+            <div id="settingscontent" hidden>
+            <h2>Name</h2>
+            <div id="setname">
+                <input type="text" id="settingentername" maxlength="22" placeholder="Enter your preferred name">
+                <button onclick="set_name()">Set</button>
+            </div>
+            <h2>Preferences</h2>
+            <label>Hide Epilepsy Warnings:</label>
+            <input role="checkbox" type="checkbox" id="settingepilepsy">
+            <label for="settingepilepsy"></label>
+            <p id="settingsearchbackground">Search Background: ...</p>
+            <h2>Inventory</h2>
+            <div id="inventorylist"></div>
+            <h2>Other</h2>
+            <p id="settingfunvalue">Fun Value: ...</p>
+            <p><br></p>
+            <p><a id="resetprofile" href="/settings/reset">RESET</a></p>
         </div>
 
     </div>

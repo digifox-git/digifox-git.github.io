@@ -4,8 +4,6 @@ function save_data(storage, value) {
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    let loadingProgress = 100
-    let progressBar = document.getElementById("progressbar")
     let progressContainer = document.getElementById("progresscontainer")
     let settings = document.getElementById("settingscontent")
 
@@ -67,7 +65,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     settings.removeAttribute("Hidden")
-    progressContainer.remove()
 
     load_storage()
 
@@ -154,7 +151,7 @@ function load_storage() {
             itemContainer.classList.add("item")
 
             let item = document.createElement("p")
-            item.innerHTML = `${key.substring(10)} ( ${value} )`
+            item.innerHTML = `${key.substring(10)} (${value})`
 
             let path = `/assets/images/inventory/${key}.png`
             let defaultPath = `/assets/images/inventory/inventory-default.png`

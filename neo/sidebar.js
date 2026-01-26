@@ -135,9 +135,9 @@ function create_sidebar() {
     sideButtons.appendChild(create_sidebutton("Experiments", "/neo/"))
     sideButtons.appendChild(create_sidebutton("Gallery", "/neo/"))
     sideButtons.appendChild(create_sidebutton("Resources", "/neo/"))
-    sideButtons.appendChild(create_sidebutton("Cool Pages", "/neo/"))
+    sideButtons.appendChild(create_sidebutton("Cool Pages", "/neo/mypicks"))
     sideButtons.appendChild(create_sidebutton("Guestbook", "/neo/"))
-    sideButtons.appendChild(create_sidebutton("Archive", "/neo/"))
+    sideButtons.appendChild(create_sidebutton("Archive", "/neo/archive"))
     sideButtons.appendChild(create_sidebutton("You", "/neo/settings"))
 };
 
@@ -151,9 +151,9 @@ function create_sidebutton(name, destination) {
     } else {
         sideButton.classList.add("side-button")
         sideButton.onclick = function() {travel(destination)};
-        sideButton.onmouseover = function() {
-            playSFX("sbHover")
-        }
+        // sideButton.onmouseover = function() {
+            // playSFX("sbHover")
+        // }
     }
 
     return sideButton;
