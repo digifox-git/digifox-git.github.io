@@ -85,7 +85,9 @@ footer {
 }
 
 .foxemoji {
-    width: 4%;
+    width: 46px;
+    height: 46px;
+    aspect-ratio: 1/1;
 }
 
 .red {
