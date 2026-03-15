@@ -1,0 +1,97 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(53, 50, 68);
+}
+
+.main {
+    color:white;
+    width: 100%;
+}
+
+.card {
+    color: black;
+    width: 20%;
+    height: 60%;
+    left: 40%;
+    top: 20%;
+    position: absolute;
+    background: linear-gradient(0deg,rgb(7, 0, 109) 0%, rgb(16, 68, 180) 50%);
+    border: 1px outset rgba(255, 255, 255, 0.5);
+}
+
+#cardimage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 0%;
+    background: radial-gradient(circle,rgba(32, 187, 253, 1) 0%, rgba(32, 106, 253, 1) 100%);
+    background-size: 25%;
+}
+
+#fadecover {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    height: 100.2%;
+}
+
+.cardname {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 90%;
+    font-size: 125%;
+    bottom: 2%;
+    left: 5%;
+    position: absolute; 
+    color:#d5d9ff;
+    text-align: center;
+    background-color: rgb(7, 0, 109);
+    clip-path: polygon(0% 4%, 96% 5%, 100% 97%, 7% 100%);
+}
+
+.cardname p {
+    font-weight:bold;
+    padding: 0;
+    margin: 0;
+}
+
+
+.cardcontent {
+    background: #c7c7c7;
+    background: linear-gradient(140deg,rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+    position: absolute;
+    top: 1.5%;
+    left: 2%;
+    width: 96%;
+    height: 97%;
+    border-radius: 8px;
+}
+
+.cardloading {   
+    position: absolute;
+    width: 20%;
+    left: 40%;
+    top: 42%;
+    image-rendering: crisp-edges;
+}
+
+#loadingcard {
+    color: black;
+    width: 20%;
+    height: 60%;
+    left: 40%;
+    top: 20%;
+    position: absolute;
+    background: #0f165a;
+    border: 2px solid rgb(0, 0, 0);
+    display: none;
+}
+
+#loadingcardcontent {
+    background: #ffffff;
+    position: absolute;
+    top: 1.5%;
+    left: 2%;
+    width: 96%;
+    height: 97%;
+}

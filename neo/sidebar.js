@@ -130,7 +130,7 @@ function create_sidebar() {
 
     sidebar.appendChild(sideButtons)
     sideButtons.appendChild(create_sidebutton("Home", "/neo/"))
-    sideButtons.appendChild(create_sidebutton("About Me", "/neo/"))
+    sideButtons.appendChild(create_sidebutton("About Me", "/neo/mypage"))
     sideButtons.appendChild(create_sidebutton("Projects", "/neo/"))
     sideButtons.appendChild(create_sidebutton("Experiments", "/neo/"))
     sideButtons.appendChild(create_sidebutton("Gallery", "/neo/"))
