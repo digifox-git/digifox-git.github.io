@@ -49,6 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let title = document.createElement('p')
         let author = document.createElement('p') // Author's name will be the same as the object key name
 
+        let link = mypicksJSON.mypicks[element].link
+
         container.classList.add('website')
         container.classList.add('pick-website')
         container.href = mypicksJSON.mypicks[element].href
@@ -56,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         container.target = "_blank"
 
         websiteImage.classList.add('website-badge')
-        websiteImage.style.backgroundImage = `url(/neo/assets/badges/mypicks/${element}.png)`
+        websiteImage.style.backgroundImage = `url(https://icons.duckduckgo.com/ip2/www.${link}.ico)` // Uses DuckDuckGo to easily grab favicon
 
         websiteImageOverlay.classList.add('badge-overlay')
 

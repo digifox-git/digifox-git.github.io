@@ -15,16 +15,22 @@
         "stantoncomet": {
            "name": "Stantoncomet's Page",
            "href": "https://stantoncomet.github.io/"
+        },
+        "thefunnycarrotnetwork": {
+            "name": "allinquiries.world",
+            "href": "https://allinquiries.neocities.org/"
         }
     },
     "mypicks": {
         "Yann_Cruyssen": {
             "name": "Petit Tube",
-            "href": "http://www.petittube.com/fullscreen.php"
+            "href": "http://www.petittube.com/fullscreen.php",
+           "link": "petittube.com"
         },
         "archive.org": {
             "name": "GifCities",
-            "href": "https://gifcities.org/"
+            "href": "https://gifcities.org",
+            "link": "archive.org"
         }
     }
 }

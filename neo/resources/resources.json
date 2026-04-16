@@ -1,0 +1,9 @@
+{
+    "sites": {
+        "vimms": {
+           "name": "Vimm's Lair",
+           "description": "Welcome to Vimm's Lair! This site is dedicated to console videogame nostalgia. Inside you'll find thousands of games, full-color manual scans, user ratings and reviews, and much more! Whether you're looking to relive an old classic or discover a forgotten gem, Vimm's Lair has everything you need to scratch your nostalgia itch.",
+           "href": "https://vimm.net/"
+        }
+    }
+}
