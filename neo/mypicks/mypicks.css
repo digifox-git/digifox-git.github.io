@@ -1,5 +1,24 @@
+@font-face {
+    font-family: eigerdals;
+    src: url(../assets/fonts/EIGERDALS.OTF);
+}
+
+@font-face {
+    font-family: aracne;
+    src: url(../assets/fonts/ARACNE.otf);
+}
+
+@font-face {
+    font-family: crikey;
+    src: url(../assets/fonts/CRIKEY.ttf);
+}
+
+
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    background-image: url(../assets/coolpages_bg.png);
+    background-position-x: 100%;
+    background-size: 87vw;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
@@ -14,4 +33,126 @@ body {
     align-items: center;
     height: 100vh;
     width: 100%;
+}
+
+a {
+    color: white;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(32, 1fr);
+    grid-template-rows: repeat(32, 1fr);
+    gap: 0.2vw;
+    width: 99%;
+    height: 98vh;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 0.4vw;
+    border: 4px dashed rgb(255, 255, 255);
+    border-radius: 24px;
+    filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.5));
+}
+
+.friend-website {
+    display: flex;
+    color: white;
+    padding: 1.5%;
+    margin: 1%;
+    width: 90%;
+    transition: all ease 0.05s;
+    text-decoration: none;
+}
+
+.pick-website {
+    display: flex;
+    color: white;
+    padding: 1.5%;
+    margin: 1%;
+    width: 44%;
+    transition: all ease 0.05s;
+    text-decoration: none;
+}
+
+.panel-title { 
+    font-family: aracne;
+    font-size: 3em;
+    margin: 1%;
+    color: white;
+}
+
+.website {
+    background-image: url(magenta-box.png);
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+
+.website:hover {
+    transition: all ease 0.05s;
+    transform: scale(1.04) rotate(-1deg);
+    filter: drop-shadow(0px 0px 4px #BB00FF);
+}
+
+.website-text {
+    width:70%;
+    margin-left: 2%;
+    overflow-x: scroll;
+}
+
+#friends-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+#picks-list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.website-title {
+    font-family: eigerdals;
+    font-size: 1.3vw;
+    margin: 0;
+}
+
+.website-credit {
+    font-family: crikey;
+    font-size: 1vw;
+    margin: 0;
+}
+
+.website-badge {
+    border-radius: 100%;
+    width: 3vw;
+    height: 3vw;
+    /* border: 2px solid #BB00FF; */
+    background-size: 100%;
+    filter: drop-shadow( 4px 4px 4px rgba(0, 0, 0, 0.562));
+}
+
+.badge-overlay {
+    border-radius: 100%;
+    background-image: url(circleOverlay.png);
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+hr {
+    color: white;
+    width: 95%;
 }

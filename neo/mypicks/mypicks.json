@@ -1,0 +1,30 @@
+{
+    "friends": {
+        "linkstew": {
+           "name": "Linkstew's Page",
+           "href": "https://linkstew.neocities.org/"
+        },
+        "starlightreactor": {
+           "name": "Starlightreactor's Page",
+           "href": "https://starlightreactor.neocities.org/home"
+        },
+        "thatcrazymaninasuit": {
+           "name": "Crazymaninasuit's Page",
+           "href": "https://thatcrazymaninasuit.github.io/"
+        },
+        "stantoncomet": {
+           "name": "Stantoncomet's Page",
+           "href": "https://stantoncomet.github.io/"
+        }
+    },
+    "mypicks": {
+        "Yann_Cruyssen": {
+            "name": "Petit Tube",
+            "href": "http://www.petittube.com/fullscreen.php"
+        },
+        "archive.org": {
+            "name": "GifCities",
+            "href": "https://gifcities.org/"
+        }
+    }
+}

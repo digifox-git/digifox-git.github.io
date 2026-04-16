@@ -129,14 +129,15 @@ function create_sidebar() {
     sideBranding.appendChild(sideVersion);
 
     sidebar.appendChild(sideButtons)
+    // Change these to set button destinations
     sideButtons.appendChild(create_sidebutton("Home", "/neo/"))
     sideButtons.appendChild(create_sidebutton("About Me", "/neo/mypage"))
     sideButtons.appendChild(create_sidebutton("Projects", "/neo/"))
     sideButtons.appendChild(create_sidebutton("Experiments", "/neo/"))
     sideButtons.appendChild(create_sidebutton("Gallery", "/neo/"))
-    sideButtons.appendChild(create_sidebutton("Resources", "/neo/"))
+    sideButtons.appendChild(create_sidebutton("Resources", "/neo/resources"))
     sideButtons.appendChild(create_sidebutton("Cool Pages", "/neo/mypicks"))
-    sideButtons.appendChild(create_sidebutton("Guestbook", "/neo/"))
+    sideButtons.appendChild(create_sidebutton("Guestbook", "/neo/guestbook"))
     sideButtons.appendChild(create_sidebutton("Archive", "/neo/archive"))
     sideButtons.appendChild(create_sidebutton("You", "/neo/settings"))
 };

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     async function get_data() {
-        let data = await fetch('pool/freddy-fazbears-pizza.json')
+        let data = await fetch('pool/onepiece.json')
         cards = await data.json()
     }
 
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 loadingCard.style.display = "none"
             }
         } else {
-            thumbnail = "https://digifox.neocities.org/assets/naturaldeadleaves.gif"
+            thumbnail = "https://digifox.neocities.org/assets/noCardPic.png"
             cardImage.src = thumbnail
             cardTitle.innerText = page.title
             loadingCard.style.display = "none"

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/neo/sidebar.css">
     <link rel="icon" type="image/x-icon" href="/assets/favicons/fav3.ico">
     <script src="/neo/sidebar.js"></script>
-    <script src="/neo/main.js"></script>
+    <script src="mypicks.js" type="module"></script>
     <meta name="pagename" content="Cool Pages">
 </head>
 <body>
@@ -17,6 +17,19 @@
     <div id="sidebar"></div>
 
     <div id="main">
+        <div id="grid">
+            <div class="panel" style="grid-column: 22 / 32; grid-row: 2 / 32;">
+                <p class="panel-title">Friends</p>
+                <hr>
+                <div id="friends-list"></div> <!-- Built dynamically inside mypicks.js -->
+            </div>
+            <div class="panel" style="grid-column: 2 / 21; grid-row: 2 / 32;">
+                <p class="panel-title">My Picks</p>
+                <hr>
+                <div id="picks-list">
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
