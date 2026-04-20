@@ -1,3 +1,12 @@
+function save_data(storage, value) {
+    localStorage.setItem(storage, value)
+}
+
+function load_data(storage) {
+    let value = localStorage.getItem(storage)
+    return value
+}
+
 let totalItems = 0
 let loadedData = {}
 let fp = null
@@ -15,7 +24,22 @@ window.addEventListener("DOMContentLoaded", function() {
     dateFormat: "U"
    });
 
-   let fileInput = this.document.getElementById("uploadinput")
+   let fileInput;
+
+   if (load_data("checklist")) {
+      fileInput = load_data("checklist")
+
+      loadedData = JSON.parse(fileInput)
+      console.log("Attempting to import locally stored items...")
+
+      for (let i = 0; i < Object.keys(loadedData.checklist).length - 1; i++) {
+         add_item(loadedData.checklist[i].name, new Date(loadedData.checklist[i].date), loadedData.checklist[i].checked)
+         
+      }
+   }
+
+   fileInput = this.document.getElementById("uploadinput")
+   
    fileInput.addEventListener("change", function(event) {
 
       create_toast("Success!", "Your file has been uploaded.")
@@ -31,9 +55,8 @@ window.addEventListener("DOMContentLoaded", function() {
          loadedData = JSON.parse(reader.result)
          console.log(loadedData)
 
-         for (let key in loadedData.checklist) {
-            console.log(loadedData.checklist[key].checked)
-            add_item(key, loadedData.checklist[key].date, loadedData.checklist[key].checked)
+         for (key in loadedData.checklist) {
+            add_item(loadedData.checklist[key].name, new Date(loadedData.checklist[key].date), loadedData.checklist[key].checked)
          }
       }
 
@@ -103,10 +126,10 @@ function add_item(content, deadline, status) {
 
    }
 
-   console.log(deadline - Date.now())
-   console.log(timer)
+   // console.log(deadline - Date.now())
+   // console.log(timer)
 
-   if (newItem && deadline) {
+   if (newItem && deadline) { // If item is valid
 
       let item = document.createElement('div')
       item.classList.add("item")
@@ -161,6 +184,8 @@ function add_item(content, deadline, status) {
             itemText.style.color = "#000000"
          }
 
+         update_download()
+
       })
 
       itemRemove.addEventListener('click', function() {
@@ -170,12 +195,15 @@ function add_item(content, deadline, status) {
          setTimeout(() => {
             totalItems--
             itemRemove.parentElement.remove()
+            update_download()
          }, 200);
 
       })
 
       totalItems++
       document.getElementById("additem-input").value = ""
+
+      update_download()
 
    }
 
@@ -302,7 +330,9 @@ function upload() {
 
 }
 
-function download() {
+function update_download() {
+
+   console.log("Updating list!")
 
    downloadList = {
       "title": "",
@@ -313,9 +343,24 @@ function download() {
 
    let items = document.querySelectorAll(".item")
    let title = document.getElementById("title")
-   console.log(items)
 
    downloadList.title = title.value
+
+   for (let i = 0; i < items.length; i++) {
+
+      let element = items[i]
+
+      let itemName = element.querySelector(".item-text").innerHTML
+      let itemDate = element.querySelector(".item-date").value
+      let itemCheck = element.querySelector(".item-check").checked
+      
+      downloadList.checklist[i] = {
+            "name": itemName,
+            "date": itemDate,
+            "checked": itemCheck
+      }
+      
+   }
 
    items.forEach(element => {
 
@@ -323,17 +368,26 @@ function download() {
       let itemDate = element.querySelector(".item-date").value
       let itemCheck = element.querySelector(".item-check").checked
       
-      downloadList.checklist[itemName] = {
+      downloadList.checklist[element] = {
+            "name": itemName,
             "date": itemDate,
             "checked": itemCheck
       }
 
    });
 
+   save_data("checklist", JSON.stringify(downloadList))
+
+}
+
+function download() {
+
    let a = document.createElement('a')
    a.href = URL.createObjectURL(new Blob([JSON.stringify(downloadList)], {type: "application/json"}))
    a.download = `${title.value}`
    a.click()
+
+   console.log("Downloading list!")
    
    create_toast("Success!", "Your file has been downloaded.")
 
