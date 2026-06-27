@@ -1,0 +1,32 @@
+main, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    width: 50vw;
+    height: 10vh;
+    margin: 1%;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(112, 112, 255);
+    border-radius: 8px;
+    padding: 1vw;
+    margin: 1%;
+}
+
+.buttonheader {
+    margin: 0;
+    color: white;
+}

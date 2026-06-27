@@ -134,8 +134,6 @@ function create_sidebar() {
     sideButtons.appendChild(create_sidebutton("About Me", "/neo/mypage"))
     sideButtons.appendChild(create_sidebutton("Projects", "/neo/"))
     sideButtons.appendChild(create_sidebutton("Experiments", "/neo/"))
-    sideButtons.appendChild(create_sidebutton("Gallery", "/neo/"))
-    sideButtons.appendChild(create_sidebutton("Resources", "/neo/resources"))
     sideButtons.appendChild(create_sidebutton("Cool Pages", "/neo/mypicks"))
     sideButtons.appendChild(create_sidebutton("Guestbook", "/neo/guestbook"))
     sideButtons.appendChild(create_sidebutton("Archive", "/neo/archive"))

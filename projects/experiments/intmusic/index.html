@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Music Test</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="buttons">
+        <div class="button">
+            <h1 class="buttonheader">Ambient + Volume</h1>
+            <input id="ambient" type="range" min="0" max="10" value="10">
+        </div>
+        <div class="button">
+            <h1 class="buttonheader">Base + Volume</h1>
+            <input id="int_base" type="range" min="0" max="10" value="10">
+        </div>
+    </div>
+    <div class="buttons">
+        <div class="button">
+            <h1 class="buttonheader" id="mode_header">IntMode</h1>
+            <input id="int_mode" type="range" min="0" max="2" value="0">
+        </div>
+        <div class="button">
+            <h1 class="buttonheader">Volume</h1>
+            <input id="int_mode_vol" type="range" min="0" max="10" value="0">
+        </div>
+    </div>
+
+    <div class="info">
+        <p>Music created by Media Molecule for use in LittleBigPlanet (2008).</p>
+    </div>
+</body>
+</html>
