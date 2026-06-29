@@ -33,6 +33,7 @@ body {
     position: absolute;
     left: 1vw;
     top: 2vh;
+    user-select: none;
 }
 
 #back_button img {

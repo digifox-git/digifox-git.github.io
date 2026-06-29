@@ -39,8 +39,8 @@ const earthPos = new THREE.Vector3(0, 0, 3.3)
 const moonPos = new THREE.Vector3(0, 0, -3.3)
 
 const mainCamPos = new THREE.Vector3(8, 0, 0)
-const earthCamPos = new THREE.Vector3(4.8, 1, 4.8)
-const moonCamPos = new THREE.Vector3(3, 1, -4.5)
+const earthCamPos = new THREE.Vector3(3.6, 1, -0.6)
+const moonCamPos = new THREE.Vector3(2, 0.7, -0.8)
 
 let earth;
 let earthModel
@@ -66,6 +66,7 @@ function load_planets() {
     loader.load('earth.glb', function (gltf) {
         gltf.scene.position.set(earthPos.x, earthPos.y, earthPos.z)
         gltf.scene.scale.set(0.125, 0.125, 0.125)
+        gltf.scene.rotateY(8.5)
         scene.add(gltf.scene)
         console.log("Model laoded!")
         earth = gltf
@@ -85,14 +86,18 @@ function load_planets() {
             if (currentMenu == "main") {
                 pod_select.play()
                 change_planet(earthCamPos, earthPos, true, "earth", false)
+            } else {
+                return
             }
             currentMenu = "earth"
         })
         earthCollision.addEventListener("mouseover", () => {
             ui_planetSelectorTarget = earthPos
-            ui_planetSelectorScale = new THREE.Vector3(1, 1, 1)
+            ui_planetSelectorScale = new THREE.Vector3(1.05, 1.05, 1.05)
             if (currentMenu == "main") {
                 pod_move.play()
+            } else {
+                return
             }
         }) 
         earthCollision.addEventListener("mouseleave", () => {
@@ -123,6 +128,8 @@ function load_planets() {
             if (currentMenu == "main") {
                 pod_select.play()
                 change_planet(moonCamPos, moonPos, true, "moon", false)
+            } else {
+                return
             }
             currentMenu = "moon"
         })
@@ -167,7 +174,7 @@ scene.add(ui_planetSelector)
 load_planets()
 
 const controls = new OrbitControls(camera, renderer.domElement)
-controls.enableZoom = false
+controls.enableZoom = true
 controls.enableDamping = true
 controls.dampingFactor = 0.05
 controls.rotateSpeed = 0.3
@@ -230,14 +237,46 @@ ui_backButton.addEventListener("click", () => {
     currentMenu = "main"
 })
 
+function planet_visibility() {
+    if (earthModel != undefined && moonModel != undefined) {
+        let lerpSpeed = 0.01
+        switch (currentMenu) {
+            case "earth":
+                earthModel.position.lerp(new THREE.Vector3(earthPos.x, earthPos.y, earthPos.z), lerpSpeed)
+                moonModel.position.lerp(new THREE.Vector3(moonPos.x, moonPos.y, -50), lerpSpeed)
+            break
+            case "moon":
+                earthModel.position.lerp(new THREE.Vector3(moonPos.y, earthPos.y,50), lerpSpeed)
+                moonModel.position.lerp(new THREE.Vector3(moonPos.x, moonPos.y, moonPos.z), lerpSpeed)
+            break
+            case "main":
+                earthModel.position.lerp(new THREE.Vector3(earthPos.x, earthPos.y, earthPos.z), 0.5)
+                moonModel.position.lerp(new THREE.Vector3(moonPos.x, moonPos.y, moonPos.z), 0.5)
+            break
+        }
+        if (earthModel.position.distanceTo(new THREE.Vector3(0, 0, 0)) > 10) {
+            earthModel.visible = false
+        } else {
+            earthModel.visible = true
+        }
+        if (moonModel.position.distanceTo(new THREE.Vector3(0, 0, 0)) > 10) {
+            moonModel.visible = false
+        } else {
+            moonModel.visible = true
+        }
+    }
+}
+
 // Redraw
 function animate(time) {
-    move_camera(cameraPos, 0.1)
-    move_target(cameraTarget, 0.1)
+    move_camera(cameraPos, 0.15)
+    move_target(cameraTarget, 0.15)
     controls.update()
-    renderer.render(scene, camera)
     interactionManager.update()
     planet_selector()
+    planet_visibility()
+    renderer.render(scene, camera)
+    console.log(camera.position)
 }
 
 function planet_selector() {
@@ -252,7 +291,7 @@ function planet_selector() {
 }
 
 function move_camera(pos, speed) {
-    if (camera.position.distanceTo(cameraPos) > 0.01 && animatingCamera == true) {
+    if (camera.position.distanceTo(cameraPos) > 0.015 && animatingCamera == true) {
         camera.position.lerp(pos, speed)
     } else {
         animatingCamera = false
