@@ -131,6 +131,7 @@ function load_levels() {
                     front.applyQuaternion(level.quaternion)
                     ui_levelSelector.lookAt(level)
                     ui_levelSelectorTarget = level.position.clone().add(front.multiplyScalar(0.025))
+                    ui_levelSelector.visible = true
                     ui_levelSelectorScale = new THREE.Vector3(0.09, 0.09, 0.09)
                     if (currentMenu != "main") {
                         play_sound(pod_move)
@@ -141,6 +142,7 @@ function load_levels() {
             }) 
             level.addEventListener("mouseleave", () => {
                 ui_levelSelectorScale = new THREE.Vector3(0.06, 0.06, 0.06)
+                ui_levelSelector.visible = false
             }) 
             scene.add(level)
             interactionManager.add(level)
