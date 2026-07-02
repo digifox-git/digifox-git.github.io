@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Created using Krita: https://krita.org -->
+<svg xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:krita="http://krita.org/namespaces/svg/krita"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    width="123.12pt"
+    height="123.12pt"
+    viewBox="0 0 123.12 123.12">
+<defs/>
+<path id="shape0" transform="translate(7.10708418987065, 8.5078901040413)" fill="#b300ff" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M50.7392 0C88.4622 1.28696 106.2 18.8748 108.006 47.4854C108.962 91.1891 80.3682 106.896 51.5573 105.81C26.8314 104.754 1.83433 90.0407 0.0167698 56.776C-0.551294 24.1411 13.2517 1.35356 50.7392 0" sodipodi:nodetypes="ccccc"/><path id="shape1" transform="matrix(-0.633938593666873 0.77338338452521 -0.77338338452521 -0.633938593666873 94.6192129751275 54.7324922145477)" fill="none" stroke="#b300ff" stroke-width="9.6" stroke-linecap="square" stroke-linejoin="bevel" d="M39.42 55.8L54.18 21.3L0 0" sodipodi:nodetypes="ccc"/><path id="shape2" transform="matrix(-0.633938593666873 0.77338338452521 -0.77338338452521 -0.633938593666873 71.6493393217289 64.2989091611852)" fill="none" stroke="#ffffff" stroke-width="10.08" stroke-linecap="square" stroke-linejoin="round" d="M16.7843 34.35L26.7355 44.1L39.465 28.8586L26.7457 20.3309L27.2276 0L0 31.7663L11.6543 32.01" sodipodi:nodetypes="ccccccc"/><path id="shape01" transform="matrix(-0.633938593666873 0.77338338452521 -0.77338338452521 -0.633938593666873 80.6980988673938 61.2100240142184)" fill="none" stroke="#ffffff" stroke-width="10.08" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2.00160002708435" krita:marker-fill-method="auto" d="M0 19.5047C3.36376 10.0866 7.89854 3.93503 16.9453 0" sodipodi:nodetypes="cc"/><path id="shape02" transform="matrix(-0.633938593666873 0.77338338452521 -0.77338338452521 -0.633938593666873 110.088272964251 57.1562076038885)" fill="none" stroke="#ffffff" stroke-width="10.08" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="2.00160002708435" krita:marker-fill-method="auto" d="M0 36.3339C6.75558 18.7896 15.863 7.33029 34.032 0" sodipodi:nodetypes="cc"/>
+</svg>

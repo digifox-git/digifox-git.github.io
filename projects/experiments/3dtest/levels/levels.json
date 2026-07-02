@@ -1,0 +1,28 @@
+{
+    "0": {
+        "name": "Test Level",
+        "author": "digifox",
+        "description": "A test environment for digifox.space.",
+        "icon": "assets/badges/textures/default_badge.png",
+        "coordinates": {
+            "x": 1.407,
+            "y": -0.1,
+            "z": 1.272
+        },
+        "scale": 0.2,
+        "type": "earth"
+    },
+    "1": {
+        "name": "Test Level 2",
+        "author": "digifox",
+        "description": "GLARB!! Testing yadayada. Please rate 5 star. ",
+        "icon": "assets/badges/textures/default_badge.png",
+        "coordinates": {
+            "x": 1.223,
+            "y": 1.381,
+            "z": 4.9
+        },
+        "scale": 0.2,
+        "type": "earth"
+    }
+}

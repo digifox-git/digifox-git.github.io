@@ -1,3 +1,14 @@
+@font-face {
+  font-family: Eigerdals;
+  src: url(assets/fonts/Eigerdals\ Heavy.OTF);
+}
+
+@font-face {
+  font-family: Crikey;
+  src: url(assets/fonts/Crikey\ Squats\ Regular.ttf);
+}
+
+
 body {
     margin: 0;
     padding: 0;
@@ -44,6 +55,27 @@ body {
     transform: scale(1.1);
 }
 
+#volume_button {
+    display: none;
+    flex-direction: row;
+    position: absolute;
+    right: 1vw;
+    bottom: 2vh;
+    user-select: none;
+}
+
+#volume_button img {
+    width: 6vw;
+}
+
+#volume_button img:hover {
+    transform: scale(1.1);
+}
+
+#volume_slider {
+  display: none;
+}
+
 .bouncein {
     animation: bouncein 0.6s ease-in-out 0s normal forwards;
 }
@@ -54,6 +86,14 @@ body {
 
 .fade {
     animation: fade 1s ease-in-out 0s normal forwards;
+}
+
+.growtoright {
+  animation: growtoright 0.15s ease-out 0s normal forwards;
+}
+
+.shrinktoleft {
+  animation: shrinktoleft 0.15s ease-out 0s normal forwards;
 }
 
 #loading {
@@ -71,6 +111,162 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 4vw;
     user-select: none;
+}
+
+#level_info {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  width: 50vw;
+  height: 92vh;
+  right: 2vw;
+  top: 1vh;
+}
+
+#level_icon {
+  width: 5vw;
+  height: 5vw;
+  padding: 1%;
+  user-select: none;
+}
+
+#level_icon img {
+  position: absolute;
+  border-radius: 100%;
+  width: 5vw;
+}
+
+#level_header {
+  display: flex;
+  width: 100%;
+  justify-content: left;
+  align-items: center;
+}
+
+#level_name {
+  font-size: 2vw;
+  margin: 0;
+  font-family: Eigerdals;
+  user-select: none;
+}
+
+#level_auth {
+  font-size: 1.25vw;
+  margin: 0;
+  margin-bottom: 0.5vh;
+  font-family: Crikey;
+  user-select: none;
+}
+
+#level_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(assets/level_body.svg);
+  background-size: 100% 100%;
+  margin-top: 1%;
+  padding: 3%;
+  height: 80%;
+  font-size: 1.1vw;
+  user-select: none;
+}
+
+#level_desc {
+  width: 90%;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#level_play {
+  height: 15%;
+  border: none;
+  background: none;
+  background-size: 100% 100%;
+  width: 40%;
+  font-size: 3.6vw;
+  font-family: Eigerdals;
+  transition: all ease-out 0.05s;
+  background-image: url(assets/play_button.svg);
+}
+
+#level_play:hover {
+  transform: scale(1.2);
+  transition: all all ease-out 0.05s;
+  filter: invert()
+}
+
+.dotted_spacer {
+  width: 90%;
+  border: none;
+  border-bottom: 1px dashed white;
+}
+
+.solid_spacer {
+  width: 100%;
+  border-bottom: 1px solid white;
+}
+
+#header-body_spacer {
+  width: 91%;
+}
+
+#news_bar {
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  height: 4vh;
+  margin-top: 0;
+  border-radius: 0vw;
+  background: #B300FF;
+  background: radial-gradient(circle,rgba(179, 0, 255, 0.7) 0%, rgba(187, 0, 255, 0.5) 100%);
+  border: solid #B300FF;
+  border-width: 0px 0px 1px 0px;
+}
+
+#news_bar img {
+  margin-top: 0.5vh;
+  height: 90%;
+  user-select: none;
+}
+
+#news_reel {
+  display: flex;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+  color: white;
+  overflow: hidden;
+  width: 89vw;
+  height: 70%;
+  border: rgb(179, 0, 255) 2px inset;
+  white-space: nowrap;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+#news_reel div {
+  display: inline-block;
+  padding-left: 100%;
+}
+
+.marquee {
+  animation: news_marquee 30s linear infinite;
+}
+
+.news_intro{
+  animation: news_intro 0.25s ease-out forwards;
+}
+
+.news_outro{
+  animation: news_outro 0.1s linear forwards;
+}
+
+#news_reel span {
+  padding-left: 15px
 }
 
 @keyframes bouncein {
@@ -111,6 +307,28 @@ body {
   }
 }
 
+@keyframes growtoright {
+    0% {
+    transform: translate(0%, 0%) rotate(0deg) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shrinktoleft {
+    0% {
+    transform: translate(0%, 0%) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(0deg) scale(0);
+    opacity: 1;
+  }
+}
+
 @keyframes fade {
     0% {
     opacity: 1;
@@ -118,4 +336,31 @@ body {
   100% {
     opacity: 0;
   }
+}
+
+@keyframes news_marquee {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(-100%, 0);
+    }
+}
+
+@keyframes news_intro {
+    0% {
+      transform: translate(0, -100%);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+}
+
+@keyframes news_outro {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(0, -100%);
+    }
 }

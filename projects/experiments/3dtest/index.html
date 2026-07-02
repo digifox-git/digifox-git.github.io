@@ -17,10 +17,41 @@
     </script>
     <script type="module" src="main.js"></script>
     <script type="module" src="music.js"></script>
+    <script type="module" src="news.js"></script>
 </head>
 <body>
     <div id="back_button">
         <img draggable="false" src="assets/arrow_back.svg">
+    </div>
+    <!-- <div id="level_publisher">
+        <p class="dev_help_header">Level Publisher</p>
+        <input id="publish_level_name" type="text" placeholder="Level Name">
+        <input id="publish_level_auth" type="text" placeholder="Author">
+        <input id="publish_level_desc" type="text" placeholder="Description">
+        <input id="publish_level_icon" type="text" placeholder="Icon Path">
+        <button id="level_publish">Publish</button>
+    </div> -->
+    <div id="level_info">
+        <div id="level_header">
+            <div id="level_icon">
+                <img id="level_icon_image" src="assets/badges/textures/default_badge.png">
+                <img id="level_icon_overlay" src="assets/circleOverlay.png">
+            </div>
+            <div id="level_header_text">
+                <p id="level_name">My Level</p>
+                <p id="level_auth">By Author</p>
+            </div>
+        </div>
+        <hr class="solid_spacer" id="header-body_spacer">
+        <div id="level_body">
+            <button id="level_play">Play!</button>
+            <hr class="dotted_spacer">
+            <p id="level_desc">A Description of My Level</p>
+        </div>
+    </div>
+    <div id="news_bar">
+        <img src="assets/logo.png">
+        <div id="news_reel"><div id="news_reel_marquee"><span id="news_reel_text">If you are reading this, the news did not load correctly!</span></div></div>
     </div>
     <div id="loading"></div>
 </body>

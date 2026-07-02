@@ -1,0 +1,17 @@
+#level_publisher {
+    position: absolute;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 20vh;
+    top: 2vh;
+    right: 1vw;
+}
+
+.dev_help_header {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
