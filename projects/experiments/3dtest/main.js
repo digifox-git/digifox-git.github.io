@@ -129,6 +129,7 @@ function load_levels() {
                     // Get local forward vector
                     const front = new THREE.Vector3(0, 0, -1)
                     front.applyQuaternion(level.quaternion)
+
                     ui_levelSelector.lookAt(level)
                     ui_levelSelectorTarget = level.position.clone().add(front.multiplyScalar(0.025))
                     ui_levelSelector.visible = true
@@ -141,8 +142,8 @@ function load_levels() {
                 }
             }) 
             level.addEventListener("mouseleave", () => {
-                ui_levelSelectorScale = new THREE.Vector3(0.06, 0.06, 0.06)
                 ui_levelSelector.visible = false
+                ui_levelSelectorScale = new THREE.Vector3(0.06, 0.06, 0.06)
             }) 
             scene.add(level)
             interactionManager.add(level)
@@ -543,12 +544,6 @@ function selectors() {
     }
     ui_planetSelector.position.lerp(ui_planetSelectorTarget, 0.3)
     ui_planetSelector.scale.lerp(ui_planetSelectorScale, 0.3)
-
-    if (currentMenu != "main") {
-        ui_levelSelector.visible = true
-    } else {
-        ui_levelSelector.visible = false
-    }
     ui_levelSelector.position.set(ui_levelSelectorTarget.x, ui_levelSelectorTarget.y, ui_levelSelectorTarget.z)
     ui_levelSelector.scale.lerp(ui_levelSelectorScale, 0.3)
 }
