@@ -2,5 +2,9 @@
     "0": {
         "date": "July 1, 2026",
         "content": "Welcome to digifox.space! There is news that will go here."
+    },
+    "1": {
+        "date": "July 2, 2026",
+        "content": "Level functionality! To enter a level, press the big Play button that appears when selecting a level."
     }
 }

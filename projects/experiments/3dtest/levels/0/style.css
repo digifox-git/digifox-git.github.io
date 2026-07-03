@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+}
+
+#loading {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+}
+
+@keyframes fade {
+    0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

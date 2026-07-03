@@ -1,0 +1,12 @@
+.fade_loading {
+    animation: fade_loading 0.25s linear 0s normal forwards;
+}
+
+@keyframes fade_loading {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

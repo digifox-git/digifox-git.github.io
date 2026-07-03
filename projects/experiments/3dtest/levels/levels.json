@@ -1,26 +1,13 @@
 {
     "0": {
-        "name": "Test Level",
+        "name": "The Amazing Adventure",
         "author": "digifox",
-        "description": "A test environment for digifox.space.",
+        "description": "A test environment for digifox.space. Explore this radical new world in a never-before-seen format! Spin 2 win while evading dangerous and gorgeous obstacles. ZAP! SLAM! CCCRUNCH!!! There are a mere taste of the horrifying sounds that play when being attacked by some of this game's many enemies and objects. LittleBigWorld. Big World. Yes I know. I know. YYYEAYAHAH!!!!!!!!!!!!!!!!!!!",
         "icon": "assets/badges/textures/default_badge.png",
         "coordinates": {
             "x": 1.407,
             "y": -0.1,
             "z": 1.272
-        },
-        "scale": 0.2,
-        "type": "earth"
-    },
-    "1": {
-        "name": "Test Level 2",
-        "author": "digifox",
-        "description": "GLARB!! Testing yadayada. Please rate 5 star. ",
-        "icon": "assets/badges/textures/default_badge.png",
-        "coordinates": {
-            "x": 1.223,
-            "y": 1.381,
-            "z": 4.9
         },
         "scale": 0.2,
         "type": "earth"

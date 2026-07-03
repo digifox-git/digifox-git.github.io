@@ -72,14 +72,22 @@ function update_int_music(track) {
         case "base":
             earth_gain.gain.linearRampToValueAtTime(0, currentTime + 1)
             moon_gain.gain.linearRampToValueAtTime(0, currentTime + 1)
+            base_gain.gain.linearRampToValueAtTime(1, currentTime + 1)
         break
         case "earth":
             earth_gain.gain.linearRampToValueAtTime(1, currentTime + 1)
             moon_gain.gain.linearRampToValueAtTime(0, currentTime + 1)
+            base_gain.gain.linearRampToValueAtTime(1, currentTime + 1)
         break
         case "moon":
             earth_gain.gain.linearRampToValueAtTime(0, currentTime + 1)
             moon_gain.gain.linearRampToValueAtTime(1, currentTime + 1)
+            base_gain.gain.linearRampToValueAtTime(1, currentTime + 1)
+        break
+        case "none":
+            earth_gain.gain.linearRampToValueAtTime(0, currentTime + 1)
+            moon_gain.gain.linearRampToValueAtTime(0, currentTime + 1)
+            base_gain.gain.linearRampToValueAtTime(0, currentTime + 1)
         break
     }
 }

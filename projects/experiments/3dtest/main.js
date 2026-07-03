@@ -7,6 +7,10 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js'
 import { update_int_music, start_tracks } from './music.js';
 import { toggle_news } from './news.js'
 import { InteractionManager } from 'threeinteractive'
+import { check_path } from './assets/javascript/helpers.js'
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
+import { BokehPass } from 'three/examples/jsm/postprocessing/BokehPass.js'
 
 // Set up scene and camera
 const scene = new THREE.Scene()
@@ -18,8 +22,11 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 // Create global lighting
-const hemiLight = new THREE.HemisphereLight(0xffffff,  0xffffff, 1.0)
+
+const hemiLight = new THREE.HemisphereLight(0xffffff,  0xffffff, 10.0)
 scene.add(hemiLight)
+
+//
 
 // Create sound
 let pod_move = new Audio('assets/pod_cursor_move.wav')
@@ -28,6 +35,8 @@ let pod_select = new Audio('assets/pod_select.wav')
 pod_select.volume = 0.5
 let pod_error = new Audio('assets/pod_error_01.wav')
 pod_error.volume = 0.3
+let leave_level = new Audio('assets/audio/re-enter_pod_01.wav')
+leave_level.volume = 0.5
 
 function play_sound(name) {
     name.pause()
@@ -64,10 +73,12 @@ const loadingManager = new THREE.LoadingManager()
 
 loadingManager.onLoad = function() {
     let loadingScreen = document.getElementById("loading")
+    let spinner = document.getElementById("pulser")
     console.log("Finished loading THREE.js scene!")
     loadingScreen.classList.add("fade")
     change_planet(mainCamPos, basePos, false, "main", true)
     toggle_news(true)
+    spinner.remove()
     loadingScreen.addEventListener("animationend", () => {
         loadingScreen.remove()
     })
@@ -112,9 +123,11 @@ function load_levels() {
                     // Get local forward vector
                     const front = new THREE.Vector3(0, 0, -1)
                     front.applyQuaternion(level.quaternion)
+                    console.log(level)
 
                     const badgeTarget = level.position.clone().add(right.multiplyScalar(1))
                     const badgeCamPos = level.position.clone().add(front.multiplyScalar(2))
+                    console.log(badgeCamPos)
 
                     play_sound(pod_select)
                     set_level_info(level.JSONkey)
@@ -317,6 +330,10 @@ camera.position.lerp(cameraPos, 1)
 const pmrem = new THREE.PMREMGenerator(renderer)
 const env = new RoomEnvironment()
 
+scene.environment = new THREE.Color(0xD9DCFF)
+renderer.toneMappingExposure = 1
+scene.environmentIntensity = 0.8
+
 scene.environment = pmrem.fromScene(env).texture
 
 let animatingCamera = false
@@ -375,6 +392,7 @@ function toggle_back_button(bool) {
 // })
 
 let level_info = document.getElementById("level_info")
+let currentLevelID
 
 function set_level_info(id) {
     let name = document.getElementById("level_name")
@@ -386,6 +404,8 @@ function set_level_info(id) {
     auth.innerHTML = `By ${levelsJSON[id].author}`
     desc.innerHTML = levelsJSON[id].description
     icon.src = levelsJSON[id].icon
+
+    currentLevelID = id
 }
 
 function toggle_level_info(bool) {
@@ -460,8 +480,21 @@ ui_playbutton.addEventListener("mouseover", () => {
     play_sound(pod_move)
 })
 
-ui_playbutton.addEventListener("click", () => {
-    play_sound(pod_error)
+ui_playbutton.addEventListener("click", async () => {
+    if (await check_path(`./levels/${currentLevelID}`) == true) {
+        play_sound(pod_select)
+        play_sound(leave_level)
+        update_int_music("none")
+        const fade = document.createElement('div')
+        fade.id = "fade"
+        document.body.appendChild(fade)
+        fade.addEventListener("animationend", () => {
+            location.href = `./levels/${currentLevelID}/index.html?id=${currentLevelID}`
+        })
+    } else {
+        play_sound(pod_error)
+    }
+    console.log(`./levels/${currentLevelID}`)
 })
 
 function planet_visibility() {
@@ -546,10 +579,6 @@ function selectors() {
     ui_planetSelector.scale.lerp(ui_planetSelectorScale, 0.3)
     ui_levelSelector.position.set(ui_levelSelectorTarget.x, ui_levelSelectorTarget.y, ui_levelSelectorTarget.z)
     ui_levelSelector.scale.lerp(ui_levelSelectorScale, 0.3)
-}
-
-function level_selector() {
-
 }
 
 function move_camera(pos, speed) {
