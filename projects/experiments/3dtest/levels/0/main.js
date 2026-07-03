@@ -15,15 +15,19 @@ import { InteractionManager } from 'threeinteractive'
 // Tracks laoding progress
 const loadingManager = new THREE.LoadingManager()
 
-loadingManager.onLoad = function() {
-    let loadingScreen = document.getElementById("loading")
-    console.log("Finished loading THREE.js scene!")
-    loadingScreen.classList.add("fade_loading")
-    loadingScreen.addEventListener("animationend", () => {
-        create_pause_button()
-        loadingScreen.remove()
-    })
-}
+document.addEventListener("DOMContentLoaded", () => {
+    loadingManager.onLoad = function() {
+        let loadingScreen = document.getElementById("loading")
+        console.log("Finished loading THREE.js scene!")
+        loadingScreen.classList.add("fade_loading")
+        play_sound(level_load)
+        loadingScreen.addEventListener("animationend", () => {
+            create_pause_button()
+            loadingScreen.remove()
+        })
+    }
+}) 
+
 
 // Set up scene and camera
 const scene = new THREE.Scene()
@@ -69,6 +73,8 @@ let pod_select = new Audio('../../assets/pod_select.wav')
 pod_select.volume = 0.5
 let pod_error = new Audio('../../assets/pod_error_01.wav')
 pod_error.volume = 0.3
+let level_load = new Audio('../../assets/audio/level_load_01.wav')
+level_load.volume = 0.3
 function play_sound(name) {
     name.pause()
     name.currentTime = 0

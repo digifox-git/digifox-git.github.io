@@ -1,5 +1,5 @@
 .fade_loading {
-    animation: fade_loading 0.25s linear 0s normal forwards;
+    animation: fade_loading 0.5s linear 0s normal forwards;
 }
 
 @keyframes fade_loading {

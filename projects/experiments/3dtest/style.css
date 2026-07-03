@@ -284,14 +284,14 @@ body {
 }
 
 #spinner {
-  animation: spin 1.75s linear 0s normal infinite;
+  width: 8vw;
 }
 
 #pulser {
   position: absolute;
-  width: 4vw;
-  right: 2vw;
-  bottom: 3vh;
+  width: 8vw;
+  right: 1vw;
+  bottom: 1vh;
   animation: pulsate 1.75s ease-in-out 0s normal infinite;
 }
 
@@ -408,6 +408,13 @@ body {
   50% { transform: rotate(-180deg);}
   100% { transform: rotate(-360deg);}
 }
+
+@keyframes spin3d {
+  0% { transform: rotateY(0deg);}
+  50% { transform: rotateY(-360deg);}
+  100% { transform: rotateY(0deg);}
+}
+
 
 @keyframes pulsate {
   0% { transform: scale(0.9);}

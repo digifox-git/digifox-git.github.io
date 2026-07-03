@@ -8,16 +8,16 @@ let currentNews = 1 // Set current news here
 newsReelText.innerHTML = `(Updated ${newsJSON[currentNews].date}) ${newsJSON[currentNews].content}`
 console.log("Loaded News Marquee")
 
-newsReelMarquee.classList.add('marquee')
-
 function toggle_news(bool) {
     if (bool == true) {
         newsReel.style.display = "flex"
         newsReel.classList.remove("news_outro")
         newsReel.classList.add("news_intro")
+        newsReelMarquee.classList.add('marquee')
     } else {
         newsReel.classList.remove("news_intro")
         newsReel.classList.add("news_outro")
+        newsReelMarquee.classList.remove('marquee')
         newsReel.addEventListener("animationend", () => {
             if (newsReel.querySelector(".news_outro")) {
                 newsReel.style.display = "none"

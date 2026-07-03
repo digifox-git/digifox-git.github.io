@@ -33,6 +33,8 @@ let pod_move = new Audio('assets/pod_cursor_move.wav')
 pod_move.volume = 0.5
 let pod_select = new Audio('assets/pod_select.wav')
 pod_select.volume = 0.5
+let pod_back = new Audio('assets/audio/pod_back.wav')
+pod_back.volume = 0.5
 let pod_error = new Audio('assets/pod_error_01.wav')
 pod_error.volume = 0.3
 let leave_level = new Audio('assets/audio/re-enter_pod_01.wav')
@@ -77,7 +79,6 @@ loadingManager.onLoad = function() {
     console.log("Finished loading THREE.js scene!")
     loadingScreen.classList.add("fade")
     change_planet(mainCamPos, basePos, false, "main", true)
-    toggle_news(true)
     spinner.remove()
     loadingScreen.addEventListener("animationend", () => {
         loadingScreen.remove()
@@ -449,7 +450,7 @@ ui_backButton.addEventListener("mouseover", () => {
 })
 
 ui_backButton.addEventListener("click", () => {
-    play_sound(pod_select)
+    play_sound(pod_back)
     toggle_camera_controls(false)
     switch (currentMenu) {
         case "earth":
