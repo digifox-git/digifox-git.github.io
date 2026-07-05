@@ -292,7 +292,7 @@ body {
   width: 8vw;
   right: 1vw;
   bottom: 1vh;
-  animation: pulsate 1.75s ease-in-out 0s normal infinite;
+  /* animation: pulsate 1.75s ease-in-out 0s normal infinite; */
 }
 
 @keyframes bouncein {

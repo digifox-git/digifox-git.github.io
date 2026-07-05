@@ -8,9 +8,7 @@ import { update_int_music, start_tracks } from './music.js';
 import { toggle_news } from './news.js'
 import { InteractionManager } from 'threeinteractive'
 import { check_path } from './assets/javascript/helpers.js'
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
-import { BokehPass } from 'three/examples/jsm/postprocessing/BokehPass.js'
+import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js'
 
 // Set up scene and camera
 const scene = new THREE.Scene()
@@ -98,21 +96,39 @@ function load_levels() {
     let levelsKEYS = Object.keys(levelsJSON)
     console.log(`Found ${levelsKEYS.length} levels to load.`)
 
-    loader.load('badge.glb', function(gltf) {
+    loader.load('assets/models/level_badge.glb', function(gltf) {
 
         for (let i = 0; i < levelsKEYS.length; i++) {
-            let level = gltf.scene.clone(true)
+            let level = SkeletonUtils.clone(gltf.scene) // Clone with skeleton utils to copy armature to every clone
 
             console.log(`Loading level "${levelsJSON[i].name}"`)
             level.position.set(levelsJSON[i].coordinates.x, levelsJSON[i].coordinates.y, levelsJSON[i].coordinates.z)
             level.scale.set(levelsJSON[i].scale, levelsJSON[i].scale, levelsJSON[i].scale)
             level.lookAt(earthPos)
             level.JSONkey = i
+
             if (levelsJSON[i].type == "earth") {
                 level.name = "level_earth"
             } else if (levelsJSON[i].type == "moon") {
                 level.name = "level_moon"
             }
+
+            // Load desired material texture
+            level.traverse(child => {
+                console.log(child)
+                if (child.isMesh && child.material.name == "badge_entrance_circular_zip") {
+                    child.material = child.material.clone() // Prevents material from being overwritten.
+                                                            // (zipper and badge icon material share same geometry)
+                }
+                if (child.isMesh && child.material.name == "badge_zip_entrance_cloth") {
+                    child.material = child.material.clone()
+                    const texture = textureLoader.load(levelsJSON[i].icon, () => {
+                        texture.flipY = false // Prevent texture from appearing upside down
+                        child.material.map = texture // Map texure
+                    })
+                }
+            })
+
             level.addEventListener("click", () => {
                 if (currentMenu != "main" && currentSubmenu == "none") {
                     lastCamPos = camera.position.clone()
@@ -138,16 +154,10 @@ function load_levels() {
                     currentSubmenu = "level"
                 }
             })
-            level.addEventListener("mouseover", () => {
+            level.addEventListener("mouseenter", () => {
                 if (currentMenu != "main" && currentSubmenu == "none") {
-                    // Get local forward vector
-                    const front = new THREE.Vector3(0, 0, -1)
-                    front.applyQuaternion(level.quaternion)
-
-                    ui_levelSelector.lookAt(level)
-                    ui_levelSelectorTarget = level.position.clone().add(front.multiplyScalar(0.025))
-                    ui_levelSelector.visible = true
-                    ui_levelSelectorScale = new THREE.Vector3(0.09, 0.09, 0.09)
+                    hover_level(level)
+                    
                     if (currentMenu != "main") {
                         play_sound(pod_move)
                     } else {
@@ -157,12 +167,23 @@ function load_levels() {
             }) 
             level.addEventListener("mouseleave", () => {
                 ui_levelSelector.visible = false
-                ui_levelSelectorScale = new THREE.Vector3(0.06, 0.06, 0.06)
+                ui_levelSelectorScale = new THREE.Vector3(0, 0, 0)
             }) 
             scene.add(level)
             interactionManager.add(level)
+            
         }
     })
+}
+
+function hover_level(level) {
+    // Get local forward vector
+    const front = new THREE.Vector3(0, 0, -1)
+    front.applyQuaternion(level.quaternion)
+    ui_levelSelector.lookAt(level)
+    ui_levelSelectorTarget = level.position.clone().add(front.multiplyScalar(0.025))
+    ui_levelSelectorScale = new THREE.Vector3(0.09, 0.09, 0.09)
+    ui_levelSelector.visible = true
 }
 
 // Loads the models and collision shapes for the planets
@@ -189,6 +210,7 @@ function load_planets() {
         earthCollision.position.copy(earthModel.position)
         interactionManager.add(earthCollision)
 
+        // LEAVE COMMENTED BEFORE PUSH - Helps get coordinates on planet for level placement. Laggy!
         // interactionManager.add(earthModel)
         // const raycaster = new THREE.Raycaster()
         // const mouse = new THREE.Vector2()

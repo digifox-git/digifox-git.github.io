@@ -3,13 +3,26 @@
         "name": "The Amazing Adventure",
         "author": "digifox",
         "description": "A test environment for digifox.space. Explore this radical new world in a never-before-seen format! Spin 2 win while evading dangerous and gorgeous obstacles. ZAP! SLAM! CCCRUNCH!!! There are a mere taste of the horrifying sounds that play when being attacked by some of this game's many enemies and objects. LittleBigWorld. Big World. Yes I know. I know. YYYEAYAHAH!!!!!!!!!!!!!!!!!!!",
-        "icon": "assets/badges/textures/default_badge.png",
+        "icon": "assets/images/badges/default_badge.png",
         "coordinates": {
             "x": 1.407,
             "y": -0.1,
             "z": 1.272
         },
-        "scale": 0.2,
+        "scale": 0.1,
+        "type": "earth"
+    },
+    "1": {
+        "name": "Cool Pages",
+        "author": "digifox",
+        "description": "Find links to some cool sites I find useful or fun! Content not made by me.",
+        "icon": "assets/images/badges/stantoncomet.png",
+        "coordinates": {
+            "x": 0.37,
+            "y": 1.85,
+            "z": 1.76
+        },
+        "scale": 0.1,
         "type": "earth"
     }
 }
