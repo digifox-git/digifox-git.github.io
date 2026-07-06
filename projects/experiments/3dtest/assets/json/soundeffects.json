@@ -1,0 +1,7 @@
+{
+    "pod_move": "./assets/audio/pod_cursor_move.wav",
+    "pod_select": "./assets/audio/pod_select.wav",
+    "pod_back": "./assets/audio/pod_back.wav",
+    "pod_error": "./assets/audio/pod_error_01.wav",
+    "leave_level": "./assets/audio/re-enter_pod_01.wav"
+}

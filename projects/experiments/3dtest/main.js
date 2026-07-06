@@ -9,45 +9,44 @@ import { toggle_news } from './news.js'
 import { InteractionManager } from 'threeinteractive'
 import { check_path } from './assets/javascript/helpers.js'
 import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js'
+import { play_sound } from './assets/javascript/helpers.js';
 
-// Set up scene and camera
-const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000)
-
-// Create renderer
-const renderer = new THREE.WebGLRenderer()
-renderer.setSize(window.innerWidth, window.innerHeight)
-document.body.appendChild(renderer.domElement)
-
-// Create global lighting
-
-const hemiLight = new THREE.HemisphereLight(0xffffff,  0xffffff, 10.0)
-scene.add(hemiLight)
-
-//
-
-// Create sound
-let pod_move = new Audio('assets/pod_cursor_move.wav')
-pod_move.volume = 0.5
-let pod_select = new Audio('assets/pod_select.wav')
-pod_select.volume = 0.5
-let pod_back = new Audio('assets/audio/pod_back.wav')
-pod_back.volume = 0.5
-let pod_error = new Audio('assets/pod_error_01.wav')
-pod_error.volume = 0.3
-let leave_level = new Audio('assets/audio/re-enter_pod_01.wav')
-leave_level.volume = 0.5
-
-function play_sound(name) {
-    name.pause()
-    name.currentTime = 0
-    name.play()
+// Tracks all loaders with loadingManager passed into them and acts when
+// All things in the loaders are completed. Woop woop
+const loadingManager = new THREE.LoadingManager()
+loadingManager.onLoad = function() {
+    let loadingScreen = document.getElementById("loading") // Loading screen
+    let spinner = document.getElementById("pulser") // Loading screen progress image
+    console.log("Finished loading THREE.js scene!")
+    loadingScreen.classList.add("fade") // Fade loading screen
+    spinner.remove() // Destroy loading screen progress image
+    change_planet(mainCamPos, basePos, false, "main", true) // Set camera
+    loadingScreen.addEventListener("animationend", () => {
+        loadingScreen.remove() // Remove loading screen from DOM when it finishes fading
+    })
+    start_tracks() // Start music
 }
 
-// Variable declaration
+
+// Basic 3D environment setup. Try to guess what the first 3 things do //
+const scene = new THREE.Scene() // Creates the environment that things can be placed in
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000)
+
+const renderer = new THREE.WebGLRenderer()
+renderer.setSize(window.innerWidth, window.innerHeight) // Use whole size of website to show environment
+document.body.appendChild(renderer.domElement)
+
+const pmrem = new THREE.PMREMGenerator(renderer) // Generates a Prefiltered, Mipmapped Radiance Environment Map
+                                                 // (Needed so models will be lit up)
+const roomEnvironment = new RoomEnvironment() // Template lighting for PMREM 
+scene.environment = pmrem.fromScene(roomEnvironment).texture // Sets scene environment to generated one. Essential planet lighting!
+// --- //
+
+// Variable declaration //
 let currentMenu = "main"
 let currentSubmenu = "none"
 
+// This could be improved. I will think about it later.
 const basePos = new THREE.Vector3(0, 0, 0)
 const earthPos = new THREE.Vector3(0, 0, 3.3)
 const moonPos = new THREE.Vector3(0, 0, -3.3)
@@ -57,9 +56,9 @@ const earthCamPos = new THREE.Vector3(3.6, 1, -0.6)
 const moonCamPos = new THREE.Vector3(2, 0.7, -0.8)
 let lastCamPos = new THREE.Vector3()
 
-let earth;
+let earth; // No use currently, but it's nice to have?
 let earthModel
-let moon;
+let moon; // No use currently, but it's nice to have?
 let moonModel
 
 let ui_planetSelectorTarget = earthPos
@@ -67,46 +66,55 @@ let ui_planetSelectorScale = new THREE.Vector3(0, 0, 0)
 
 let ui_levelSelectorTarget = earthPos
 let ui_levelSelectorScale = new THREE.Vector3(0, 0, 0)
-//
+// --- //
 
-const loadingManager = new THREE.LoadingManager()
+// Loader creation //
+const textureLoader = new THREE.TextureLoader(loadingManager)
 
-loadingManager.onLoad = function() {
-    let loadingScreen = document.getElementById("loading")
-    let spinner = document.getElementById("pulser")
-    console.log("Finished loading THREE.js scene!")
-    loadingScreen.classList.add("fade")
-    change_planet(mainCamPos, basePos, false, "main", true)
-    spinner.remove()
-    loadingScreen.addEventListener("animationend", () => {
-        loadingScreen.remove()
-    })
-    start_tracks()
-}
+const modelLoader = new GLTFLoader(loadingManager)
+// --- //
 
-const loader = new GLTFLoader(loadingManager)
-
+// Models added to the interactionManager can be interacted with
+// Using the mouse. Possible with base THREE.js but I like not having
+// all the joy in my live sucked out of me with a THREE.js-shaped straw.
 const interactionManager = new InteractionManager(
     renderer,
     camera,
     renderer.domElement
 )
 
+// Not universal but is cleaner
+function load_texture(path) {
+    let texture = textureLoader.load(path)
+    return texture
+}
+
+// Sets the background image
+const bgTexture = load_texture('space.jpg')
+bgTexture.colorSpace = THREE.SRGBColorSpace
+scene.background = bgTexture
+
 function load_levels() {
     let levelsKEYS = Object.keys(levelsJSON)
     console.log(`Found ${levelsKEYS.length} levels to load.`)
 
-    loader.load('assets/models/level_badge.glb', function(gltf) {
+    modelLoader.load('assets/models/level_badge.glb', function(gltf) {
 
         for (let i = 0; i < levelsKEYS.length; i++) {
-            let level = SkeletonUtils.clone(gltf.scene) // Clone with skeleton utils to copy armature to every clone
+            let level = SkeletonUtils.clone(gltf.scene) // Clone with SkeletonUtils to copy armature to every clone
+                                                        // Position and scale will break with gltf.scene.clone()
+                                                        // Because it does not copy the armature
 
             console.log(`Loading level "${levelsJSON[i].name}"`)
+
+            // Set paramaters from JSON
             level.position.set(levelsJSON[i].coordinates.x, levelsJSON[i].coordinates.y, levelsJSON[i].coordinates.z)
             level.scale.set(levelsJSON[i].scale, levelsJSON[i].scale, levelsJSON[i].scale)
-            level.lookAt(earthPos)
-            level.JSONkey = i
 
+            level.lookAt(earthPos)
+            level.JSONkey = i // Makes it easier to reference specific level later
+
+            // Internal names for potiential future use - Not currently used for anything
             if (levelsJSON[i].type == "earth") {
                 level.name = "level_earth"
             } else if (levelsJSON[i].type == "moon") {
@@ -115,7 +123,6 @@ function load_levels() {
 
             // Load desired material texture
             level.traverse(child => {
-                console.log(child)
                 if (child.isMesh && child.material.name == "badge_entrance_circular_zip") {
                     child.material = child.material.clone() // Prevents material from being overwritten.
                                                             // (zipper and badge icon material share same geometry)
@@ -133,20 +140,21 @@ function load_levels() {
                 if (currentMenu != "main" && currentSubmenu == "none") {
                     lastCamPos = camera.position.clone()
 
-                    // Get local right vector
+                    // Get local forward and right vectors of level badge so camera can be positioned //
+                    // relative to level badge position //
                     const right = new THREE.Vector3(-1, 0, 0)
                     right.applyQuaternion(level.quaternion)
 
-                    // Get local forward vector
                     const front = new THREE.Vector3(0, 0, -1)
                     front.applyQuaternion(level.quaternion)
-                    console.log(level)
+                    // --- //
 
+                    // multiplyScalar to adjust camera position when badge is clicked //
                     const badgeTarget = level.position.clone().add(right.multiplyScalar(1))
                     const badgeCamPos = level.position.clone().add(front.multiplyScalar(2))
-                    console.log(badgeCamPos)
+                    // --- //
 
-                    play_sound(pod_select)
+                    play_sound("pod_select", 0.5)
                     set_level_info(level.JSONkey)
                     toggle_level_info(true)
                     change_planet(badgeCamPos, badgeTarget, true, levelsJSON[i].type, true)
@@ -154,52 +162,42 @@ function load_levels() {
                     currentSubmenu = "level"
                 }
             })
-            level.addEventListener("mouseenter", () => {
+            level.addEventListener("mouseenter", () => { // Move ui_levelSelector to hovered planet
                 if (currentMenu != "main" && currentSubmenu == "none") {
                     hover_level(level)
                     
                     if (currentMenu != "main") {
-                        play_sound(pod_move)
-                    } else {
-                        return
+                        play_sound("pod_move", 0.5)
                     }
                 }
             }) 
-            level.addEventListener("mouseleave", () => {
+            level.addEventListener("mouseleave", () => { // Hide ui_levelSelector on unhover
                 ui_levelSelector.visible = false
                 ui_levelSelectorScale = new THREE.Vector3(0, 0, 0)
             }) 
-            scene.add(level)
-            interactionManager.add(level)
+            scene.add(level) // Add level to scene
+            interactionManager.add(level) // Make model interactable
             
         }
     })
 }
 
-function hover_level(level) {
-    // Get local forward vector
-    const front = new THREE.Vector3(0, 0, -1)
-    front.applyQuaternion(level.quaternion)
-    ui_levelSelector.lookAt(level)
-    ui_levelSelectorTarget = level.position.clone().add(front.multiplyScalar(0.025))
-    ui_levelSelectorScale = new THREE.Vector3(0.09, 0.09, 0.09)
-    ui_levelSelector.visible = true
-}
-
 // Loads the models and collision shapes for the planets
 function load_planets() {
-    // Load models
-    loader.load('earth.glb', function (gltf) {
+    // Load earth model
+    modelLoader.load('earth.glb', function (gltf) {
         gltf.scene.position.set(earthPos.x, earthPos.y, earthPos.z)
         gltf.scene.scale.set(0.125, 0.125, 0.125)
         gltf.scene.rotateY(8.5)
-        scene.add(gltf.scene)
         console.log("Loaded model 'earth.glb'")
         earth = gltf
-        earthModel = gltf.scene
+        earthModel = gltf.scene // gltf.scene is the model
 
+        scene.add(earthModel)
 
         // Create collision object
+        // New collision shape for planets is less intensive because interactionManager
+        // Doesn't have to deal with as many faces
         const earthCollision = new THREE.Mesh(
             new THREE.SphereGeometry(2.5, 16, 16),
             new THREE.MeshBasicMaterial({
@@ -210,7 +208,7 @@ function load_planets() {
         earthCollision.position.copy(earthModel.position)
         interactionManager.add(earthCollision)
 
-        // LEAVE COMMENTED BEFORE PUSH - Helps get coordinates on planet for level placement. Laggy!
+        // LEAVE COMMENTED BEFORE PUSH - Helps get coordinates on planet for level placement. Laggy! Laggy! Laggy!
         // interactionManager.add(earthModel)
         // const raycaster = new THREE.Raycaster()
         // const mouse = new THREE.Vector2()
@@ -232,23 +230,18 @@ function load_planets() {
         //     }
         // })
 
-
         earthCollision.addEventListener("click", (event) => {
             if (currentMenu == "main") {
                 currentMenu = "earth"
-                play_sound(pod_select)
+                play_sound("pod_select", 0.5)
                 change_planet(earthCamPos, earthPos, true, "earth", false)
-            } else {
-                return
             }
         })
         earthCollision.addEventListener("mouseover", () => {
             ui_planetSelectorTarget = earthPos
             ui_planetSelectorScale = new THREE.Vector3(1.05, 1.05, 1.05)
             if (currentMenu == "main") {
-                play_sound(pod_move)
-            } else {
-                return
+                play_sound("pod_move", 0.5)
             }
         }) 
         earthCollision.addEventListener("mouseleave", () => {
@@ -258,13 +251,16 @@ function load_planets() {
     }, undefined, function (error) {
         console.error(error)
     })
-    loader.load('moon.glb', function (gltf) {
+    // Load moon model
+    modelLoader .load('moon.glb', function (gltf) {
         gltf.scene.position.set(moonPos.x, moonPos.y, moonPos.z)
         gltf.scene.scale.set(0.0025, 0.0025, 0.0025)
-        scene.add(gltf.scene)
         console.log("Loaded model 'moon.glb")
         moon = gltf
         moonModel = gltf.scene
+
+        scene.add(gltf.scene)
+
         // Create collision object
         const moonCollision = new THREE.Mesh(
             new THREE.SphereGeometry(1.25, 16, 16),
@@ -278,17 +274,15 @@ function load_planets() {
         moonCollision.addEventListener("click", () => {
             if (currentMenu == "main") {
                 currentMenu = "moon"
-                play_sound(pod_select)
+                play_sound("pod_select", 0.5)
                 change_planet(moonCamPos, moonPos, true, "moon", false)
-            } else {
-                return
             }
         })
         moonCollision.addEventListener("mouseover", () => {
             ui_planetSelectorTarget = moonPos
             ui_planetSelectorScale = new THREE.Vector3(0.55, 0.55, 0.55)
             if (currentMenu == "main") {
-                play_sound(pod_move)
+                play_sound("pod_move", 0.5)
             }
         }) 
         moonCollision.addEventListener("mouseleave", () => {
@@ -300,16 +294,8 @@ function load_planets() {
     })
 }
 
-// Texture loader
-const textureLoader = new THREE.TextureLoader(loadingManager)
-const bgTexture = textureLoader.load('space.jpg')
-bgTexture.colorSpace = THREE.SRGBColorSpace
-scene.background = bgTexture
-
 // Planet Selector Effect
-const ui_planetSelectorTexture = textureLoader.load('assets/planet_selector.png', () => {
-    console.log("Loaded texture 'ui_planetSelector'")
-})
+const ui_planetSelectorTexture = load_texture('assets/planet_selector.png')
 
 const ui_planetSelector = new THREE.Mesh(
     new THREE.PlaneGeometry(6, 6),
@@ -336,10 +322,6 @@ ui_levelSelector.position.copy(earthPos)
 ui_levelSelector.rotateY(90)
 scene.add(ui_levelSelector)
 
-
-load_levels()
-load_planets()
-
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.enableZoom = false
 controls.enableDamping = true
@@ -349,15 +331,6 @@ controls.rotateSpeed = 0.3
 let cameraPos = introCamPos
 let cameraTarget = basePos
 camera.position.lerp(cameraPos, 1)
-
-const pmrem = new THREE.PMREMGenerator(renderer)
-const env = new RoomEnvironment()
-
-scene.environment = new THREE.Color(0xD9DCFF)
-renderer.toneMappingExposure = 1
-scene.environmentIntensity = 0.8
-
-scene.environment = pmrem.fromScene(env).texture
 
 let animatingCamera = false
 
@@ -376,43 +349,6 @@ function toggle_back_button(bool) {
         })
     }
 }
-
-// let ui_volumeDiv = document.getElementById("volume_button")
-// let ui_volumeButton = document.getElementById("volume_button_button")
-// let ui_volumeSlider = document.getElementById("volume_slider")
-// function toggle_volume_button(bool) {
-//     if (bool == true) {
-//         ui_volumeDiv.style.display = "flex"
-//         ui_volumeDiv.classList.remove("shrink")
-//         ui_volumeDiv.classList.add("bouncein")
-//     } else {
-//         ui_volumeDiv.classList.remove("bouncein")
-//         ui_volumeDiv.classList.add("shrink")
-//         ui_volumeDiv.addEventListener("animationend", () => {
-//             if (ui_volumeDiv.querySelector(".shrink")) {
-//                 ui_volumeDiv.style.display = "none"
-//             }
-//         })
-//     }
-// }
-
-// let volumeVisible = false
-// ui_volumeButton.addEventListener("click", () => {
-//     volumeVisible = !volumeVisible
-//     switch (volumeVisible) {
-//         case true:
-//             ui_volumeSlider.style.display = "flex"
-//         break
-//         case false:
-//             ui_volumeSlider.style.display = "none"
-//         break
-//     }
-//     play_sound(pod_select)
-// })
-
-// ui_volumeSlider.addEventListener("change", () => {
-
-// })
 
 let level_info = document.getElementById("level_info")
 let currentLevelID
@@ -467,12 +403,14 @@ function change_planet(targetCameraPosition, targetCameraTarget, toggleBackButto
 }
 
 let ui_backButton = document.getElementById("back_button")
-ui_backButton.addEventListener("mouseover", () => {
-    play_sound(pod_move)
+let ui_backButtonImage = document.getElementById("back_button_image")
+ui_backButtonImage.addEventListener("mouseover", () => {
+    play_sound("pod_move", 0.5)
 })
 
-ui_backButton.addEventListener("click", () => {
-    play_sound(pod_back)
+// Handles which menu you should go to when clicking the back button 
+ui_backButtonImage.addEventListener("click", () => {
+    play_sound("pod_back", 0.5)
     toggle_camera_controls(false)
     switch (currentMenu) {
         case "earth":
@@ -500,13 +438,14 @@ ui_backButton.addEventListener("click", () => {
 
 let ui_playbutton = document.getElementById("level_play")
 ui_playbutton.addEventListener("mouseover", () => {
-    play_sound(pod_move)
+    play_sound("pod_move", 0.5)
 })
 
+// Click to fade music and begin level transition 
 ui_playbutton.addEventListener("click", async () => {
     if (await check_path(`./levels/${currentLevelID}`) == true) {
-        play_sound(pod_select)
-        play_sound(leave_level)
+        play_sound("pod_select", 0.5)
+        play_sound("leave_level", 0.5)
         update_int_music("none")
         const fade = document.createElement('div')
         fade.id = "fade"
@@ -515,10 +454,27 @@ ui_playbutton.addEventListener("click", async () => {
             location.href = `./levels/${currentLevelID}/index.html?id=${currentLevelID}`
         })
     } else {
-        play_sound(pod_error)
+        play_sound("pod_error", 0.5)
     }
     console.log(`./levels/${currentLevelID}`)
 })
+
+function move_camera(pos, speed) {
+    if (camera.position.distanceTo(cameraPos) > 0.015 && animatingCamera == true) {
+        camera.position.lerp(pos, speed)
+    } else {
+        animatingCamera = false
+        if (freezeCamera == true) {
+            toggle_camera_controls(false)
+        } else {
+            toggle_camera_controls(true)
+        }
+    }
+}
+
+function move_target(pos, speed) {
+    controls.target.lerp(pos, speed)
+}
 
 function planet_visibility() {
 
@@ -578,18 +534,6 @@ function news_visibility() {
     }
 }
 
-// Redraw
-function animate(time) {
-    move_camera(cameraPos, 0.15)
-    move_target(cameraTarget, 0.15)
-    selectors()
-    planet_visibility()
-    news_visibility()
-    controls.update()
-    interactionManager.update()
-    renderer.render(scene, camera)
-}
-
 function selectors() {
     ui_planetSelector.lookAt(camera.position)
     ui_levelSelector.lookAt(earthPos)
@@ -604,21 +548,31 @@ function selectors() {
     ui_levelSelector.scale.lerp(ui_levelSelectorScale, 0.3)
 }
 
-function move_camera(pos, speed) {
-    if (camera.position.distanceTo(cameraPos) > 0.015 && animatingCamera == true) {
-        camera.position.lerp(pos, speed)
-    } else {
-        animatingCamera = false
-        if (freezeCamera == true) {
-            toggle_camera_controls(false)
-        } else {
-            toggle_camera_controls(true)
-        }
-    }
+
+// Move ui_levelSelector to level that is being hovered over
+function hover_level(level) {
+    // Get local forward vector
+    const front = new THREE.Vector3(0, 0, -1)
+    front.applyQuaternion(level.quaternion)
+    ui_levelSelector.lookAt(level)
+    ui_levelSelectorTarget = level.position.clone().add(front.multiplyScalar(0.025))
+    ui_levelSelectorScale = new THREE.Vector3(0.09, 0.09, 0.09)
+    ui_levelSelector.visible = true
 }
 
-function move_target(pos, speed) {
-    controls.target.lerp(pos, speed)
+load_levels()
+load_planets()
+
+// Happens every new frame in 3D World
+function animate(time) {
+    move_camera(cameraPos, 0.15)
+    move_target(cameraTarget, 0.15)
+    selectors()
+    planet_visibility()
+    news_visibility()
+    controls.update()
+    interactionManager.update()
+    renderer.render(scene, camera)
 }
 
 // Resize 3d environment dynamically
