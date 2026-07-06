@@ -3,7 +3,7 @@ import newsJSON from './assets/json/news.json' with { type: 'json' }
 let newsReel = document.getElementById("news_bar")
 let newsReelText = document.getElementById("news_reel_text")
 let newsReelMarquee = document.getElementById("news_reel_marquee")
-let currentNews = 1 // Set current news here
+let currentNews = 2 // Set current news here
 
 newsReelText.innerHTML = `(Updated ${newsJSON[currentNews].date}) ${newsJSON[currentNews].content}`
 console.log("Loaded News Marquee")

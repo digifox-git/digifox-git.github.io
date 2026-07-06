@@ -6,5 +6,9 @@
     "1": {
         "date": "July 2, 2026",
         "content": "Level functionality! To enter a level, press the big Play button that appears when selecting a level."
+    },
+    "2": {
+        "date": "July 6, 2026",
+        "content": "Level icons now work. Added experiments to My Moon (No links yet)! Projects will go on My Earth, along with all other site pages."
     }
 }

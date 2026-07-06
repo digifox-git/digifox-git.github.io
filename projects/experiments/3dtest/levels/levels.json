@@ -24,5 +24,57 @@
         },
         "scale": 0.1,
         "type": "earth"
+    },
+    "2": {
+        "name": "Search",
+        "author": "digifox",
+        "description": "Little experiment to create my own browser homepage. Might update this in the future to make it better in some way.",
+        "icon": "assets/images/badges/experiment_search.gif",
+        "coordinates": {
+            "x": 1.197,
+            "y": 0.336,
+            "z": -2.922
+        },
+        "scale": 0.06,
+        "type": "moon"
+    },
+    "3": {
+        "name": "Button Button",
+        "author": "digifox",
+        "description": "You can click a button. Wow! All buttons will be added to your items.",
+        "icon": "assets/images/badges/experiment_button.png",
+        "coordinates": {
+            "x": 0.109,
+            "y": 0.854,
+            "z": -2.338
+        },
+        "scale": 0.0725,
+        "type": "moon"
+    },
+    "4": {
+        "name": "Dialogue Test",
+        "author": "digifox",
+        "description": "Test my sick UT/DR dialogue system that is used in some secret areas in this website. It works most of the time!",
+        "icon": "assets/images/badges/experiment_dialogue.png",
+        "coordinates": {
+            "x": 1.1,
+            "y": -0.001,
+            "z": -2.627
+        },
+        "scale": 0.085,
+        "type": "moon"
+    },
+    "5": {
+        "name": "Hourly Music",
+        "author": "digifox",
+        "description": "Engross your ears with the beautiful sounds of Animal Crossing music. This experiment needs a lot of work before it's ready to ship. See if you can find everything wrong with it.",
+        "icon": "assets/images/badges/experiment_hourlymusic.png",
+        "coordinates": {
+            "x": 0.969,
+            "y": 0.349,
+            "z": -4.067
+        },
+        "scale": 0.05,
+        "type": "moon"
     }
 }

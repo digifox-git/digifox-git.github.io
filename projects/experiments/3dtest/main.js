@@ -1,5 +1,11 @@
 // BUGS //
 // - Hovering over a level in base camera position unhovers planet, so pod_move plays again when you hover planet again, even if level is on that planet.
+// - Scene tends to lag sometimes. May be caused by interactionManager and level badges?
+// --- //
+
+// TO-DO //
+// - Make level badges children of planets so they can be moved with the planet if needed
+// --- //
 
 import levelsJSON from './levels/levels.json' with { type: 'json' }
 
@@ -114,14 +120,15 @@ function load_levels() {
             level.position.set(levelsJSON[i].coordinates.x, levelsJSON[i].coordinates.y, levelsJSON[i].coordinates.z)
             level.scale.set(levelsJSON[i].scale, levelsJSON[i].scale, levelsJSON[i].scale)
 
-            level.lookAt(earthPos)
             level.JSONkey = i // Makes it easier to reference specific level later
 
             // Internal names for potiential future use - Not currently used for anything
             if (levelsJSON[i].type == "earth") {
                 level.name = "level_earth"
+                level.lookAt(earthPos)
             } else if (levelsJSON[i].type == "moon") {
                 level.name = "level_moon"
+                level.lookAt(moonPos)
             }
 
             // Load desired material texture
@@ -137,7 +144,18 @@ function load_levels() {
                         child.material.map = texture // Map texure
                     })
                 }
-            })
+            }) 
+
+            // Dev code used to help adjust specific badge placement. Probably need something easier than this but OH WELL!!!
+            // const front = new THREE.Vector3(0, 0, -1)
+            // front.applyQuaternion(level.quaternion)
+            // level.position.add(front.multiplyScalar(0.008))
+            // const right = new THREE.Vector3(-1, 0, 0)
+            // right.applyQuaternion(level.quaternion)
+            // level.position.add(right.multiplyScalar(0.0125))
+            // const down = new THREE.Vector3(0, -1, 0)
+            // down.applyQuaternion(level.quaternion)
+            // level.position.add(down.multiplyScalar(0.0125))
 
             level.addEventListener("click", () => {
                 if (currentMenu != "main" && currentSubmenu == "none") {
@@ -167,6 +185,7 @@ function load_levels() {
                 }
             })
             level.addEventListener("mouseenter", () => { // Move ui_levelSelector to hovered planet
+                console.log(level.position)
                 if (currentMenu != "main" && currentSubmenu == "none") {
                     hover_level(level)
                     
@@ -264,6 +283,27 @@ function load_planets() {
         moonModel = gltf.scene
 
         scene.add(gltf.scene)
+
+        // interactionManager.add(moonModel)
+        // const raycaster = new THREE.Raycaster()
+        // const mouse = new THREE.Vector2()
+
+        // moonModel.addEventListener("click", (event) => {
+        //     mouse.set(
+        //         event.coords.x,
+        //         event.coords.y
+        //     )
+
+        //     console.log(event.coords.x)
+
+        //     raycaster.setFromCamera(mouse, camera)
+
+        //     const hits = raycaster.intersectObject(moonModel, true)
+
+        //     if (hits.length > 0) {
+        //         console.log("Hit: ", hits[0].point)
+        //     }
+        // })
 
         // Create collision object
         const moonCollision = new THREE.Mesh(
@@ -540,7 +580,14 @@ function news_visibility() {
 
 function selectors() {
     ui_planetSelector.lookAt(camera.position)
-    ui_levelSelector.lookAt(earthPos)
+    switch (currentMenu) {
+        case "earth":
+            ui_levelSelector.lookAt(earthPos)
+        break
+        case "moon":
+            ui_levelSelector.lookAt(moonPos)
+        break
+    }
     if (currentMenu != "main") {
         ui_planetSelector.visible = false
     } else {
@@ -559,8 +606,8 @@ function hover_level(level) {
     const front = new THREE.Vector3(0, 0, -1)
     front.applyQuaternion(level.quaternion)
     ui_levelSelector.lookAt(level)
-    ui_levelSelectorTarget = level.position.clone().add(front.multiplyScalar(0.025))
-    ui_levelSelectorScale = new THREE.Vector3(0.09, 0.09, 0.09)
+    ui_levelSelectorTarget = level.position.clone().add(front.multiplyScalar(0.01))
+    ui_levelSelectorScale = new THREE.Vector3(level.scale.x - 0.01, level.scale.y - 0.01, level.scale.z - 0.01)
     ui_levelSelector.visible = true
 }
 
