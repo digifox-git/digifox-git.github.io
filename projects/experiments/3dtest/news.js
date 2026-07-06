@@ -1,4 +1,4 @@
-import newsJSON from './assets/news.json' with { type: 'json' }
+import newsJSON from './assets/json/news.json' with { type: 'json' }
 
 let newsReel = document.getElementById("news_bar")
 let newsReelText = document.getElementById("news_reel_text")

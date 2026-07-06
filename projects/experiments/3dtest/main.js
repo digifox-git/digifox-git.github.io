@@ -1,3 +1,6 @@
+// BUGS //
+// - Hovering over a level in base camera position unhovers planet, so pod_move plays again when you hover planet again, even if level is on that planet.
+
 import levelsJSON from './levels/levels.json' with { type: 'json' }
 
 import * as THREE from 'three';
@@ -54,7 +57,7 @@ const introCamPos = new THREE.Vector3(160, 0, 0)
 const mainCamPos = new THREE.Vector3(8, 0, 0)
 const earthCamPos = new THREE.Vector3(3.6, 1, -0.6)
 const moonCamPos = new THREE.Vector3(2, 0.7, -0.8)
-let lastCamPos = new THREE.Vector3()
+let lastCamPos = new THREE.Vector3() // Sets camera position to where it was before level was selected
 
 let earth; // No use currently, but it's nice to have?
 let earthModel
@@ -123,11 +126,11 @@ function load_levels() {
 
             // Load desired material texture
             level.traverse(child => {
-                if (child.isMesh && child.material.name == "badge_entrance_circular_zip") {
+                if (child.isMesh && child.material.name == "badge_entrance_circular_zip") { // Material used for zipper ring
                     child.material = child.material.clone() // Prevents material from being overwritten.
                                                             // (zipper and badge icon material share same geometry)
                 }
-                if (child.isMesh && child.material.name == "badge_zip_entrance_cloth") {
+                if (child.isMesh && child.material.name == "badge_zip_entrance_cloth") { // Material used for main badge texture
                     child.material = child.material.clone()
                     const texture = textureLoader.load(levelsJSON[i].icon, () => {
                         texture.flipY = false // Prevent texture from appearing upside down
@@ -155,9 +158,10 @@ function load_levels() {
                     // --- //
 
                     play_sound("pod_select", 0.5)
-                    set_level_info(level.JSONkey)
-                    toggle_level_info(true)
-                    change_planet(badgeCamPos, badgeTarget, true, levelsJSON[i].type, true)
+                    set_level_info(level.JSONkey) // Set level info before details are showed to user
+                    toggle_level_info(true) // Show level details popup, including play button
+                    change_planet(badgeCamPos, badgeTarget, true, levelsJSON[i].type, true) // Set cam pos to position we got from
+                                                                                            // Getting those forward and right vectors
                     
                     currentSubmenu = "level"
                 }
@@ -185,7 +189,7 @@ function load_levels() {
 // Loads the models and collision shapes for the planets
 function load_planets() {
     // Load earth model
-    modelLoader.load('earth.glb', function (gltf) {
+    modelLoader.load('assets/models/earth.glb', function (gltf) {
         gltf.scene.position.set(earthPos.x, earthPos.y, earthPos.z)
         gltf.scene.scale.set(0.125, 0.125, 0.125)
         gltf.scene.rotateY(8.5)
@@ -252,7 +256,7 @@ function load_planets() {
         console.error(error)
     })
     // Load moon model
-    modelLoader .load('moon.glb', function (gltf) {
+    modelLoader .load('assets/models/moon.glb', function (gltf) {
         gltf.scene.position.set(moonPos.x, moonPos.y, moonPos.z)
         gltf.scene.scale.set(0.0025, 0.0025, 0.0025)
         console.log("Loaded model 'moon.glb")
