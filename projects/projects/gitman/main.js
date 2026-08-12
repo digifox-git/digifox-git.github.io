@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("content").style.background = "linear-gradient(315deg,rgb(31, 31, 31) 0%, rgb(65, 65, 65) 100%)"
         updateButton.innerText = "Please Wait..."
 
-        let authKey = document.getElementById("update_kubejs_auth").value
+        let authkey = ""
+        authKey = document.getElementById("update_kubejs_auth").value
 
         let request = await fetch(`http://141.148.171.237:10008/updategit`, {
             method: "GET",
