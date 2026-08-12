@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let authKey = ""
         authKey = document.getElementById("update_kubejs_auth").value
 
-        let request = await fetch(`http://141.148.171.237:10008/updategit`, {
+        let request = await fetch(`https://gitman.digifox.space/updategit`, {
             method: "GET",
             "headers": {
                 "Content-Type": "application/json",
