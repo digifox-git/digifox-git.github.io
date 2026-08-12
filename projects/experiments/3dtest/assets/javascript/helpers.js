@@ -1,4 +1,5 @@
 import soundEffectJSON from "../json/soundeffects.json" with { type: 'json' }
+import { create_pause_button } from "./pause.js"
 
 async function check_path(path) {
     try {
@@ -16,4 +17,12 @@ function play_sound(sound, volume=1) {
     soundEffect.play()
 }
 
-export { check_path, play_sound }
+function fade_in() {
+    let loadingScreen = document.getElementById("loading")
+    loadingScreen.classList.add("fade_loading")
+    loadingScreen.addEventListener("animationend", () => {
+        create_pause_button()
+    })
+}
+
+export { check_path, play_sound, fade_in }

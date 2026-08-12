@@ -1,0 +1,111 @@
+html, body {
+    display: flex;
+    background: linear-gradient(0deg,#506ed1 0%, #2623da 100%);
+    background-attachment: fixed;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.h-spcr {
+    width: 100%;
+    height: 1vh;
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+}
+
+.clock {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35vw;
+}
+
+.clock p {
+    margin: 2%;
+}
+
+#time {
+    font-size: 8vw;
+    color: #ffffff;
+    z-index: 1;
+}
+
+#month {
+    font-size: 6vw;
+    color: #ffffff;
+    z-index: 1;
+    text-align: center;
+}
+
+#date-seperator {
+    font-size: 6vw;
+    color: #ffffff;
+    z-index: 1;
+    font-weight: bold;
+}
+
+#date {
+    font-size: 6vw;
+    color: #ffffff;
+    z-index: 1;
+    text-align: center;
+}
+
+#day {
+    font-size: 6vw;
+    color: #ffffff;
+    z-index: 1;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 2%;
+}
+
+#weather {
+    width: 15%;
+    height: 15%;
+}
+
+#lower-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.notes {
+    position: absolute;
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1em;
+    bottom: 0;
+}
+
+#loading-overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 100;
+}
+
+#loading-overlay img {
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+    width: 12%;
+}
+
+.load-in {
+    clip-path: circle(100% at 50% 50%);
+}
+
+.load-out {
+    clip-path: circle(0% at 50% 50%);
+    transition: all 1s linear;
+}

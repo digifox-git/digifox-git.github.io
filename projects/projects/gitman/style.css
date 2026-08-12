@@ -1,0 +1,50 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    color: white;
+    font-family: Tahoma, Verdana, sans-serif;
+}
+
+#content {
+    background: linear-gradient(315deg,rgb(31, 31, 31) 0%, rgb(65, 65, 65) 100%);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#update_kubejs_button {
+    width: 30vw;
+    height: 10vh;
+    border: 3px solid white;
+    color: white;
+    border-radius: 100vw;
+    font-size: 2em;
+    background-color: transparent;
+    cursor: pointer;
+    filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.5));
+    margin: 1%;
+}
+
+#update_kubejs_auth {
+    color: white;
+    width: 28vw;
+    background-color: transparent;
+    filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.5));
+    border: 3px solid white;
+    border-width: 0px 0px 3px 0px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.waiting {
+
+}
+
+#update_kubejs_auth:focus {
+    outline: 0px solid white
+}

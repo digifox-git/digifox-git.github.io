@@ -1,7 +1,8 @@
 {
-    "pod_move": "./assets/audio/pod_cursor_move.wav",
-    "pod_select": "./assets/audio/pod_select.wav",
-    "pod_back": "./assets/audio/pod_back.wav",
-    "pod_error": "./assets/audio/pod_error_01.wav",
-    "leave_level": "./assets/audio/re-enter_pod_01.wav"
+    "pod_move": "/projects/experiments/3dtest/assets/audio/pod_cursor_move.wav",
+    "pod_select": "/projects/experiments/3dtest/assets/audio/pod_select.wav",
+    "pod_back": "/projects/experiments/3dtest/assets/audio/pod_back.wav",
+    "pod_error": "/projects/experiments/3dtest/assets/audio/pod_error_01.wav",
+    "leave_level": "/projects/experiments/3dtest/assets/audio/re-enter_pod_01.wav",
+    "level_load": "/projects/experiments/3dtest/assets/audio/level_load_01.wav"
 }

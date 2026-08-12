@@ -1,6 +1,7 @@
 // BUGS //
 // - Hovering over a level in base camera position unhovers planet, so pod_move plays again when you hover planet again, even if level is on that planet.
 // - Scene tends to lag sometimes. May be caused by interactionManager and level badges?
+// - Right click and wiggle to shrink planets?? Might keep
 // --- //
 
 // TO-DO //
@@ -495,7 +496,7 @@ ui_playbutton.addEventListener("click", async () => {
         fade.id = "fade"
         document.body.appendChild(fade)
         fade.addEventListener("animationend", () => {
-            location.href = `./levels/${currentLevelID}/index.html?id=${currentLevelID}`
+            location.href = `./levels/${currentLevelID}/index.html?id=${currentLevelID}&enteraslevel=true`
         })
     } else {
         play_sound("pod_error", 0.5)

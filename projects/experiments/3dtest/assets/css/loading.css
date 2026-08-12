@@ -1,3 +1,14 @@
+#loading {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+}
+
 .fade_loading {
     animation: fade_loading 0.5s linear 0s normal forwards;
 }
