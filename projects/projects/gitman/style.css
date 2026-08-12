@@ -28,6 +28,7 @@ html, body {
     cursor: pointer;
     filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.5));
     margin: 1%;
+    transition: all 0.25s ease;
 }
 
 #update_kubejs_auth {
@@ -42,7 +43,8 @@ html, body {
 }
 
 .waiting {
-
+    transform: scale(0.9);
+    transition: all 0.25s ease;
 }
 
 #update_kubejs_auth:focus {
