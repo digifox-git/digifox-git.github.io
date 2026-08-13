@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let request = await fetch(`https://gitman.digifox.space/updategit`, {
             method: "GET",
             "headers": {
-                "Content-Type": "application/json",
                 Authorization: `${authKey}`
             },
         })  
