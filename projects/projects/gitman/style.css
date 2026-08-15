@@ -1,10 +1,15 @@
+@font-face {
+    font-family: pixel;
+    src: url(pixel.otf);
+}
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
     overflow-y: hidden;
     color: white;
-    font-family: Tahoma, Verdana, sans-serif;
+    font-family: pixel;
 }
 
 #content {
@@ -22,13 +27,13 @@ html, body {
     height: 10vh;
     border: 3px solid white;
     color: white;
-    border-radius: 100vw;
     font-size: 2em;
     background-color: transparent;
     cursor: pointer;
     filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.5));
     margin: 1%;
     transition: all 0.25s ease;
+    font-family: pixel;
 }
 
 #update_kubejs_auth {
@@ -40,6 +45,11 @@ html, body {
     border-width: 0px 0px 3px 0px;
     font-size: 2em;
     text-align: center;
+    font-family: pixel;
+}
+
+#console_log {
+    font-size: 1.5em;
 }
 
 .waiting {
