@@ -246,6 +246,21 @@ button p {
     background-color: rgb(255, 255, 255);
 }
 
+#notification_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 10vh;
+}
+
+#upload_progress_bar {
+    display: flex;
+    width: 100%;
+    height: 2vh;
+}
+
 #user_info_bar input {
     height: 3vh;
     width: 5vw;
@@ -254,8 +269,8 @@ button p {
 }
 
 #console_log {
-    color: black;
-    font-size: 1.5em;
+    color: white;
+    font-size: 0.75em;
 }
 
 .waiting {
@@ -286,13 +301,14 @@ button p {
     align-items: center;
 }
 
-#notification {
+.notification {
     width: 30vw;
     background-color: rgb(0, 0, 0);
     border: 1px solid white;
+    border-radius: 4px;
     display: flex;
     align-items: center;
-    padding: 1%;
+    padding: 2%;
     flex-direction: column;
 }
 

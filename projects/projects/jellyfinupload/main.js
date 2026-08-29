@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let tabs = document.querySelectorAll(".tab")
     let sidebarItems = document.querySelectorAll(".sidebar_item")
     let uploadIcons = document.querySelectorAll(".uploading_icon")
-    let consoleLogger = document.getElementById("console_log")
-    let userArea = document.getElementById("user_info_bar")
+    let consoleLogger;
+    let uploadProgressBar;
 
     let activeRequests = 0
 
@@ -14,6 +14,35 @@ document.addEventListener("DOMContentLoaded", () => {
     authKeyInput.addEventListener("change", () => {
         authKey = authKeyInput.value
     })
+
+    function build_notification(title, message, type) {
+        let notificationContainer = document.getElementById("notification_container")
+        notificationContainer.innerHTML = `
+        <div class="notification">
+            <h1>${title}</h1>
+            <p>${message}</p>
+            <div id="notification_content"></div>
+        </div>
+        `
+        let notificationContent = document.getElementById("notification_content")
+        switch (type) {
+            case "upload":
+                notificationContent.innerHTML = `
+                <div id="upload_progress_bar"></div>
+                <p id="console_log"></p>
+                `
+                uploadProgressBar = document.getElementById("upload_progress_bar")
+                consoleLogger = document.getElementById("console_log")
+            break
+        }
+        notificationContainer.style.display = "flex"
+    }
+
+    function destroy_notification() {
+        let notificationContainer = document.getElementById("notification_container")
+        notificationContainer.innerHTML = ``
+        notificationContainer.style.display = "none"
+    }
 
     function can_interact() {
         if (activeRequests == 0) {
@@ -69,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (event.lengthComputable) {
                     const percent = (event.loaded / event.total) * 100
                     consoleLogger.innerText = `${percent.toFixed(2)}% complete`
-                    userArea.style.background = `linear-gradient(to right,rgb(255, 255, 255) ${percent}%, rgb(160, 160, 160) ${percent - 1}%, rgb(160, 160, 160) 100%)`
+                    uploadProgressBar.style.background = `linear-gradient(to right,rgb(255, 255, 255) ${percent}%, rgb(160, 160, 160) ${percent - 1}%, rgb(160, 160, 160) 100%)`
                 }
             }
 
@@ -83,8 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         activeRequests--
         can_interact()
-
-        userArea.style.background = `white`
+        destroy_notification()
         return res
     }
 
@@ -126,7 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function switch_tab(label) {
         can_interact()
-        consoleLogger.innerText = ""
         tabs.forEach(tab => {
             tab.classList.remove("slide_from_right")
             tab.style.display = "none"
@@ -196,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let uploadMovieButton = document.getElementById("upload_movie_button")
     uploadMovieButton.addEventListener("click", async () => {
         if (await auth_check() == false) {
-            consoleLogger.innerText = "Invalid authentication key!"
+            alert("Invalid Authentication Key!")
             return
         }
         
@@ -213,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let deleteMovieButton = document.getElementById("deleteMovie")
     deleteMovieButton.addEventListener("click", async () => {
         if (await auth_check() == false) {
-            consoleLogger.innerText = "Invalid authentication key!"
+            alert("Invalid Authentication Key!")
             return
         }
         if (can_interact() && confirm("Are you sure you want to perform this action?") == true) {
@@ -224,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let deleteShowButton = document.getElementById("deleteShow")
     deleteShowButton.addEventListener("click", async () => {
         if (await auth_check() == false) {
-            consoleLogger.innerText = "Invalid authentication key!"
+            alert("Invalid Authentication Key!")
             return
         }
         if (can_interact() && confirm("Are you sure you want to perform this action?") == true) {
@@ -238,7 +265,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function create_season(showName) {
         const res = await post("/create/season", true, authKey, { "name": showName })
-        consoleLogger.innerText = JSON.stringify(res.content)
         get_shows()
         get_show(showName)
         switch_tab(showName)
@@ -246,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function delete_episode(show, season, episode) {
         const res = await post("/delete/episode", true, authKey, { "name": show, "season": season, "episode": episode })
-        consoleLogger.innerText = JSON.stringify(res.content)
+        alert(JSON.stringify(res.content))
         get_shows()
         get_show(show)
         switch_tab(show)
@@ -254,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function delete_season(showName, season) {
         const res = await post("/delete/season", true, authKey, { "name": showName, "season": season })
-        consoleLogger.innerText = JSON.stringify(res.content)
+        alert(JSON.stringify(res.content))
         get_shows()
         get_show(showName)
         switch_tab(showName)
@@ -262,23 +288,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function delete_show(showName) {
         const res = await post("/delete/show", true, authKey, { "name": showName })
-        consoleLogger.innerText = JSON.stringify(res.content)
+        alert(JSON.stringify(res.content))
         switch_tab("Welcome Page")
         get_shows()
     }
  
     async function delete_movie(movieName) {
         const res = await post("/delete/movie", true, authKey, { "name": movieName })
-        consoleLogger.innerText = JSON.stringify(res.content)
+        alert(JSON.stringify(res.content))
         get_movies()
     }
 
     async function upload_episodes(showName, showSeason, uploadButton) {
         let files = uploadButton.files
         if (!files) {
-            consoleLogger.innerText = "You must upload at least one file!"
+            alert("You must upload at least one file!")
             return
         }
+        build_notification("Upload in Progress...", "Please be patient! PLEASE!!!", "upload")
 
         const formData = new FormData() // Files must be sent with FormData object
         for (const file of files) {
@@ -288,7 +315,6 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("season", showSeason)
 
         const res = await post("/upload/show", false, authKey, formData)
-        consoleLogger.innerText = JSON.stringify(res.content)
         get_shows()
         get_show(showName)
         switch_tab(showName)
@@ -297,9 +323,10 @@ document.addEventListener("DOMContentLoaded", () => {
     async function upload_movie() {
         let files = document.getElementById("movie_files").files
         if (!files) {
-            consoleLogger.innerText = "You must upload at least one file!"
+            alert("You must upload at least one file!")
             return
         }
+        build_notification("Upload in Progress...", "Please be patient! PLEASE!!!", "upload")
 
         const formData = new FormData() // Files must be sent with FormData object
         for (const file of files) {
@@ -307,7 +334,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const res = await post("/upload/movie", false, authKey, formData)
-        consoleLogger.innerText = JSON.stringify(res.content)
         get_movies()
     }
 
@@ -354,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
             browseInput.addEventListener("change", async () => {
                 can_interact()
                 if (await auth_check() == false) {
-                    consoleLogger.innerText = "Invalid authentication key!"
+                    alert("Invalid authenticSation key!")
                     return
                 }
                 if (browseInput.files && can_interact()) {
@@ -462,4 +488,5 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(() => {
         can_interact()
     }, 1000);
+
 })

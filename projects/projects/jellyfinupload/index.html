@@ -18,6 +18,10 @@
                 <img src="assets/Icons.6.png">
                 <p>Welcome Page</p>
             </div>
+            <div class="sidebar_item" aria-label="Authenticate">
+                <img src="assets/Icons.3.png">
+                <p>Authenticate</p>
+            </div>
         <div class="category">
             <p>Movies</p>
             <div class="spacer"></div>
@@ -45,6 +49,12 @@
             <p>Home > Welcome Page</p>
             <h1>Welcome</h1>
             <p>This is the Remote Upload Dashboard. Please select an option found on the sidebar to continue.</p>
+        </div>
+        <div class="tab" aria-label="Authenticate">
+            <p>Home > Authenticate</p>
+            <h1>Enter the keys</h1>
+            <p>The authentication key is required for most actions.</p>
+            <input id="auth_input" type="text" placeholder="Key">
         </div>
         <div class="tab" aria-label="Register">
             <p>Shows > Register</p>
@@ -78,19 +88,13 @@
             <button id="deleteShow">Delete Show</button>
             <h1>Episodes</h1>
         </div>
-        <div id="user_info_bar">
-            <p id="console_log"></p>
-            <input id="auth_input" type="text" placeholder="Key">
-        </div>
     </div>
     <div id="notification_container">
         <div id="notification">
-            <h1>Authentication Required</h1>
-            <p>Please enter the Administrator Pin to perform this action.</p>
-            <input id="admin_pin">
-            <div id="notification_options">
-                <button id="notification_confirm">Confirm</button>
-                <button id="notification_cancel">Cancel</button>
+            <h1></h1>
+            <p></p>
+            <div id="notification_content">
+                
             </div>
         </div>
     </div>
