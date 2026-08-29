@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<HTML>
+    <HEAD>
+      <META NAME="GENERATOR" CONTENT="Adobe PageMill 3.0 Win">
+            <TITLE>digifox.space | Search</TITLE>
+            <link rel="icon" type="image/x-icon" href="assets/favicon_fun.ico">
+		<link rel="stylesheet" href="style.css">
+        <script src="main.js"></script>
+	</HEAD>
+<body>
+    <div id="sidebar">
+        <div class="category">
+            <p>Home</p>
+            <div class="spacer"></div>
+        </div>
+            <div class="sidebar_item" aria-label="Welcome Page">
+                <img src="assets/Icons.6.png">
+                <p>Welcome Page</p>
+            </div>
+        <div class="category">
+            <p>Movies</p>
+            <div class="spacer"></div>
+        </div>
+        <div id="movies_category">
+            <div class="sidebar_item" aria-label="Upload">
+                <img src="assets/Icons.48.png">
+                <p>Upload</p>
+            </div>
+        </div> 
+        <div class="category">
+            <p>Shows</p>
+            <div class="spacer"></div>
+        </div>
+            <div id="shows_category">
+                <div class="sidebar_item" aria-label="Register">
+                    <img src="assets/Icons.48.png">
+                    <p>Register</p>
+                </div>
+            </div>
+            
+    </div>
+    <div id="content">
+        <div class="tab" aria-label="Welcome Page">
+            <p>Home > Welcome Page</p>
+            <h1>Welcome</h1>
+            <p>This is the Remote Upload Dashboard. Please select an option found on the sidebar to continue.</p>
+        </div>
+        <div class="tab" aria-label="Register">
+            <p>Shows > Register</p>
+            <h1>Show name</h1>
+            <p>Jellyfin will pull all metadata for the show based off of the name, so get it right!</p>
+            <input id="new_show_name" type="text">
+            <h1>Seasons</h1>
+            <input id="new_show_seasons" type="number" min="1",max="100" value="1">
+            <button id="create_show_button">
+                <p>Create</p>
+            </button>
+        </div>
+        <div class="tab" aria-label="Upload">
+            <p> Movies > Upload</p>
+            <h1>Upload Movies</h1>
+            <p>Please rename all file names to the names of the movies.</p>
+            <input id="movie_files" type="file" name="movie" accept=".mp4,.mov,.mkv" multiple/>
+            <button id="upload_movie_button">
+                <p>Upload</p>
+                <img class="uploading_icon" src="assets/uploading.gif">
+            </button>
+        </div>
+        <div id="movie_tab" class="tab" aria-label="Movie">
+            <p> Movies > Movie</p>
+            <h1 id="tab_movie_name">Movie Name</h1>
+            <button id="deleteMovie">Delete File</button>
+        </div>
+        <div id="show_tab" class="tab" aria-label="Show">
+            <p> Shows > Show</p>
+            <h1 id="tab_show_name">Show Name</h1>
+            <button id="deleteShow">Delete Show</button>
+            <h1>Episodes</h1>
+        </div>
+        <div id="user_info_bar">
+            <p id="console_log"></p>
+            <input id="auth_input" type="text" placeholder="Key">
+        </div>
+    </div>
+    <div id="notification_container">
+        <div id="notification">
+            <h1>Authentication Required</h1>
+            <p>Please enter the Administrator Pin to perform this action.</p>
+            <input id="admin_pin">
+            <div id="notification_options">
+                <button id="notification_confirm">Confirm</button>
+                <button id="notification_cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
