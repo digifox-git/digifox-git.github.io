@@ -42,7 +42,7 @@ loadingManager.onLoad = function() {
 const scene = new THREE.Scene() // Creates the environment that things can be placed in
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000)
 
-const renderer = new THREE.WebGLRenderer()
+const renderer = new THREE.WebGLRenderer({ antialias: true })
 renderer.setSize(window.innerWidth, window.innerHeight) // Use whole size of website to show environment
 document.body.appendChild(renderer.domElement)
 
@@ -185,7 +185,7 @@ function load_levels() {
                     currentSubmenu = "level"
                 }
             })
-            level.addEventListener("mouseenter", () => { // Move ui_levelSelector to hovered planet
+            level.addEventListener("mouseenter", () => { // Move ui_levelSelector to hovered level
                 console.log(level.position)
                 if (currentMenu != "main" && currentSubmenu == "none") {
                     hover_level(level)
