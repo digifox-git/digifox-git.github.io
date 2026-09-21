@@ -1,0 +1,73 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+#title {
+    margin: 2vh;
+    width: 30vw;
+    height: 5vh;
+    border: 0;
+    font-size: 2vw;
+    text-align: center;
+    text-decoration: underline;
+}
+
+#maker {
+    border-collapse: collapse;
+    width: 40vw;
+    height: 40vw;
+    table-layout: fixed;
+}
+
+.row {
+    border: 0px solid black;
+}
+
+.cell {
+    background-color: rgb(230, 230, 230);
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgb(180, 180, 180);
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.5vw;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    user-select: none;
+    cursor: pointer;
+}
+
+.filled {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(0, 0, 0);
+}
+
+.block {
+    background-color: black !important;
+}
+
+.cell p {
+    margin: 0;
+    padding: 0;
+    
+}
+
+.cell-div {
+    width: 100%;
+    height: 100%;
+}
+
+.selected {
+    background-color: rgb(255, 255, 255);
+    transform: scale(1.2);
+    border: 2px solid rgb(0, 0, 0);
+}
