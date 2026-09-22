@@ -51,7 +51,6 @@ function build_table(tableSize) {
             })
 
             cell.addEventListener("dblclick", () => {
-                console.log("Double Clicked")
                 if (cell.classList.contains("block")) {
                     cell.classList.remove("block")
                 } else {
@@ -65,8 +64,6 @@ function build_table(tableSize) {
                 if (selectedCell != cell) {
                     return
                 }
-                console.log(selectedCell)
-                console.log(cell)
                 event.preventDefault() // Prevent context menu from appearing
                 toggle_direction()
             })
@@ -74,7 +71,6 @@ function build_table(tableSize) {
             cell.addEventListener("keydown", (event) => {
                 if (cell.classList.contains("selected")) {
                     if (event.key.length == 1) {
-                        console.log(event.key)
                         cell.querySelector(".character").innerText = event.key
 
                         if (event.key == " ") {
@@ -179,7 +175,6 @@ function set_attribute(attribute, value) {
 }
 
 function refresh_cells() {
-    console.log(typeDirection)
     let cells = document.querySelectorAll(".cell")
     
     cells.forEach(element => {
@@ -212,6 +207,55 @@ function refresh_cells() {
         }
 
     })
+
+    refresh_words()
+}
+
+function refresh_words() {
+    let cells = document.querySelectorAll(".cell")
+
+    let words = document.getElementById("words")
+    words.innerHTML = ""
+    
+    cells.forEach(cell => {
+        if (cell.getAttribute("identifier-left")) {
+            let identifier = cell.getAttribute("identifier-left")
+            let x = cell.getAttribute("x")
+            let y = cell.getAttribute("y")
+            let direction = cell.getAttribute("hint-direction-left")
+            let hint = cell.getAttribute("hint-left")
+
+            words.innerHTML += `<div class="word" x="${x}" y="${y}">
+                                    <p>${identifier}) ${direction}</p>
+                                    <div class="word-hint">
+                                        <p>${hint}</p>
+                                    </div>
+                                </div>`
+        }
+        if (cell.getAttribute("identifier-right")) {
+            let identifier = cell.getAttribute("identifier-right")
+            let x = cell.getAttribute("x")
+            let y = cell.getAttribute("y")
+            let direction = cell.getAttribute("hint-direction-right")
+            let hint = cell.getAttribute("hint-right")
+
+            words.innerHTML += `<div class="word" x="${x}" y="${y}">
+                                    <p>${identifier}) ${direction}</p>
+                                    <div class="word-hint">
+                                        <p>${hint}</p>
+                                    </div>
+                                </div>`
+        }
+    })
+
+    let foundWords = document.querySelectorAll(".word")
+    foundWords.forEach(word => {
+        word.addEventListener("click", () => {
+            let x = Number(word.getAttribute("x"))
+            let y = Number(word.getAttribute("y"))
+            select_cell(x, y)
+        })
+    })
 }
 
 function toggle_block(cell) {
@@ -228,8 +272,7 @@ function remove_block(cell) {
 }
 
 function select_cell(x, y) {
-    console.log(x)
-    console.log(y)
+    console.log(`Selecting cell (${x}, ${y})`)
     let row = document.querySelector(`[row="${x}"]`)
     let cells = row.childNodes
     cells.forEach(cell => {
@@ -256,7 +299,6 @@ function select_cell(x, y) {
             }
         })
     })
-    console.log(selectedCoordinates)
     refresh_cells()
 }
 
@@ -281,19 +323,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // let createButton = document.getElementById("create")
     //     createButton.addEventListener("click", () => {
     //     build_table(document.getElementById("table-size").value)
-    //     document.getElementById("properties").remove()
+    //     docFument.getElementById("properties").remove()
     // })
 
-    document.addEventListener("click", (event) => {
-        let table = document.getElementById("maker")
-        let properties = document.getElementById("properties")
+    // document.addEventListener("click", (event) => {
+    //     let table = document.getElementById("maker")
+    //     let properties = document.getElementById("properties")
 
-        if (!table.contains(event.target) && !properties.contains(event.target)) {
-            selectedCell = null
-            toggle_properties(false)
-            refresh_cells()
-        }
-    })
+    //     if (!table.contains(event.target) && !properties.contains(event.target)) {
+    //         selectedCell = null
+    //         toggle_properties(false)
+    //         refresh_cells()
+    //     }
+    // })
 
     let propertyIdentifierLeft = document.getElementById("cell-identifier-left")
     let propertyIdentifierRight = document.getElementById("cell-identifier-right")
@@ -351,6 +393,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     toggle_properties(false)
-    build_table(20)
+    build_table(15)
 })
 

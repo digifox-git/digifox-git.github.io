@@ -1,6 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
+
 }
 
 
@@ -14,20 +15,18 @@ html, body {
 }
 
 #title {
-    margin: 2%;
     width: 20vw;
     height: 5vh;
-    border: 0;
     font-size: 2vw;
-    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 #maker {
     border-collapse: collapse;
-    width: 55vw;
-    height: 55vw;
+    width: 48vw;
+    height: 48vw;
     table-layout: fixed;
     animation: fadein 0.5s 0s ease forwards normal;
+    margin: 0.5vw;
 }
 
 .row {
@@ -77,15 +76,17 @@ html, body {
 }
 
 #workspace {
-    width: 100vw;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
+    box-sizing: border-box;
 }
 
 #properties {
-    margin: 1vw;
+    margin: 0.5vw 0.5vw 0.5vw 0.5vw;
     display: flex;
-    width: 22.5vw;
+    flex: 1;
     border: 1px solid rgb(180, 180, 180);
     background-color: rgb(245, 245, 245);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -96,19 +97,21 @@ html, body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     align-items: center;
     justify-content: start;
 }
 
 #crossword-settings {
-    margin: 1vw;
+    margin: 0.5vw;
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
-    width: 22.5vw;
     border: 1px solid rgb(180, 180, 180);
     background-color: rgb(245, 245, 245);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    max-height: 100%;
     animation: fadeinright 0.5s 0s ease forwards normal;
 }
 
@@ -177,6 +180,137 @@ html, body {
     right: 0;
     font-family: 'Courier New', Courier, monospace;
 }
+
+.info {
+    font-size: 1em;
+    color: gray;
+}
+
+#word-list {
+    height: 55%;
+    overflow-y: scroll;
+}
+
+.word {
+    position: relative;
+    border: 1px solid rgb(180, 180, 180);
+    background-color: rgb(235, 235, 235);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    padding-left: 2%;
+    cursor: pointer;
+    user-select: none;
+    margin: 1%;
+}
+
+.word-hint {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 2%;
+    padding: 2%;
+    width: 90%;
+    user-select: none;
+}
+
+.word:hover {
+    border: 1px solid rgb(1, 5, 255);
+}
+
+.word:active {
+    transform: scale(0.975);
+}
+
+.word-hint p {
+    margin: 0;
+}
+
+#hint-left, #hint-right {
+    font-size: 0.75vw;
+    resize: none;
+}
+
+#export {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+@media print {
+    @page { size: auto; margin: 10mm; }
+
+    body, #export {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;   /* centers horizontally */
+        width: 100%;
+    }
+
+    #crossword-title {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-top: 10mm;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #crossword {
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 130mm;
+        height: 130mm;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10mm;
+        border: 0px solid black;
+    }
+
+    #crossword td {
+        width: 8mm;
+        height: 8mm;
+        padding: 0;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        border: none;
+    }
+
+    #crossword td p {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        font-size: 3mm;
+        line-height: 1;
+    }
+
+    #crossword td .character {
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #crossword td .identifier-left {
+        top: 0;
+        left: 0;
+        font-size: 2mm;
+    }
+
+    #crossword td .identifier-right {
+        top: 0;
+        right: 0;
+        font-size: 2mm;
+    }
+
+    #crossword td.open {
+        border: 1px solid black;
+    }
+}
+
 
 @keyframes fadein {
     0% {
