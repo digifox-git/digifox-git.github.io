@@ -67,7 +67,68 @@ html, body {
 }
 
 .selected {
-    background-color: rgb(255, 255, 255);
     transform: scale(1.2);
-    border: 2px solid rgb(0, 0, 0);
+    outline: 2px solid blue;
+    background-size: contain;
+}
+
+#workspace {
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#properties {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    right: 20%;
+    top: 5%;
+    width: 60vw;
+    height: 92vh;
+    border: 1px solid rgb(180, 180, 180);
+    background-color: rgb(230, 230, 230);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 2%;
+    padding: 2%;
+    width: 90%;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.option-button {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    height: 5%;
+    margin: 2%;
+    padding: 2%;
+}
+
+#create {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background: #7387fa;
+    background: linear-gradient(180deg,rgba(115, 135, 250, 1) 0%, rgba(47, 73, 222, 1) 100%);
+    border-radius: 4px;
+    border-width: 0px 0px 2px 0px;
+    border-color: #2036B3;
+}
+
+#create:active {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background: #7387fa;
+    background: linear-gradient(180deg,rgb(133, 150, 247) 0%, rgbargb(70, 92, 219) 100%);
+    border-radius: 4px;
+    border-width: 2px 0px 0px 0px;
+    border-color: #000000;
 }

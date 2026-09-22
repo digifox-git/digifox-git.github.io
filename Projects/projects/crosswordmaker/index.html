@@ -10,7 +10,19 @@
 <body>
     <div id="content">
         <input id="title" type="text" value="My Crossword"></input>
-        <table id="maker"></table>
+        <div id="workspace">
+            <table id="maker"></table>
+        </div>
+        <div id="properties">
+            <div class="option">
+                <p>Puzzle Size</p>
+                <input id="table-size" type="number" min="3" max="30" value="15">
+            </div>
+            <div class="option-button">
+                <button id="create">Create Puzzle</button>
+            </div>
+        </div>
+        <footer>Left click: Select cell. Right click: Change direction. Double left click: Black out cell</footer>
     </div>
 </body>
 </html>
