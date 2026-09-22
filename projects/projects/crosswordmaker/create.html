@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon_glass.ico">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="main.js"></script>
+    <title>Puzzle Architect: Crossword</title>
+</head>
+<body>
+    <div id="content">
+        <input id="title" type="text" value="My Crossword Title" placeholder="Enter Title"></input>
+        <div id="workspace">
+            <table id="maker"></table>
+        </div>
+        <div id="properties">
+            <p>Cell Properties</p>
+            <div class="option">
+                <p>Left Identifier</p>
+                <input id="cell-identifier-left" type="text" minLength="0" maxLength="3">
+            </div>
+            <div class="option">
+                <p>Right Identifier</p>
+                <input id="cell-identifier-right" type="text" minLength="0" maxLength="3">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

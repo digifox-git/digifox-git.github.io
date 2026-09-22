@@ -1,3 +1,6 @@
+// Make cells colorable?? In play and in create mode
+// Add all directions for words
+
 let selectedCell
 let selectedCoordinates = []
 let typeDirection = "across"
@@ -19,9 +22,23 @@ function build_table(tableSize) {
             let cell = document.createElement("td")
             cell.setAttribute("x", i)
             cell.setAttribute("y", j)
+            cell.setAttribute("identifier-left", "")
+            cell.setAttribute("identifier-right", "")
             cell.style.height = `${100/size-1}%`
             cell.classList.add("cell")
             cell.tabIndex = 0
+
+            let character = document.createElement("p")
+            character.classList.add("character")
+
+            let identifierLeft = document.createElement("p")
+            identifierLeft.classList.add("identifier-left")
+            let identifierRight = document.createElement("p")
+            identifierRight.classList.add("identifier-right")
+
+            cell.appendChild(character)
+            cell.appendChild(identifierLeft)
+            cell.appendChild(identifierRight)
             row.appendChild(cell)
 
             // Cell holds letter and is selectable
@@ -54,25 +71,58 @@ function build_table(tableSize) {
                 if (cell.classList.contains("selected")) {
                     if (event.key.length == 1) {
                         console.log(event.key)
-                        cell.innerText = event.key
+                        cell.querySelector(".character").innerText = event.key
 
                         if (event.key == " ") {
-                            cell.innerText = " "
+                            cell.querySelector(".character").innerText = " "
                         }
 
                         if (typeDirection == "across") {
                             select_cell(selectedCoordinates[0], selectedCoordinates[1] + 1)
                         }
+
                         if (typeDirection == "down") {
                             select_cell(selectedCoordinates[0] + 1, selectedCoordinates[1])
                         }
                         
                     }
                     if (event.key == "Backspace") {
-                        cell.innerText = ""
+                        cell.querySelector(".character").innerText = ""
+                        cell.querySelector(".identifier-left").innerText = ""
+                        cell.querySelector(".identifier-right").innerText = ""
+                        remove_block(cell)
 
                         if (typeDirection == "across") {
                             select_cell(selectedCoordinates[0], selectedCoordinates[1] - 1)
+                        }
+
+                        if (typeDirection == "down") {
+                            select_cell(selectedCoordinates[0] - 1, selectedCoordinates[1])
+                        }
+                    }
+
+                    if (event.key == "Enter") {
+                        toggle_direction()
+                    }
+
+                    if (event.key == "ArrowUp") {
+                        select_cell(selectedCoordinates[0] - 1, selectedCoordinates[1] )
+                    }
+                    if (event.key == "ArrowDown") {
+                        select_cell(selectedCoordinates[0] + 1, selectedCoordinates[1])
+                    }
+                    if (event.key == "ArrowLeft") {
+                        select_cell(selectedCoordinates[0], selectedCoordinates[1] - 1)
+                    }
+                    if (event.key == "ArrowRight") {
+                        select_cell(selectedCoordinates[0], selectedCoordinates[1] + 1)
+                    }
+
+                    if (event.key == "Control") {
+                        console.log("Double Clicked")
+                        toggle_block(cell)
+                        if (typeDirection == "across") {
+                            select_cell(selectedCoordinates[0], selectedCoordinates[1] + 1)
                         }
 
                         if (typeDirection == "down") {
@@ -85,6 +135,33 @@ function build_table(tableSize) {
             // console.log(`Adding cell ${j}`)
         }
     }
+}
+
+function toggle_properties(boolean) {
+    let properties = document.getElementById("properties")
+    if (boolean) properties.style.display = "flex"
+    else properties.style.display = "none"
+}
+
+function set_identifier(identifier, direction) {
+    let cells = document.querySelectorAll(".cell")
+    
+    cells.forEach(element => {
+        if (element == selectedCell) {
+            if (direction == "left") {
+                element.setAttribute("identifier-left", identifier)
+                element.querySelectorAll(".identifier-left").forEach(identifier => {
+                    identifier.innerText = element.getAttribute("identifier-left")
+                })
+            } else if (direction == "right") {
+                element.setAttribute("identifier-right", identifier)
+                element.querySelectorAll(".identifier-right").forEach(identifier => {
+                    identifier.innerText = element.getAttribute("identifier-right")
+                })
+            }
+        }
+    })
+    refresh_cells()
 }
 
 function refresh_cells() {
@@ -123,6 +200,19 @@ function refresh_cells() {
     })
 }
 
+function toggle_block(cell) {
+    if (cell.classList.contains("block")) {
+        cell.classList.remove("block")
+    } else {
+        cell.classList.add("block")
+    } 
+    refresh_cells()
+}
+
+function remove_block(cell) {
+    cell.classList.remove("block")
+}
+
 function select_cell(x, y) {
     console.log(x)
     console.log(y)
@@ -133,6 +223,9 @@ function select_cell(x, y) {
             // console.log(`(${cell.getAttribute("x")}, ${cell.getAttribute("y")})`)
             if (cell.getAttribute("x") == x && cell.getAttribute("y") == y) {
                 cell.focus()
+                toggle_properties(true)
+                document.getElementById("cell-identifier-left").value = cell.getAttribute("identifier-left")
+                document.getElementById("cell-identifier-right").value = cell.getAttribute("identifier-right")
                 selectedCell = cell
                 selectedCoordinates = [x, y]
             }
@@ -155,19 +248,41 @@ function toggle_direction() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    let createButton = document.getElementById("create")
-        createButton.addEventListener("click", () => {
-        build_table(document.getElementById("table-size").value)
-        document.getElementById("properties").remove()
-    })
+    // let createButton = document.getElementById("create")
+    //     createButton.addEventListener("click", () => {
+    //     build_table(document.getElementById("table-size").value)
+    //     document.getElementById("properties").remove()
+    // })
 
     document.addEventListener("click", (event) => {
         let table = document.getElementById("maker")
+        let properties = document.getElementById("properties")
 
-        if (!table.contains(event.target)) {
+        if (!table.contains(event.target) && !properties.contains(event.target)) {
             selectedCell = null
+            toggle_properties(false)
             refresh_cells()
         }
     })
+
+    let propertyIdentifierLeft = document.getElementById("cell-identifier-left")
+    let propertyIdentifierRight = document.getElementById("cell-identifier-right")
+    propertyIdentifierLeft.addEventListener("input", (event) => {
+        if (!selectedCell) propertyIdentifierLeft.value = ""
+        else {
+            set_identifier(propertyIdentifierLeft.value, "left")
+            refresh_cells()
+        }
+    })
+    propertyIdentifierRight.addEventListener("input", (event) => {
+        if (!selectedCell) propertyIdentifierRight.value = ""
+        else {
+            set_identifier(propertyIdentifierRight.value, "right")
+            refresh_cells()
+        }
+    })
+
+    toggle_properties(false)
+    build_table(20)
 })
 

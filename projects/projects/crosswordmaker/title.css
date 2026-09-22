@@ -1,0 +1,57 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-image: url(tileBackground.png);
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+#logo {
+    position: absolute;
+    top: 5vh;
+    width: 50%;
+    filter: drop-shadow(4px 4px 4px black);
+}
+
+#mode-play {
+    background: linear-gradient(180deg,rgba(245, 165, 159, 1) 0%, rgba(228, 88, 79, 1) 100%);
+    border-color: rgb(173, 67, 59);
+}
+
+#mode-create {
+    background: linear-gradient(180deg,rgb(151, 241, 151) 0%, rgb(72, 233, 67) 100%);
+    border-color: rgb(72, 173, 59);
+}
+
+#mode-share {
+    background: linear-gradient(180deg,rgb(159, 172, 245) 0%, rgb(79, 114, 228) 100%);
+    border-color: rgb(59, 70, 173);
+}
+
+.menu-button {
+    border-width: 2px 2px 4px 2px;
+    border-radius: 16px;
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
+    width: 20vw;
+    height: 7vh;
+    margin: 0.5%;
+    border-style: solid;
+    user-select: none;
+}
+
+.menu-button:hover {
+    filter: brightness(1.1);
+}
+
+.menu-button:active {
+    border-width: 4px 2px 2px 2px;
+    filter: brightness(0.9);
+}
