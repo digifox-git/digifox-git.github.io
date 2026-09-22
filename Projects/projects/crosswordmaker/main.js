@@ -24,6 +24,10 @@ function build_table(tableSize) {
             cell.setAttribute("y", j)
             cell.setAttribute("identifier-left", "")
             cell.setAttribute("identifier-right", "")
+            cell.setAttribute("hint-direction-left", "")
+            cell.setAttribute("hint-direction-right", "")
+            cell.setAttribute("hint-left", "")
+            cell.setAttribute("hint-right", "")
             cell.style.height = `${100/size-1}%`
             cell.classList.add("cell")
             cell.tabIndex = 0
@@ -119,7 +123,6 @@ function build_table(tableSize) {
                     }
 
                     if (event.key == "Control") {
-                        console.log("Double Clicked")
                         toggle_block(cell)
                         if (typeDirection == "across") {
                             select_cell(selectedCoordinates[0], selectedCoordinates[1] + 1)
@@ -138,7 +141,7 @@ function build_table(tableSize) {
 }
 
 function toggle_properties(boolean) {
-    let properties = document.getElementById("properties")
+    let properties = document.getElementById("properties-content")
     if (boolean) properties.style.display = "flex"
     else properties.style.display = "none"
 }
@@ -159,6 +162,17 @@ function set_identifier(identifier, direction) {
                     identifier.innerText = element.getAttribute("identifier-right")
                 })
             }
+        }
+    })
+    refresh_cells()
+}
+
+// Sets attribute of seleted cell
+function set_attribute(attribute, value) {
+    let cells = document.querySelectorAll(".cell")
+    cells.forEach(element => {
+        if (element == selectedCell) {
+            element.setAttribute(attribute, value)
         }
     })
     refresh_cells()
@@ -226,6 +240,17 @@ function select_cell(x, y) {
                 toggle_properties(true)
                 document.getElementById("cell-identifier-left").value = cell.getAttribute("identifier-left")
                 document.getElementById("cell-identifier-right").value = cell.getAttribute("identifier-right")
+
+                if (document.getElementById("hint-direction-left")) {
+                    document.getElementById("hint-direction-left").value = cell.getAttribute("hint-direction-left")
+                    document.getElementById("hint-left").value = cell.getAttribute("hint-left")
+                }
+
+                if (document.getElementById("hint-direction-right")) {
+                    document.getElementById("hint-direction-right").value = cell.getAttribute("hint-direction-right")
+                    document.getElementById("hint-right").value = cell.getAttribute("hint-right")
+                }
+                
                 selectedCell = cell
                 selectedCoordinates = [x, y]
             }
@@ -245,6 +270,11 @@ function toggle_direction() {
         refresh_cells()
         return
     }
+}
+
+function set_div_display(id, displayType) {
+    let div = document.getElementById(id)
+    div.style.display = displayType
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -273,6 +303,25 @@ document.addEventListener("DOMContentLoaded", () => {
             set_identifier(propertyIdentifierLeft.value, "left")
             refresh_cells()
         }
+        let hint = document.getElementById("cell-hint-left")
+        if (propertyIdentifierLeft.value.length > 0) {
+            let directionInput = document.getElementById("hint-direction-left")
+            directionInput.value = selectedCell.getAttribute("hint-direction-left")
+
+            let hintInput = document.getElementById("hint-left")
+            hintInput.value = selectedCell.getAttribute("hint-left")
+            set_div_display(hint.id, "block")
+
+            directionInput.addEventListener("input", () => {
+                set_attribute("hint-direction-left", directionInput.value)
+            })
+            hintInput.addEventListener("input", () => {
+                set_attribute("hint-left", hintInput.value)
+            })
+        } else if (propertyIdentifierLeft.value.length == 0) {
+            set_div_display(hint.id, "none")
+        }
+        refresh_cells()
     })
     propertyIdentifierRight.addEventListener("input", (event) => {
         if (!selectedCell) propertyIdentifierRight.value = ""
@@ -280,6 +329,25 @@ document.addEventListener("DOMContentLoaded", () => {
             set_identifier(propertyIdentifierRight.value, "right")
             refresh_cells()
         }
+        let hint = document.getElementById("cell-hint-right")
+        if (propertyIdentifierRight.value.length > 0) {
+            let directionInput = document.getElementById("hint-direction-right")
+            directionInput.value = selectedCell.getAttribute("hint-direction-right")
+
+            let hintInput = document.getElementById("hint-right")
+            hintInput.value = selectedCell.getAttribute("hint-right")
+            set_div_display(hint.id, "block")
+
+            directionInput.addEventListener("input", () => {
+                set_attribute("hint-direction-right", directionInput.value)
+            })
+            hintInput.addEventListener("input", () => {
+                set_attribute("hint-right", hintInput.value)
+            })
+        } else if (propertyIdentifierRight.value.length == 0) {
+            set_div_display(hint.id, "none")
+        }
+        refresh_cells()
     })
 
     toggle_properties(false)

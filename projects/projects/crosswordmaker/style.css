@@ -11,27 +11,23 @@ html, body {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    animation: fadein 0.5s 0s ease forwards normal;
 }
 
 #title {
-    position: absolute;
-    left: 0;
-    top: 0;
-    margin: 2vh;
-    width: 25vw;
+    margin: 2%;
+    width: 20vw;
     height: 5vh;
     border: 0;
     font-size: 2vw;
-    text-align: left;
-    text-decoration: underline;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 #maker {
     border-collapse: collapse;
-    width: 45vw;
-    height: 45vw;
+    width: 55vw;
+    height: 55vw;
     table-layout: fixed;
+    animation: fadein 0.5s 0s ease forwards normal;
 }
 
 .row {
@@ -83,21 +79,37 @@ html, body {
 #workspace {
     width: 100vw;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 #properties {
-    position: absolute;
+    margin: 1vw;
+    display: flex;
+    width: 22.5vw;
+    border: 1px solid rgb(180, 180, 180);
+    background-color: rgb(245, 245, 245);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    animation: fadeinleft 0.5s 0s ease forwards normal;
+}
+
+#properties-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+}
+
+#crossword-settings {
+    margin: 1vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    right: 2vw;
-    top: 5vh;
-    width: 25vw;
-    height: 90vh;
+    width: 22.5vw;
     border: 1px solid rgb(180, 180, 180);
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(245, 245, 245);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    animation: fadeinright 0.5s 0s ease forwards normal;
 }
 
 .option {
@@ -168,7 +180,29 @@ html, body {
 
 @keyframes fadein {
     0% {
-        transform: scale(0.9);
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeinleft {
+    0% {
+        transform: scale(1.5) translateX(50%);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeinright {
+    0% {
+        transform: scale(1.5) translateX(-50%);
         opacity: 0;
     }
     100% {

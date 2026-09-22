@@ -10,21 +10,39 @@
 </head>
 <body>
     <div id="content">
-        <input id="title" type="text" value="My Crossword Title" placeholder="Enter Title"></input>
         <div id="workspace">
+            <div id="crossword-settings">
+                <p>Crossword Settings</p>
+                <input id="title" type="text" value="My Crossword Title" placeholder="Enter Title"></input>
+            </div>
             <table id="maker"></table>
-        </div>
-        <div id="properties">
-            <p>Cell Properties</p>
-            <div class="option">
-                <p>Left Identifier</p>
-                <input id="cell-identifier-left" type="text" minLength="0" maxLength="3">
+            <div id="properties">
+                <div id="properties-content">
+                    <p>Cell Properties</p>
+                    <div class="option" id="option-hint-left">
+                        <p>Left Identifier</p>
+                        <input id="cell-identifier-left" type="text" minLength="0" maxLength="3">
+                        <div id="cell-hint-left" style="display: none;">
+                            <p>Direction</p>
+                            <input type="text" id="hint-direction-left" placeholder="Across, Left, etc...">
+                            <p>Hint</p>
+                            <input type="text" id="hint-left">
+                        </div>
+                    </div>
+                    <div class="option" id="option-hint-right">
+                        <p>Right Identifier</p>
+                        <input id="cell-identifier-right" type="text" minLength="0" maxLength="3">
+                        <div id="cell-hint-right" style="display: none;">
+                            <p>Direction</p>
+                            <input type="text" id="hint-direction-right" placeholder="Across, Left, etc...">
+                            <p>Hint</p>
+                            <input type="text" id="hint-right">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="option">
-                <p>Right Identifier</p>
-                <input id="cell-identifier-right" type="text" minLength="0" maxLength="3">
-            </div>
         </div>
+        
     </div>
 </body>
 </html>
