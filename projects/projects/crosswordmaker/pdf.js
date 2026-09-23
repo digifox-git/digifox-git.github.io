@@ -1,4 +1,8 @@
 // Duplicate idenfitiers on the same direction causes issues when exporting
+// Too many hints cause bad formatting. Maybe make every hint an independent div? So
+    // hints in either down or across can keep going onto a second page without bringing
+    // the whole category down, too.
+// Also, make down/across categories proper column again.
 
 async function build_table(tableSize) {
     let size = tableSize
