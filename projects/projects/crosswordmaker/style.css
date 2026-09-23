@@ -1,9 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
-
 }
-
 
 #content {
     display: flex;
@@ -90,7 +88,8 @@ html, body {
     border: 1px solid rgb(180, 180, 180);
     background-color: rgb(245, 245, 245);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    animation: fadeinleft 0.5s 0s ease forwards normal;
+    transform: translateX(100%);
+    animation: fadeinleft 0.5s 0.3s ease forwards normal;
 }
 
 #properties-content {
@@ -112,7 +111,8 @@ html, body {
     background-color: rgb(245, 245, 245);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     max-height: 100%;
-    animation: fadeinright 0.5s 0s ease forwards normal;
+    transform: translateX(-100%);
+    animation: fadeinright 0.5s 0.3s ease forwards normal;
 }
 
 .option {
@@ -187,8 +187,10 @@ html, body {
 }
 
 #word-list {
-    height: 55%;
+    height: 50%;
     overflow-y: scroll;
+    overflow-x: hidden;
+    word-break: break-all;
 }
 
 .word {
@@ -245,8 +247,7 @@ html, body {
     body, #export {
         margin: 0;
         padding: 0;
-        display: flex;
-        justify-content: center;   /* centers horizontally */
+        display: block;
         width: 100%;
     }
 
@@ -309,12 +310,33 @@ html, body {
     #crossword td.open {
         border: 1px solid black;
     }
+
+    #hints {
+        width: 100%;
+    }
+
+    #down, #across {
+        padding: 2%;
+        column-count: 2;
+        column-gap: 5%;
+        width: 100%;
+        margin: 10mm;
+    }
+
+    #down p, #across p {
+        width: 100%;
+        word-break: break-all;
+        break-inside: avoid;
+    }
+
+    .hint { 
+    }
 }
 
 
 @keyframes fadein {
     0% {
-        transform: scale(0.5);
+        transform: scale(0);
         opacity: 0;
     }
     100% {
@@ -325,7 +347,7 @@ html, body {
 
 @keyframes fadeinleft {
     0% {
-        transform: scale(1.5) translateX(50%);
+        transform: scale(1) translateX(100%);
         opacity: 0;
     }
     100% {
@@ -336,7 +358,7 @@ html, body {
 
 @keyframes fadeinright {
     0% {
-        transform: scale(1.5) translateX(-50%);
+        transform: scale(1) translateX(-100%);
         opacity: 0;
     }
     100% {

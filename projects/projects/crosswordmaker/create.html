@@ -25,17 +25,17 @@
                 <p>Crossword Settings</p>
                 <div class="option">
                     <p>Title</p>
-                    <input id="title" type="text" value="My Crossword" placeholder="Enter Title"></input>
+                    <input id="title" type="text" value="My Crossword" placeholder="Enter Title" maxlength=""></input>
                     <p>Publish Options</p>
                     <button id="export-button">Export</button>
                 </div>
+                <p>Words</p>
                 <div class="option" id="word-list">
-                    <p>Words</p>
                     <!-- <p class="info">None yet! Give a cell an identifier to mark a new word.</p> -->
                     <div id="words">
                     </div>
                 </div>
-                <p style="text-align: center; margin: 0;">Controls:<br>Left Click/Arrow Keys: Select Cell<br>Right Click/Enter: Change Direction<br>Double Click/Alt: Black out Cell</p>
+                <p style="text-align: center; margin: 0;">Controls:<br>Left Click/Arrow Keys: Select Cell<br>Right Click/Enter: Change Direction<br>Double Click/Control: Black out Cell</p>
             </div>
             <table id="maker"></table>
             <div id="properties">
@@ -44,9 +44,12 @@
                     <div class="option" id="option-hint-left">
                         <p>Left Identifier</p>
                         <input id="cell-identifier-left" type="text" minLength="0" maxLength="2" placeholder="1, 2, 3, etc... Could be letters, too!">
-                        <div id="cell-hint-left" style="display: none;">
+                        <div id="cell-hint-left">
                             <p>Direction</p>
-                            <input type="text" id="hint-direction-left" placeholder="Down, Across, etc...">
+                            <select id="hint-direction-left">
+                                <option value="Down">Down</option>
+                                <option value="Across">Across</option>
+                            </select>
                             <p>Hint</p>
                             <textarea type="text" id="hint-left" rows="3"></textarea>
                         </div>
@@ -54,9 +57,12 @@
                     <div class="option" id="option-hint-right">
                         <p>Right Identifier</p>
                         <input id="cell-identifier-right" type="text" minLength="0" maxLength="2" placeholder="1, 2, 3, etc... Could be letters, too!">
-                        <div id="cell-hint-right" style="display: none;">
+                        <div id="cell-hint-right">
                             <p>Direction</p>
-                            <input type="text" id="hint-direction-right" placeholder="Down, Across, etc...">
+                            <select id="hint-direction-right">
+                                <option value="Down">Down</option>
+                                <option value="Across">Across</option>
+                            </select>
                             <p>Hint</p>
                             <textarea type="text" id="hint-right" rows="3"></textarea>
                         </div>
@@ -67,6 +73,10 @@
         <div id="export" style="display: none;">
             <h1 id="crossword-title">My Crossword</h1>
             <table id="crossword"></table>
+            <div id="hints">
+                <div id="down"><p><b>Down</b></p></div>
+                <div id="across"><p><b>Across</b></p></div>
+            </div>
         </div>
     </div>
 </body>

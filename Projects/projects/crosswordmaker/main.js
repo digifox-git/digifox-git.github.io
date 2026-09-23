@@ -134,6 +134,7 @@ function build_table(tableSize) {
             // console.log(`Adding cell ${j}`)
         }
     }
+    select_cell(0, 0)
 }
 
 function toggle_properties(boolean) {
@@ -346,23 +347,19 @@ document.addEventListener("DOMContentLoaded", () => {
             refresh_cells()
         }
         let hint = document.getElementById("cell-hint-left")
-        if (propertyIdentifierLeft.value.length > 0) {
-            let directionInput = document.getElementById("hint-direction-left")
-            directionInput.value = selectedCell.getAttribute("hint-direction-left")
+        let directionInput = document.getElementById("hint-direction-left")
+        directionInput.value = selectedCell.getAttribute("hint-direction-left")
 
-            let hintInput = document.getElementById("hint-left")
-            hintInput.value = selectedCell.getAttribute("hint-left")
-            set_div_display(hint.id, "block")
+        let hintInput = document.getElementById("hint-left")
+        hintInput.value = selectedCell.getAttribute("hint-left")
+        set_div_display(hint.id, "block")
 
-            directionInput.addEventListener("input", () => {
-                set_attribute("hint-direction-left", directionInput.value)
-            })
-            hintInput.addEventListener("input", () => {
-                set_attribute("hint-left", hintInput.value)
-            })
-        } else if (propertyIdentifierLeft.value.length == 0) {
-            set_div_display(hint.id, "none")
-        }
+        directionInput.addEventListener("input", () => {
+            set_attribute("hint-direction-left", directionInput.value)
+        })
+        hintInput.addEventListener("input", () => {
+            set_attribute("hint-left", hintInput.value)
+        })
         refresh_cells()
     })
     propertyIdentifierRight.addEventListener("input", (event) => {
@@ -372,23 +369,19 @@ document.addEventListener("DOMContentLoaded", () => {
             refresh_cells()
         }
         let hint = document.getElementById("cell-hint-right")
-        if (propertyIdentifierRight.value.length > 0) {
-            let directionInput = document.getElementById("hint-direction-right")
-            directionInput.value = selectedCell.getAttribute("hint-direction-right")
+        let directionInput = document.getElementById("hint-direction-right")
+        directionInput.value = selectedCell.getAttribute("hint-direction-right")
 
-            let hintInput = document.getElementById("hint-right")
-            hintInput.value = selectedCell.getAttribute("hint-right")
-            set_div_display(hint.id, "block")
+        let hintInput = document.getElementById("hint-right")
+        hintInput.value = selectedCell.getAttribute("hint-right")
+        set_div_display(hint.id, "block")
 
-            directionInput.addEventListener("input", () => {
-                set_attribute("hint-direction-right", directionInput.value)
-            })
-            hintInput.addEventListener("input", () => {
-                set_attribute("hint-right", hintInput.value)
-            })
-        } else if (propertyIdentifierRight.value.length == 0) {
-            set_div_display(hint.id, "none")
-        }
+        directionInput.addEventListener("change", () => {
+            set_attribute("hint-direction-right", directionInput.value)
+        })
+        hintInput.addEventListener("input", () => {
+            set_attribute("hint-right", hintInput.value)
+        })
         refresh_cells()
     })
 

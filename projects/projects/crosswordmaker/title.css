@@ -19,29 +19,30 @@ html, body {
     position: absolute;
     top: 5vh;
     width: 50%;
+    transform: scale(0);
     filter: drop-shadow(16px 16px 4px rgba(0, 0, 0, 0.5));
-    animation: zoomin 0.5s 0s ease forwards normal;
+    animation: zoomin 0.5s 0.2s ease forwards normal;
 }
 
 #mode-play {
     background: linear-gradient(180deg,rgba(245, 165, 159, 1) 0%, rgba(228, 88, 79, 1) 100%);
     border-color: rgb(173, 67, 59);
     transform: scale(0);
-    animation: bouncein 0.5s 0.6s ease forwards normal;
+    animation: bouncein 0.5s 0.4s ease forwards normal;
 }
 
 #mode-create {
     background: linear-gradient(180deg,rgb(151, 241, 151) 0%, rgb(72, 233, 67) 100%);
     border-color: rgb(72, 173, 59);
     transform: scale(0);
-    animation: bouncein 0.5s 0.8s ease forwards normal;
+    animation: bouncein 0.5s 0.6s ease forwards normal;
 }
 
 #mode-share {
     background: linear-gradient(180deg,rgb(159, 172, 245) 0%, rgb(79, 114, 228) 100%);
     border-color: rgb(59, 70, 173);
     transform: scale(0);
-    animation: bouncein 0.5s 1s ease forwards normal;
+    animation: bouncein 0.5s 0.8s ease forwards normal;
 }
 
 .menu-button {
@@ -78,10 +79,12 @@ html, body {
 @keyframes zoomin {
     0% {
         transform: scale(5) translateY(-100%);
+        filter: drop-shadow(512px 512px 64px rgba(0, 0, 0, 0.1));
         opacity: 0;
     }
     100% {
         transform: scale(1);
+        filter: drop-shadow(16px 16px 4px rgba(0, 0, 0, 0.5));
         opacity: 1;
     }
 }

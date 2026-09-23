@@ -1,8 +1,11 @@
+// Duplicate idenfitiers on the same direction causes issues when exporting
+
 async function build_table(tableSize) {
     let size = tableSize
-    let contentDiv = document.getElementById("export")
     let crossword = document.getElementById("crossword")
     let maker = document.getElementById("maker")
+
+    crossword.innerHTML = ""
 
     // Creating rows and cells
     for (let i = 0; i < size; i++) {
@@ -44,23 +47,107 @@ async function build_table(tableSize) {
     let crosswordCells = crossword.querySelectorAll('.cell')
     let makerCells = maker.querySelectorAll('.cell')
 
+    let downJSON = {}
+    let acrossJSON = {}
+
     crosswordCells.forEach(cell => {
+        let hint = ""
+
         makerCells.forEach(makerCell => {
             let character = makerCell.querySelector(".character")
             let leftID = makerCell.querySelector(".identifier-left")
             let rightID = makerCell.querySelector(".identifier-right")
+            let leftHint = makerCell.getAttribute("hint-left")
+            let rightHint = makerCell.getAttribute("hint-right")
+            let leftDirection = makerCell.getAttribute("hint-direction-left")
+            let rightDirection = makerCell.getAttribute("hint-direction-right")
             if (makerCell.getAttribute("x") == cell.getAttribute("x") && makerCell.getAttribute("y") == cell.getAttribute("y")) {
                 if (character.innerHTML != "" || leftID.innerHTML != "" || rightID.innerHTML != "") {
                     cell.classList.add("open")
                     cell.querySelector(".identifier-left").innerHTML = leftID.innerHTML
+                    cell.setAttribute("identifier-left", leftID.innerHTML)
                     cell.querySelector(".identifier-right").innerHTML = rightID.innerHTML
+                    cell.setAttribute("identifier-right", rightID.innerHTML)
+
+                    cell.setAttribute("hint-direction-left", leftDirection)
+                    cell.setAttribute("hint-direction-right", rightDirection)
+
+                    cell.setAttribute("hint-left", leftHint)
+                    cell.setAttribute("hint-right", rightHint)
                 }
                 
             }
         })
+
+        if (cell.getAttribute("identifier-left") != "") {
+            let identifier = cell.getAttribute("identifier-left")
+            let direction = cell.getAttribute("hint-direction-left")
+            let hint = cell.getAttribute("hint-left")
+            console.log(`${identifier} ${direction}: ${hint}`)
+
+            if (direction == "Down") {
+                downJSON[identifier] = hint
+            }
+            if (direction == "Across") {
+                acrossJSON[identifier] = hint
+            }
+        }
+
+        if (cell.getAttribute("identifier-right") != "") {
+            let identifier = cell.getAttribute("identifier-right")
+            let direction = cell.getAttribute("hint-direction-right")
+            let hint = cell.getAttribute("hint-right")
+            console.log(`${identifier} ${direction}: ${hint}`)
+
+            if (direction == "Down") {
+                downJSON[identifier] = hint
+            }
+            if (direction == "Across") {
+                acrossJSON[identifier] = hint
+            }
+        }
     })
 
-    contentDiv.appendChild(crossword)
+    console.log(downJSON)
+    console.log(acrossJSON)
+
+    let crosswordTitle = document.getElementById("crossword-title")
+    let makerTitle = document.getElementById("title")
+    crosswordTitle.innerText = makerTitle.value
+
+    let downList = document.getElementById("down")
+    let acrossList = document.getElementById("across")
+
+    let sortedDownJSON = Object.keys(downJSON)
+        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+        .reduce((sorted, key) => {
+            sorted[key] = downJSON[key]
+            return sorted
+        }, {})
+    let sortedAcrossJSON = Object.keys(acrossJSON)
+        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+        .reduce((sorted, key) => {
+            sorted[key] = acrossJSON[key]
+            return sorted
+        }, {})
+
+    downList.innerHTML = "<h3>Down</h3>"
+    for (let i = 0; i < Object.keys(sortedDownJSON).length; i++) {
+        const identifier = Object.keys(sortedDownJSON)[i];
+        const hint = sortedDownJSON[identifier]
+        downList.innerHTML += `<p>
+            <b>${identifier}</b>. ${hint}
+        </p>`
+    }
+
+    acrossList.innerHTML = "<h3>Across</h3>"
+    for (let i = 0; i < Object.keys(sortedAcrossJSON).length; i++) {
+        const identifier = Object.keys(sortedAcrossJSON)[i];
+        const hint = sortedAcrossJSON[identifier]
+        acrossList.innerHTML += `<p>
+            <b>${identifier}</b>. ${hint}
+        </p>`
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
