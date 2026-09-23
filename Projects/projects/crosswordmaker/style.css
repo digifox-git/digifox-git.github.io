@@ -247,7 +247,8 @@ html, body {
     body, #export {
         margin: 0;
         padding: 0;
-        display: block;
+        display: flex;
+        justify-content: center;
         width: 100%;
     }
 
@@ -255,7 +256,7 @@ html, body {
         margin-left: auto;
         margin-right: auto;
         text-align: center;
-        margin-top: 10mm;
+        margin-top: 15mm;
         font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
@@ -312,15 +313,15 @@ html, body {
     }
 
     #hints {
+        margin-top: 5mm;
         width: 100%;
+        column-count: 2;
+        display: flex;
+        justify-content: center;
     }
 
     #down, #across {
-        padding: 2%;
-        column-count: 2;
-        column-gap: 5%;
         width: 100%;
-        margin: 10mm;
     }
 
     #down p, #across p {
