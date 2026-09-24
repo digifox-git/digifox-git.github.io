@@ -313,20 +313,32 @@ html, body {
 
     #hints {
         width: 100%;
+        columns: 2;
+        margin: 10mm;
+        justify-content: center;
     }
 
     #down, #across {
         padding: 2%;
-        column-count: 2;
-        column-gap: 5%;
         width: 100%;
-        margin: 10mm;
     }
 
-    #down p, #across p {
-        width: 100%;
+    #down-hints p, #across-hints p {
         word-break: break-all;
         break-inside: avoid;
+        padding: 0;
+        margin: 3mm;
+    }
+
+    #down h3, #across h3 {
+        break-after: avoid;
+        width: 100%;
+        margin: 0 0 2mm;
+    }
+
+    #down-hints, #across-hints {
+        display: block;
+        columns: auto;
     }
 
     .hint { 

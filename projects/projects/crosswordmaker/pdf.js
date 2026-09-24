@@ -119,8 +119,10 @@ async function build_table(tableSize) {
     let makerTitle = document.getElementById("title")
     crosswordTitle.innerText = makerTitle.value
 
-    let downList = document.getElementById("down")
-    let acrossList = document.getElementById("across")
+    let downList = document.getElementById("down-hints")
+    downList.innerHTML = ""
+    let acrossList = document.getElementById("across-hints")
+    acrossList.innerHTML = ""
 
     let sortedDownJSON = Object.keys(downJSON)
         .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
@@ -135,7 +137,6 @@ async function build_table(tableSize) {
             return sorted
         }, {})
 
-    downList.innerHTML = "<h3>Down</h3>"
     for (let i = 0; i < Object.keys(sortedDownJSON).length; i++) {
         const identifier = Object.keys(sortedDownJSON)[i];
         const hint = sortedDownJSON[identifier]
@@ -144,7 +145,6 @@ async function build_table(tableSize) {
         </p>`
     }
 
-    acrossList.innerHTML = "<h3>Across</h3>"
     for (let i = 0; i < Object.keys(sortedAcrossJSON).length; i++) {
         const identifier = Object.keys(sortedAcrossJSON)[i];
         const hint = sortedAcrossJSON[identifier]
