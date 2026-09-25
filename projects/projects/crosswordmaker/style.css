@@ -16,7 +16,7 @@ html, body {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: white;
+    background-image: url(3dGridBg2.png);
 }
 
 #title {
@@ -53,6 +53,7 @@ button:active {
     transform: scale(0);
     animation: fadein 0.5s 0.5s ease forwards normal;
     margin: 0.5vw;
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .row {
@@ -121,6 +122,7 @@ button:active {
     border-radius: 16px;
     height: 96%;
     animation: fadeinleft 0.5s 0.3s ease forwards normal;
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 #properties-content {
@@ -145,6 +147,7 @@ button:active {
     transform: translateX(-120%);
     border-radius: 16px;
     animation: fadeinright 0.5s 0.3s ease forwards normal;
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .option {
@@ -194,7 +197,7 @@ button:active {
     justify-content: center;
     align-items: center;
     height: 100%;
-    font-size: 1.25vw;
+    font-size: 1.5vw;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
@@ -203,6 +206,7 @@ button:active {
     height: 100%;
     top: 0;
     left: 0;
+    font-size: 1.2em;
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -211,6 +215,7 @@ button:active {
     height: 100%;
     top: 0;
     right: 0;
+    font-size: 1.2em;
     font-family: 'Courier New', Courier, monospace;
 }
 
