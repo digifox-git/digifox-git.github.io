@@ -1,6 +1,12 @@
 html, body {
+    overflow: hidden;
     margin: 0;
     padding: 0;
+}
+
+#logo img {
+    width: 50%;
+    height: 25%;
 }
 
 #content {
@@ -44,7 +50,8 @@ button:active {
     width: 48vw;
     height: 48vw;
     table-layout: fixed;
-    animation: fadein 0.5s 0s ease forwards normal;
+    transform: scale(0);
+    animation: fadein 0.5s 0.5s ease forwards normal;
     margin: 0.5vw;
 }
 
@@ -110,7 +117,7 @@ button:active {
     border: 1px solid rgb(180, 180, 180);
     background-color: rgb(245, 245, 245);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    transform: translateX(100%);
+    transform: translateX(120%);
     border-radius: 16px;
     height: 96%;
     animation: fadeinleft 0.5s 0.3s ease forwards normal;
@@ -135,7 +142,7 @@ button:active {
     background-color: rgb(245, 245, 245);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     height: 96%;
-    transform: translateX(-100%);
+    transform: translateX(-120%);
     border-radius: 16px;
     animation: fadeinright 0.5s 0.3s ease forwards normal;
 }
@@ -213,7 +220,7 @@ button:active {
 }
 
 #word-list {
-    height: 50%;
+    height: 45%;
     overflow-y: scroll;
     overflow-x: hidden;
     word-break: break-all;
@@ -401,6 +408,28 @@ button:active {
     100% {
         transform: scale(1);
         opacity: 1;
+    }
+}
+
+@keyframes fadeinback {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes shrink {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0.25;
     }
 }
 
