@@ -4,84 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="crosswordFavicon.ico">
-    <link href="style.css" rel="stylesheet" type="text/css">
-    <script src="main.js"></script>
-
-    <script type="importmap">
-        {
-            "imports": {
-                "jspdf": "https://cdn.jsdelivr.net/npm/jspdf@2.5.1/+esm",
-                "html2canvas": "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm"
-            }
-        }
-    </script>
-    <script type="module" src="pdf.js"></script>
+    <link href="title.css" rel="stylesheet" type="text/css">
+    <script src="title.js"></script>
     <title>Puzzle Architect: Crossword</title>
 </head>
 <body>
     <div id="content">
-        <div id="workspace">
-            <div id="crossword-settings">
-                <p>Crossword Settings</p>
-                <div class="option">
-                    <p>Title</p>
-                    <input id="title" type="text" value="My Crossword" placeholder="Enter Title" maxlength=""></input>
-                    <p>Publishing Options</p>
-                    <button id="export-button">Download or Print Crossword</button>
-                    <button id="key-button">Download or Print Answer Key</button>
-                </div>
-                <p>Words</p>
-                <div class="option" id="word-list">
-                    <!-- <p class="info">None yet! Give a cell an identifier to mark a new word.</p> -->
-                    <div id="words">
-                    </div>
-                </div>
-                <p style="text-align: center; margin: 0;">Controls:<br>Left Click/Arrow Keys: Select Cell<br>Right Click/Enter: Change Direction<br>Double Click/Control: Black out Cell</p>
-            </div>
-            <table id="maker"></table>
-            <div id="properties">
-                <div id="properties-content">
-                    <p>Cell Properties</p>
-                    <div class="option" id="option-hint-left">
-                        <p>Left Identifier</p>
-                        <input id="cell-identifier-left" type="text" minLength="0" maxLength="2" placeholder="1, 2, 3, etc... Could be letters, too!">
-                        <div id="cell-hint-left">
-                            <p>Direction</p>
-                            <select id="hint-direction-left">
-                                <option value="Down">Down</option>
-                                <option value="Across">Across</option>
-                            </select>
-                            <p>Hint</p>
-                            <textarea type="text" id="hint-left" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <div class="option" id="option-hint-right">
-                        <p>Right Identifier</p>
-                        <input id="cell-identifier-right" type="text" minLength="0" maxLength="2" placeholder="1, 2, 3, etc... Could be letters, too!">
-                        <div id="cell-hint-right">
-                            <p>Direction</p>
-                            <select id="hint-direction-right">
-                                <option value="Down">Down</option>
-                                <option value="Across">Across</option>
-                            </select>
-                            <p>Hint</p>
-                            <textarea type="text" id="hint-right" rows="3"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="export" style="display: none;">
-            <h1 id="crossword-title">My Crossword</h1>
-            <table id="crossword"></table>
-            <div id="hints">
-                <div id="down"><h3>Down</h3><div id="down-hints"></div></div>
-                <div id="across"><h3>Across</h3><div id="across-hints"></div></div>
-            </div>
-        </div>
-    </div>
-    <div id="logo">
-        <img src="puzzleArchitect_Crossword.png">
+        <img id="logo" src="puzzleArchitect_Crossword.png">
+        <!-- <button id="mode-play" class="menu-button">Play</button> -->
+        <button id="mode-create" class="menu-button">Create</button>
     </div>
 </body>
 </html>
