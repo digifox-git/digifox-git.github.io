@@ -224,13 +224,13 @@ function refresh_cells() {
 }
 
 function refresh_words() {
-    let cells = document.querySelectorAll(".cell")
 
     let words = document.getElementById("words")
     words.innerHTML = ""
 
-    let crossword = document.getElementById("crossword")
-    crossword.innerHTML = ""
+    let maker = document.getElementById("maker")
+
+    let cells = maker.querySelectorAll(".cell")
     
     cells.forEach(cell => {
         if (cell.getAttribute("identifier-left")) {
@@ -399,14 +399,10 @@ document.addEventListener("DOMContentLoaded", () => {
         refresh_words()
     })
     directionInputLeft.addEventListener("input", () => {
-        let crossword = document.getElementById("crossword")
-        crossword.innerHTML = ""
         set_attribute("hint-direction-left", directionInputLeft.value)
         refresh_words()
     })
     hintInputLeft.addEventListener("change", () => {
-        let crossword = document.getElementById("crossword")
-        crossword.innerHTML = ""
         set_attribute("hint-left", hintInputLeft.value)
         refresh_words()
     })
