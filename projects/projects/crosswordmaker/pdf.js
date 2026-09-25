@@ -4,7 +4,7 @@
     // the whole category down, too.
 // Also, make down/across categories proper column again.
 
-async function build_table(tableSize) {
+async function build_crossword(tableSize) {
     let size = tableSize
     let crossword = document.getElementById("crossword")
     let maker = document.getElementById("maker")
@@ -55,7 +55,7 @@ async function build_table(tableSize) {
     let acrossJSON = {}
 
     crosswordCells.forEach(cell => {
-        let hint = ""
+
 
         makerCells.forEach(makerCell => {
             let character = makerCell.querySelector(".character")
@@ -79,7 +79,10 @@ async function build_table(tableSize) {
                     cell.setAttribute("hint-left", leftHint)
                     cell.setAttribute("hint-right", rightHint)
                 }
-                
+                if (makerCell.classList.contains("block")) {
+                    cell.classList.remove("open")
+                    cell.classList.add("block")
+                }
             }
         })
 
@@ -119,8 +122,10 @@ async function build_table(tableSize) {
     let makerTitle = document.getElementById("title")
     crosswordTitle.innerText = makerTitle.value
 
+    let downDiv = document.getElementById("down")
     let downList = document.getElementById("down-hints")
     downList.innerHTML = ""
+    let acrossDiv = document.getElementById("across")
     let acrossList = document.getElementById("across-hints")
     acrossList.innerHTML = ""
 
@@ -152,6 +157,11 @@ async function build_table(tableSize) {
             <b>${identifier}</b>. ${hint}
         </p>`
     }
+
+    if (Object.keys(sortedDownJSON).length == 0) downDiv.style.display = "none"
+        else downDiv.style.display = "block"
+    if (Object.keys(sortedAcrossJSON).length == 0) acrossDiv.style.display = "none"
+        else acrossDiv.style.display = "block"
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -160,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     exportButton.addEventListener("click", async () => {
         exportDiv.style.display = "block"
-        await build_table(15)
+        await build_crossword(15)
         window.print()
         exportDiv.style.display = "none"
     })

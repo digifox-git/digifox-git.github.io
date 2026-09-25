@@ -10,6 +10,8 @@ function build_table(tableSize) {
     let contentDiv = document.getElementById("content")
     let crosswordMaker = document.getElementById("maker")
 
+    crosswordMaker.innerHTML = ""
+
     // Creating rows and cells
     for (let i = 0; i < size; i++) {
         let row = document.createElement("tr")
@@ -90,6 +92,16 @@ function build_table(tableSize) {
                         cell.querySelector(".character").innerText = ""
                         cell.querySelector(".identifier-left").innerText = ""
                         cell.querySelector(".identifier-right").innerText = ""
+                        set_attribute("identifier-left", "")
+                        set_attribute("identifier-right", "")
+                        if (document.getElementById("cell-identifier-left")) {
+                            document.getElementById("cell-identifier-left").value = cell.getAttribute("identifier-left")
+                        }
+
+                        if (document.getElementById("cell-identifier-right")) {
+                            document.getElementById("cell-identifier-right").value = cell.getAttribute("identifier-left")
+                        }
+
                         remove_block(cell)
 
                         if (typeDirection == "across") {
@@ -99,6 +111,7 @@ function build_table(tableSize) {
                         if (typeDirection == "down") {
                             select_cell(selectedCoordinates[0] - 1, selectedCoordinates[1])
                         }
+                        refresh_words()
                     }
 
                     if (event.key == "Enter") {
@@ -208,8 +221,6 @@ function refresh_cells() {
         }
 
     })
-
-    refresh_words()
 }
 
 function refresh_words() {
@@ -300,6 +311,15 @@ function select_cell(x, y) {
             }
         })
     })
+    let propertyIdentifierLeft = document.getElementById("cell-identifier-left")
+    let propertyIdentifierRight = document.getElementById("cell-identifier-right")
+    let hintLeft = document.getElementById("cell-hint-left")
+    let hintRight = document.getElementById("cell-hint-right")
+    if (!propertyIdentifierLeft.value) set_div_display(hintLeft.id, "none")
+        else set_div_display(hintLeft.id, "block")
+    if (!propertyIdentifierRight.value) set_div_display(hintRight.id, "none")
+        else set_div_display(hintRight.id, "block")
+
     refresh_cells()
 }
 
@@ -339,53 +359,99 @@ document.addEventListener("DOMContentLoaded", () => {
     // })
 
     let propertyIdentifierLeft = document.getElementById("cell-identifier-left")
-    let propertyIdentifierRight = document.getElementById("cell-identifier-right")
-    propertyIdentifierLeft.addEventListener("input", (event) => {
+    let directionInputLeft = document.getElementById("hint-direction-left")
+    let hintInputLeft = document.getElementById("hint-left")
+    propertyIdentifierLeft.addEventListener("change", () => {
+
+        let cells = document.querySelectorAll(".cell")
+        let duplicateFound = false
+        cells.forEach(cell => {
+            if (cell.getAttribute("identifier-left") == propertyIdentifierLeft.value && cell != selectedCell && cell.getAttribute("identifier-left") != "") {
+                propertyIdentifierLeft.value = ""
+                duplicateFound = true
+            }
+            if (cell.getAttribute("identifier-right") == propertyIdentifierLeft.value && cell != selectedCell && cell.getAttribute("identifier-right") != "") {
+                propertyIdentifierLeft.value = ""
+                duplicateFound = true
+            }
+            if (cell == selectedCell && propertyIdentifierRight.value != "" && propertyIdentifierLeft.value == propertyIdentifierRight.value) {
+                propertyIdentifierLeft.value = ""
+                duplicateFound = true
+            }
+        })
+
         if (!selectedCell) propertyIdentifierLeft.value = ""
-        else {
-            set_identifier(propertyIdentifierLeft.value, "left")
-            refresh_cells()
-        }
+            else if (!duplicateFound) set_identifier(propertyIdentifierLeft.value, "left")
+
         let hint = document.getElementById("cell-hint-left")
-        let directionInput = document.getElementById("hint-direction-left")
-        directionInput.value = selectedCell.getAttribute("hint-direction-left")
 
-        let hintInput = document.getElementById("hint-left")
-        hintInput.value = selectedCell.getAttribute("hint-left")
-        set_div_display(hint.id, "block")
 
-        directionInput.addEventListener("input", () => {
-            set_attribute("hint-direction-left", directionInput.value)
-        })
-        hintInput.addEventListener("input", () => {
-            set_attribute("hint-left", hintInput.value)
-        })
-        refresh_cells()
+        if (!propertyIdentifierLeft.value) set_div_display(hint.id, "none")
+            else if (!duplicateFound) set_div_display(hint.id, "block")
+        
+        directionInputLeft.value = selectedCell.getAttribute("hint-direction-left")
+        hintInputLeft.value = selectedCell.getAttribute("hint-left")
+        refresh_words()
     })
-    propertyIdentifierRight.addEventListener("input", (event) => {
+    directionInputLeft.addEventListener("input", () => {
+        set_attribute("hint-direction-left", directionInputLeft.value)
+        refresh_words()
+    })
+    hintInputLeft.addEventListener("change", () => {
+        set_attribute("hint-left", hintInputLeft.value)
+        refresh_words()
+    })
+
+    let propertyIdentifierRight = document.getElementById("cell-identifier-right")
+    let directionInputRight = document.getElementById("hint-direction-right")
+    let hintInputRight = document.getElementById("hint-right")
+    propertyIdentifierRight.addEventListener("change", () => {
+
+        let cells = document.querySelectorAll(".cell")
+        let duplicateFound = false
+        cells.forEach(cell => {
+            if (cell.getAttribute("identifier-left") == propertyIdentifierRight.value && cell != selectedCell && cell.getAttribute("identifier-left") != "" && selectedCell.getAttribute("identifier-right") != selectedCell.getAttribute("identifier-left")) {
+                propertyIdentifierRight.value = ""
+                duplicateFound = true
+            }
+            if (cell.getAttribute("identifier-right") == propertyIdentifierRight.value && cell != selectedCell && cell.getAttribute("identifier-right") != "" && selectedCell.getAttribute("identifier-right") != selectedCell.getAttribute("identifier-left")) {
+                propertyIdentifierRight.value = ""
+                duplicateFound = true
+            }
+            if (cell == selectedCell && propertyIdentifierLeft.value != "" && propertyIdentifierRight.value == propertyIdentifierLeft.value) {
+                propertyIdentifierRight.value = ""
+                duplicateFound = true
+            }
+        })
+
         if (!selectedCell) propertyIdentifierRight.value = ""
-        else {
-            set_identifier(propertyIdentifierRight.value, "right")
-            refresh_cells()
-        }
+            else set_identifier(propertyIdentifierRight.value, "right")
+
         let hint = document.getElementById("cell-hint-right")
-        let directionInput = document.getElementById("hint-direction-right")
-        directionInput.value = selectedCell.getAttribute("hint-direction-right")
 
-        let hintInput = document.getElementById("hint-right")
-        hintInput.value = selectedCell.getAttribute("hint-right")
-        set_div_display(hint.id, "block")
+        if (!propertyIdentifierRight.value) set_div_display(hint.id, "none")
+            else set_div_display(hint.id, "block")
+        
+        directionInputRight.value = selectedCell.getAttribute("hint-direction-right")
+        hintInputRight.value = selectedCell.getAttribute("hint-right")
 
-        directionInput.addEventListener("change", () => {
-            set_attribute("hint-direction-right", directionInput.value)
-        })
-        hintInput.addEventListener("input", () => {
-            set_attribute("hint-right", hintInput.value)
-        })
-        refresh_cells()
+        
+        refresh_words()
+    })
+    directionInputRight.addEventListener("change", () => {
+        set_attribute("hint-direction-right", directionInputRight.value)
+        refresh_words()
+    })
+    hintInputRight.addEventListener("input", () => {
+        set_attribute("hint-right", hintInputRight.value)
+        refresh_words()
     })
 
     toggle_properties(false)
     build_table(15)
 })
 
+window.addEventListener("afterprint", () => {
+    let crossword = document.getElementById("crossword")
+    crossword.innerHTML = ""
+})
