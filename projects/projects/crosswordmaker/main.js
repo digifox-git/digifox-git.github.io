@@ -380,6 +380,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
 
+        if (duplicateFound) window.alert("Can't have duplicate idendifiers!")
+
         if (!selectedCell) propertyIdentifierLeft.value = ""
             else if (!duplicateFound) set_identifier(propertyIdentifierLeft.value, "left")
 
@@ -423,6 +425,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 duplicateFound = true
             }
         })
+
+        if (duplicateFound) window.alert("Can't have duplicate idendifiers!")
 
         if (!selectedCell) propertyIdentifierRight.value = ""
             else set_identifier(propertyIdentifierRight.value, "right")
