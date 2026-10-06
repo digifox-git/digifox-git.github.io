@@ -251,6 +251,8 @@ button:active {
     padding: 2%;
     width: 90%;
     user-select: none;
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
 .word:hover {
@@ -390,6 +392,7 @@ button:active {
     }
 
     .hint { 
+        
     }
 }
 
