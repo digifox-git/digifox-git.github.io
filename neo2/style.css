@@ -253,3 +253,16 @@ a:hover {
 .hidden {
     display: none;
 }
+
+#game-logo {
+    width: 70%;
+    padding: 5%;
+    filter: drop-shadow(2px 2px 0px var(--primary-color));
+}
+
+.playing-game {
+    width: 95%;
+    background-color: var(--quaternary-color);
+    border: 1px solid var(--primary-color);
+    flex: 1;
+}
