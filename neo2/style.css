@@ -48,7 +48,7 @@ body {
     border: 0.25vw var(--primary-color) outset;
     box-shadow: 2px 2px 4px inset rgba(0, 0, 0, 0.5);
     width: 42vw;
-    height: 32%;
+    height: 30vh;
     margin: 0.25%;
 }
 
@@ -227,12 +227,15 @@ a:hover {
 
 .log-content {
     display: flex;
+    max-height: 100%;
+    flex: 1
 }
 
 .log-text {
-    font-size: 0.8vw !important;
+    font-size: 90% !important;
     font-family: sans-serif;
     width: 100%;
+    overflow: scroll;
 }
 
 .log-image {
@@ -262,6 +265,7 @@ a:hover {
 
 .playing-game {
     width: 95%;
+    min-height: 0;
     background-color: var(--quaternary-color);
     border: 1px solid var(--primary-color);
     flex: 1;
