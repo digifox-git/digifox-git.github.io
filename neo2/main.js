@@ -1,3 +1,7 @@
+// Need like 10000 different themes for different days!
+// (Cat day, Fox day, Pride month/day for 1st of june? My birthday! Also all the seasons. LBP anniversary.
+// Anniversary of other games I like)
+
 document.addEventListener("DOMContentLoaded", () => {
     let destinations = document.querySelectorAll(".destination")
     destinations.forEach(destination => {

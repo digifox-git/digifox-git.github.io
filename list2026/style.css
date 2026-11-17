@@ -1,0 +1,102 @@
+:root {
+
+    /* Default Scheme */
+    --default-banner: url(defaultresources/banners/default.png);
+    --default-background: url(defaultresources/backgrounds/default.gif);
+    --default-primary: #4e0dff;
+    --default-secondary: #082557;
+    --default-tertiary: #061c42;
+    --default-quaternary: #183870;
+    --default-button: #9e0dff;
+
+    /* Autumn Scheme */
+    --fall-banner: url(defaultresources/banners/fall.png);
+    --fall-background: url(defaultresources/backgrounds/fall.gif);
+    --fall-primary: #ee5f33;
+    --fall-secondary: #571e08;
+    --fall-tertiary: #421906;
+    --fall-quaternary: #702a18;
+    --fall-button: #e68b03;
+
+    --banner: var(--default-banner);
+    --background: var(--default-background);
+    --primary-color: var(--default-primary);
+    --secondary-color: var(--default-secondary);
+    --tertiary-color: var(--default-tertiary);
+    --quaternary-color: var(--default-quaternary);
+    --button-color: var(--default-button);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-image: url(/assets/images/bluespace.gif);
+    color: white;
+    align-items: center;
+}
+
+.special-item {
+    position: relative;
+    border: 2px solid var(--fall-primary);
+    background-color: var(--fall-secondary);
+    margin: 0.5%;
+    height: 70px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px; 
+    padding: 1%;
+}
+
+.special-link {
+    position: absolute;
+    bottom: 0.5vh;
+    right: 1vw;
+    color: var(--fall-button);
+}
+
+.special-image {
+    position: absolute;
+    width: 30vw;
+    bottom: 0.5vh;
+    right: 1vw;
+    border: 2px solid var(--fall-primary);
+}
+
+.item {
+    position: relative;
+    border: 2px solid var(--primary-color);
+    background-color: var(--secondary-color);
+    margin: 0.5%;
+    min-height: 70px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 1%;
+}
+
+.name {
+    color: white;
+    margin: 0;
+    margin-top: 2.5%;
+}
+
+.price {
+    color: white;
+    margin-left: 7%;
+    margin: 0;
+}
+
+.image {
+    position: absolute;
+    width: 30vw;
+    bottom: 0.5vh;
+    right: 1vw;
+    border: 2px solid var(--primary-color);
+}
+
+.link {
+    position: absolute;
+    bottom: 0.5vh;
+    right: 1vw;
+    color: var(--button-color);
+}
